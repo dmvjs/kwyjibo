@@ -4,6 +4,8 @@ This is the tech that powers https://cappinkirk.com (minus the beats) posted her
 
 Please check out https://cappinkirk.com for always unique endless mixes.
 
+Note: This project won't work out of the box, it needs the music files corresponding to data in songdata.json. If you are interested hit me up and I can help you get going but there is enough nuance that I won't attempt to explain it all jere just yet. 
+
 ## How does it work?
 
 The application has a bunch of audio files (specifically in 84 and 94 BPM tempos) that are each 16 and 64 beats in length (two files, 'lead' and 'body'), for each of 85 songs that have an object describing their native integer tempo, artist name, title, and key randomly selects forward or reverse, selects tempo of 84, and a random key (1-12) to start.
