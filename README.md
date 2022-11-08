@@ -31,6 +31,11 @@ After that I focused on getting it to work on mobile which seemed impossible on 
 
 Now it works pretty great except for the phone going to sleep which iI really am not concerned with enough to fix yet, although I have some creative ideas. I prefer to encourage people to use the desktop version anyway.
 
+## What's next for this project?
+
+I have an awesome dance version that plays entire Billboard Rhythmic Dance songs mixed together, but its just for me to listen to at home, that uses 123BPM files. I'd like to also add the ability to include shorter loops that wrap around for the duration of the longer track, and also to make some native apps based on this technology.
+
+DJing is really fun but "not DJing" is even more fun 😃 especially when I hear the "creations" of this algorithm, sometimes they give the chills!
 
 
 
