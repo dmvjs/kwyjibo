@@ -4,7 +4,7 @@ This is the tech that powers https://cappinkirk.com (minus the beats) posted her
 
 Please check out https://cappinkirk.com for always unique endless mixes.
 
-Note: This project won't work out of the box, it needs the music files corresponding to data in songdata.json. If you are interested hit me up and I can help you get going but there is enough nuance that I won't attempt to explain it all jere just yet. 
+Note: This project won't work out of the box, it needs the music files corresponding to data in songdata.json. If you are interested hit me up and I can help you get going but there is enough nuance that I won't attempt to explain it all here just yet. 
 
 ## How does it work?
 
