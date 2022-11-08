@@ -1,5 +1,9 @@
 # Kwyjibo
 
+Example output posted to soundcloud: https://soundcloud.com/cappinkirk/kwyjibot-3actplayv2
+
+LIVE JavaScript DJ Website dynamically powered by Kwyjibo: https://cappinkirk.com
+
 This is the tech that powers https://cappinkirk.com (minus the beats) posted here for all. Provide your own music.
 
 Please check out https://cappinkirk.com for always unique endless mixes.
