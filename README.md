@@ -8,9 +8,9 @@ Note: This project won't work out of the box, it needs the music files correspon
 
 ## How does it work?
 
-The application has a bunch of audio files (specifically in 84, 94, and 103 BPM tempos) that are each 16 and 64 beats in length (two files, 'lead' and 'body'), for each of 193 songs that have an object describing their native integer tempo, artist name, title, and key randomly selects forward or reverse, selects a random tempo, and a random key (1-12) to start.
+The application has a bunch of audio files (specifically in 84, 94, and 103 BPM tempos) that are each 16 and 64 beats in length (two files, 'lead' and 'body'), for each of 193 songs that have an object describing their native integer tempo, artist name, title, and key.
 
-Next, it filters the set of songs to the tempo and key* and randomly chooses one, and removes this from the list of songs. It gets two songs going in matching tempo with near or matching keys for 16 beats while playing two DJ samples at specific times, chosen randomly from a bank of sounds created for this purpose.
+Kwyjibo randomly selects forward or reverse key traversal order, selects a random tempo (84, 94, 103), and a random key (1-12) to start. Next, it filters the set of songs to the tempo and key* and randomly chooses one, and removes this from the list of songs. It gets two songs going in matching tempo with near or matching keys for 16 beats while playing two DJ samples at specific times, chosen randomly from a bank of sounds created for this purpose.
 
 Next it plays a longer version of those two songs for 64 beats. For the next four songs, just play the longer versions, but also just like before, filter songs, choose one randomly, remove from list. Each chosen song moves the active key value ahead, forward or reverse, and when it overflows it goes back to the bottom/top (forward/reverse).
 
