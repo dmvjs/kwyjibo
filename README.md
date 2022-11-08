@@ -18,4 +18,20 @@ If a song isn’t available in the key search, just randomly choose any song and
 
 * when considering key the metadata also includes specific information not only about the entire instrumental (native key) but also the time shifted key, if it is affected. this allows for more complex combinations of beats
 
+
+## What were the main challenges with this project?
+
+The first challenge was getting the audio to play simultaneously to create a POC. I know that setTimeout and normal JavaScript clock isnt accurate enough for precise timing and I didnt want the application to feel "off". So the first day was spent coming up with a good way to get two audio files to play at the same time.
+
+I was also concerned about the loading and decoding times for mp3 files, and definitely worried about loading times for wav files, so locally when I record I use wav and when I publish to the web I use mp3 format.
+
+Next my POC worked with about four songs all at the same tempo but it didn't work on mobile and also it loaded all the songs on page load which was undesirable. I wasn't in a hurry to get the product finished so the solution came to me naturally in between coding sessions, to just load one set of songs, and then once it is loaded load the next set of songs, ad infinitium. This way there was only one next set of tracks cued up at a given time and saved a lot of bandwidth.
+
+After that I focused on getting it to work on mobile which seemed impossible on iOS until I figured out the most important trick, I didn't find my solution on the web I figured it out on my own.
+
+Now it works pretty great except for the phone going to sleep which iI really am not concerned with enough to fix yet, although I have some creative ideas. I prefer to encourage people to use the desktop version anyway.
+
+
+
+
 Check out https://cappinkirk.com for endless on-key mixes
