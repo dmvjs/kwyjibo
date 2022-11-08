@@ -35,6 +35,8 @@ Now it works pretty great except for the phone going to sleep which iI really am
 
 I have an awesome dance version that plays entire Billboard Rhythmic Dance songs mixed together, but its just for me to listen to at home, that uses 123BPM files. I'd like to also add the ability to include shorter loops that wrap around for the duration of the longer track, and also to make some native apps based on this technology.
 
+Once it's set up, a club or DJ could use this to get their set going or to take a break, or a rapper could use it to rap over beats, there are lots of application ideas to use in the future, and of course adding new music which I could make an entire workshop about, maybe on youtube.
+
 DJing is really fun but "not DJing" is even more fun 😃 especially when I hear the "creations" of this algorithm, sometimes they give the chills!
 
 
