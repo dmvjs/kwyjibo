@@ -2,7 +2,7 @@ import {getTracks} from "./tracks.js";
 import {BufferLoader} from "./BufferLoader.js";
 import {context} from "./context.js";
 import {bufferPadding, getBuffer, setBufferPadding} from "./buffers.js";
-import {activeTempo, getTempo, tempos} from "./tempo.js";
+import {activeTempo} from "./tempo.js";
 
 let bufferLoader;
 let isFirst = true;
@@ -31,14 +31,15 @@ function finishedLoading(bufferList) {
     getAndStartBuffer(bufferList[0], bufferPadding, true)
     getAndStartBuffer(bufferList[1], bufferPadding)
     if (bufferList[2]) {
-        getAndStartBuffer(bufferList[2], bufferPadding + tempos[activeTempo].leadBuffer / 2)
+        getAndStartBuffer(bufferList[2], bufferPadding + ((60 / activeTempo) * 16) / 2)
     }
     if (bufferList[3]) {
         getAndStartBuffer(bufferList[3], bufferPadding)
     }
-    const tempo = getTempo(bufferList[0].duration)
 
-    const min = bufferList[0].duration < 15 ? tempos[tempo].leadBuffer : tempos[tempo].bodyBuffer;
+    const barDuration = 60 / activeTempo;
+
+    const min = bufferList[0].duration < 15 ? barDuration * 16 : barDuration * 64;
     setBufferPadding(bufferPadding + min);
     if (isFirst) {
         isFirst = false;
