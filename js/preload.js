@@ -1,8 +1,10 @@
 import {getTracks} from "./tracks.js";
 import {BufferLoader} from "./BufferLoader.js";
 import {context} from "./context.js";
-import {bufferPadding, getBuffer, setBufferPadding} from "./buffers.js";
-import {activeTempo} from "./tempo.js";
+import {bufferPadding, getBuffer, replenishBuffers, setBufferPadding} from "./buffers.js";
+import {activeTempo, setActiveTempo} from "./tempo.js";
+import {resetSongs} from "./song.js";
+import {activeKey, getNextKey, initialKey} from "./key.js";
 
 let bufferLoader;
 let isFirst = true;
@@ -27,7 +29,7 @@ function getAndStartBuffer(bufferListItem, time, addListener) {
     }
 }
 
-function finishedLoading(bufferList) {
+function finishedLoading(bufferList, tempo) {
     getAndStartBuffer(bufferList[0], bufferPadding, true)
     getAndStartBuffer(bufferList[1], bufferPadding)
     if (bufferList[2]) {
@@ -37,10 +39,21 @@ function finishedLoading(bufferList) {
         getAndStartBuffer(bufferList[3], bufferPadding)
     }
 
-    const barDuration = 60 / activeTempo;
-
+    const barDuration = 60 / tempo;
     const min = bufferList[0].duration < 15 ? barDuration * 16 : barDuration * 64;
     setBufferPadding(bufferPadding + min);
+    if (activeKey === getNextKey(initialKey)) {
+        resetSongs();
+        if (activeTempo === 84) {
+            setActiveTempo(94)
+        } else if (activeTempo === 94) {
+            setActiveTempo(102)
+        } else if (activeTempo === 102) {
+            setActiveTempo(84)
+        }
+        console.log('tempo change', activeTempo)
+    }
+    replenishBuffers(bufferList.length)
     if (isFirst) {
         isFirst = false;
         init();

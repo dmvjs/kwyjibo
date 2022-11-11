@@ -58,7 +58,7 @@ const config = {
         client: {
             overlay: {
                 errors: true,
-                warnings: false, // temp change until Jet fixes: "export 'level' (imported as 'level') was not found "
+                warnings: false,
             },
         },
         static: {

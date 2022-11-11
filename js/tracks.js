@@ -1,9 +1,8 @@
-import {activeKey, getNextKey, initialKey, updateActiveKey} from "./key.js";
+import {activeKey, updateActiveKey} from "./key.js";
 import {filetype} from "./filetype.js";
 import {justStarTrekIntro, samples} from "./samples.js";
-import {getSong, resetSongs} from "./song.js";
-import {activeTempo, setActiveTempo} from "./tempo.js";
-import {replenishBuffers} from "./buffers.js";
+import {getSong} from "./song.js";
+import {activeTempo} from "./tempo.js";
 
 let holder = {}
 const magicNumber = 5;
@@ -36,21 +35,11 @@ const getTracks = () => {
     } else {
         updateActiveKey();
     }
-    // change tempo
-    if (activeKey === getNextKey(initialKey)) {
-        if (activeTempo === 84) {
-            setActiveTempo(94)
-        } else if (activeTempo === 94) {
-            setActiveTempo(102)
-        } else if (activeTempo === 102) {
-            resetSongs();
-            setActiveTempo(84)
-        }
-        console.log('tempo change', activeTempo)
-    }
     trackIndex += 1;
-    replenishBuffers(returnArray.length)
-    return returnArray;
+    return {
+        bpm: activeTempo,
+        list: returnArray
+    };
 }
 
 export {getTracks, trackIndex}
