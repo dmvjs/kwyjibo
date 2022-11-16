@@ -1,5 +1,5 @@
 const config = {
-    // initialKey:9,
+    // initialKey:6,
     // initialTempo: 102,
     // fileType: '.wav',
     // length: 5, //17

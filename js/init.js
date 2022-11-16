@@ -9,7 +9,13 @@ export const showSongMatrix = (array) => {
     for (const tempo of tempos) {
         const rv = (Array.from({length: 12}, (int, index)=> {
             return array.filter((item)=> {
-                return item.bpm === Number(tempo) && item.key === index + 1
+                if (item.bpm !== Number(tempo)) {
+                    return false;
+                }
+                if (item.computedKey) {
+                    return item.computedKey === index + 1
+                }
+                return item.key === index + 1
             })
         }))
         console.log(tempo, rv.flat().length, rv)

@@ -1,4 +1,4 @@
-import {activeKey, updateActiveKey} from "./key.js";
+import {activeKey, getNextKey, updateActiveKey} from "./key.js";
 import {filetype} from "./filetype.js";
 import {justStarTrekIntro, samples} from "./samples.js";
 import {getSong} from "./song.js";
@@ -34,6 +34,14 @@ const getTracks = () => {
         holder[trackIndex] = [firstSongId, secondSongId]
     } else {
         updateActiveKey();
+    }
+    if (trackIndex % magicNumber !== 2) {
+        requestAnimationFrame(()=> {
+            const colorKey = trackIndex % magicNumber > 1 ? getNextKey(getNextKey(activeKey)) : getNextKey(activeKey)
+            document.body.className = `color-${colorKey}`
+            document.getElementById('play-button').className = `button-color-${colorKey}`
+            document.getElementById('pause-button').className = `button-color-${colorKey}`
+        })
     }
     trackIndex += 1;
     return {
