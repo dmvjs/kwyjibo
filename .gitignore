@@ -1,8 +1,9 @@
 # ignore node/grunt dependency directories
 node_modules/
 .idea
+js/songdata-og.js
 .DS_Store
 dist
 web
 music-og
-music
+music_ogog

@@ -5,6 +5,9 @@ if (!location.host.includes('localhost') && location.protocol !== 'https:') {
     location.replace(`https:${location.href.substring(location.protocol.length)}`);
 }
 
+const counterSpan = document.getElementById('song-counter')
+counterSpan.innerHTML = String(songdata.length)
+
 export const showSongMatrix = (array) => {
     for (const tempo of tempos) {
         const rv = (Array.from({length: 12}, (int, index)=> {

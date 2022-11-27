@@ -3,6 +3,7 @@ import {filetype} from "./filetype.js";
 import {justStarTrekIntro, samples} from "./samples.js";
 import {getSong} from "./song.js";
 import {activeTempo} from "./tempo.js";
+import {cryptoRandom} from "./cryptoRandom.js";
 
 let holder = {}
 const magicNumber = 5;
@@ -23,7 +24,7 @@ const getTracks = () => {
     }
     const firstTrack = file(firstSongId, isMagicTime)
     const secondTrack = file(secondSongId, isMagicTime)
-    const thirdTrack = isMagicTime ? `../music/${samples[Math.floor(Math.random() * samples.length)]}${filetype}` : null;
+    const thirdTrack = isMagicTime ? `../music/${samples[Math.floor(cryptoRandom() * samples.length)]}${filetype}` : null;
     const fourthTrack = isMagicTime ? justStarTrekIntro[0] : null;
     const returnArray =  [firstTrack, secondTrack];
     if (thirdTrack) {
