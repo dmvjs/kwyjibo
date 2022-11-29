@@ -4,9 +4,13 @@ Example output posted to soundcloud: https://soundcloud.com/cappinkirk/kwyjibot-
 
 LIVE JavaScript DJ Website dynamically powered by Kwyjibo: https://cappinkirk.com
 
-Note: This project won't work out of the box, it needs the music files corresponding to data in songdata.json. If you are interested hit me up and I can help you get going but there is enough nuance that I won't attempt to explain it all here just yet. 
+![How does Kwyjibo work?](01.png)
 
-## How does it work?
+![How does Kwyjibo pick songs?](02.png)
+
+![How does Kwyjibo play songs?](03.png)
+
+## How does it work on https://cappinkirk.com ?
 
 The application has a bunch of audio files (specifically in 84, 94, and 103 BPM tempos) that are each 16 and 64 beats in length (two files, 'lead' and 'body'), for each of 193 songs that have an object describing their native integer tempo, artist name, title, and key.
 
