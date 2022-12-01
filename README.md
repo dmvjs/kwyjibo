@@ -2,7 +2,7 @@
 
 ![img.png](img.png)
 
-Example output posted to soundcloud: https://soundcloud.com/cappinkirk/kwyjibot-3actplayv2
+Example output posted to soundcloud: https://soundcloud.com/cappinkirk/kdefv1
 
 LIVE JavaScript DJ Website dynamically powered by Kwyjibo: https://cappinkirk.com
 
