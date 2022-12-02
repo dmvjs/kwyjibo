@@ -20,44 +20,38 @@ Array.prototype._shuffle = function () {
 
 const getSongs = (key) => {
     const nextKey = getNextKey(key);
-    const nextNextKey = getNextKey(nextKey);
     const previousKey = getNextKey(key, true);
-    const previousPreviousKey = getNextKey(previousKey, true);
     let thisTempoSongs = songs.filter((item)=> item.bpm === activeTempo)._shuffle()
     let thisKeySongs = [
         ...new Set(thisTempoSongs.filter((item)=> {
             if (item.computedKey) {
                 return item.computedKey === activeKey ||
                     item.computedKey === nextKey ||
-                    item.computedKey === previousKey /*||
-                    item.computedKey === nextNextKey ||
-                    item.computedKey === previousPreviousKey*/
+                    item.computedKey === previousKey
             }
             return item.key === activeKey ||
                 item.key === nextKey ||
-                item.key === previousKey /*||
-                item.key === nextNextKey ||
-                item.key === previousPreviousKey*/
+                item.key === previousKey
         }))]._shuffle()
     return {thisKeySongs, thisTempoSongs};
 }
 
-const getSong = (key) => {
+const getSong = (key, artist) => {
     let {thisKeySongs, thisTempoSongs} = getSongs(key)
     if (thisKeySongs.length) {
-        return getId(thisKeySongs)
+        return getId(thisKeySongs.filter(s=>s.artist !== artist))
     }
     if (thisTempoSongs.length) {
-        return getId(thisTempoSongs)
+        return getId(thisTempoSongs.filter(s=>s.artist !== artist))
     }
 }
 
 const getId = (array) => {
     const songIndex = Math.floor(cryptoRandom() * array.length)
-    const id = array[songIndex].id;
+    const {artist, id} = array[songIndex];
     console.log(activeKey, array[songIndex])
     songs = songs.filter((item)=>item.id !== id)._shuffle()
-    return id;
+    return {artist, id};
 }
 
 export {getSong}

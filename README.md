@@ -40,6 +40,16 @@ After that I focused on getting it to work on mobile which seemed impossible on 
 
 Now it works pretty great except for the phone going to sleep which iI really am not concerned with enough to fix yet, although I have some creative ideas. I prefer to encourage people to use the desktop version anyway.
 
+## How do I use my own songs with the project?
+
+Recording an entire song at your tempo, exactly 94.00 BPM for example, isn't always easy. Many songs are not "metric" at all, either not 4/4 or not consistently 4/4 or whatever. Pretend you only care about songs that can be perfectly gridded.
+
+So pretend that you are able to perfectly grid a song at a single bpm for 16 and 64 beats (lead and body files). You also need to line up the song so that the bass or snare matches up with another song correctly. Many songs have swing or offbeat or jazzy bass. This requires listening, just like a DJ does live but in a quiet studio enrollment its much more controlled and easier in addition to being more accurate. Now you can templatize your process in Audacity for your tempo and begin stamping out tracks.
+
+To accomplish this task I exported a rhythm from DJ-505 drum machine set to 94.0BPM with sync on. I use the exported beat to match each track to so I can listen to how the beats match up and twiddle if needed. After I like the sound I can export the files. The drum machine isnt present on the recorded tracks, but it exists in my Audacity template for lining up beats visually before and during listening.
+
+I also use an Audacity macro that normalizes the volume on the tracks to be safe for general broadcast and saves mp3 and wav versions from a wav source.
+
 ## What's next for this project?
 
 I have an awesome dance version that plays entire Billboard Rhythmic Dance songs mixed together, but its just for me to listen to at home, that uses 123BPM files. I'd like to also add the ability to include shorter loops that wrap around for the duration of the longer track, and also to make some native apps based on this technology.

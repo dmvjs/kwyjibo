@@ -17,8 +17,9 @@ const getTracks = () => {
     if (isMagicTime) {
         console.log('station identification…')
     }
-    const firstSongId = trackIndex % magicNumber === 1 ? holder[trackIndex - 1][0] : getSong(activeKey);
-    const secondSongId = trackIndex % magicNumber === 1 ? holder[trackIndex - 1][1] : getSong(activeKey);
+    const firstSong = trackIndex % magicNumber === 1 ? null : getSong(activeKey)
+    const firstSongId = trackIndex % magicNumber === 1 ? holder[trackIndex - 1][0] : firstSong.id;
+    const secondSongId = trackIndex % magicNumber === 1 ? holder[trackIndex - 1][1] : getSong(activeKey, firstSong.artist).id;
     if (!isMagicTime) {
         console.log('followed by…')
     }
