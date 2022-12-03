@@ -9,6 +9,8 @@ import {activeKey, getNextKey, initialKey} from "./key.js";
 let bufferLoader;
 let isFirst = true;
 
+let tempoChangeIndex = 0;
+
 function init() {
     bufferLoader = new BufferLoader(
         context,
@@ -43,7 +45,11 @@ function finishedLoading(bufferList, tempo) {
     const min = bufferList[0].duration < 15 ? barDuration * 16 : barDuration * 64;
     setBufferPadding(bufferPadding + min);
     if (activeKey === getNextKey(initialKey)) {
-        resetSongs();
+        tempoChangeIndex += 1;
+        if (tempoChangeIndex % 9 === 0) {
+            resetSongs()
+            console.log('reset songs')
+        }
         if (activeTempo === 84) {
             setActiveTempo(94)
         } else if (activeTempo === 94) {
