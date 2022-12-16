@@ -6,7 +6,7 @@ Example output posted to soundcloud: https://soundcloud.com/cappinkirk/kdefv1
 
 LIVE JavaScript DJ Website dynamically powered by Kwyjibo: https://cappinkirk.com
 
-[YouTube How to Use KWYJIBO](https://studio.youtube.com/video/61mAf_8swEE/edit)
+[YouTube How to Use KWYJIBO](https://www.youtube.com/watch?v=61mAf_8swEE)
 A rambling, unedited, 55-minute video that talks about the functionality, walks through some of the code, and shows how to make audio files for the program. Grab a root beer and hunker down.
 
 ![How does Kwyjibo work?](01.png)
