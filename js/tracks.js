@@ -42,6 +42,7 @@ const getTracks = () => {
             const colorKey = trackIndex % magicNumber > 1 ? getNextKey(getNextKey(activeKey)) : getNextKey(activeKey)
             document.body.className = `color-${colorKey}`
             document.getElementById('play-button').className = `button-color-${colorKey}`
+            document.getElementById('contact-button').className = `button-color-${colorKey}`
             document.getElementById('pause-button').className = `button-color-${colorKey}`
         })
     }

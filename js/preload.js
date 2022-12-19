@@ -21,13 +21,20 @@ function init() {
 }
 
 function getAndStartBuffer(bufferListItem, time, addListener) {
-    const source = getBuffer()
+    let timestamp;
+    let source = getBuffer()
     source.buffer = bufferListItem;
     source.connect(context.destination);
     source.start(time);
     source.stop(time + bufferListItem.duration)
     if (addListener) {
-        source.addEventListener('ended', init)
+        source.addEventListener('ended', (event) => {
+            if (event?.timeStamp && event.timeStamp - timestamp < 30) {
+                return;
+            }
+            timestamp = event.timeStamp;
+            init()
+        })
     }
 }
 
