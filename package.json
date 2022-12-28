@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=production",
+    "build": "webpack --mode=production && cp -R music web/music",
     "serve": "npx webpack serve --open"
   },
   "author": "",

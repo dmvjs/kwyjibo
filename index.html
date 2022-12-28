@@ -12,118 +12,146 @@
     <style>
         html, body {
             font-family: 'Helvetica Neue',  'Arial Nova',  Helvetica, Arial, sans-serif;
-            color: white;
+            color: black;
             text-align: center;
             line-height: 1.375;
             letter-spacing: -1px;
             font-size: 18px;
-            background: white;
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 100%);
+            background: black;
             min-height: 100%;
             margin: 0;
             padding: 0;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
         }
         .color-1 {
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(86,241,218,1) 100%);
+            background: rgba(86,241,218,1);
+            transition: background-color 0.5s ease-out;
         }
         .color-2 {
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(125,242,170,1) 100%);
+            background: rgba(125,242,170,1);
+            transition: background-color 0.5s ease-out;
         }
         .color-3 {
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(174,245,137,1) 100%);
+            background: rgba(174,245,137,1);
+            transition: background-color 0.5s ease-out;
         }
         .color-4 {
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(232,218,161,1) 100%);
+            background: rgba(232,218,161,1);
+            transition: background-color 0.5s ease-out;
         }
         .color-5 {
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(253,191,167,1) 100%);
+            background: rgba(253,191,167,1);
+            transition: background-color 0.5s ease-out;
         }
         .color-6 {
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(253,175,183,1) 100%);
+            background: rgba(253,175,183,1);
+            transition: background-color 0.5s ease-out;
         }
         .color-7 {
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(253,170,204,1) 100%);
+            background: rgba(253,170,204,1);
+            transition: background-color 0.5s ease-out;
         }
         .color-8 {
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(242,171,228,1) 100%);
+            background: rgba(242,171,228,1);
+            transition: background-color 0.5s ease-out;
         }
         .color-9 {
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(221,180,253,1) 100%);
+            background: rgba(221,180,253,1);
+            transition: background-color 0.5s ease-out;
         }
         .color-10 {
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(190,205,253,1) 100%);
+            background: rgba(190,205,253,1);
+            transition: background-color 0.5s ease-out;
         }
         .color-11 {
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(142,228,249,1) 100%);
+            background: rgba(142,228,249,1);
+            transition: background-color 0.5s ease-out;
         }
         .color-12 {
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(85,240,240,1) 100%);
+            background: rgba(85,240,240,1);
+            transition: background-color 0.5s ease-out;
         }
 
         .button-color-1 {
-            background: rgba(86,241,218,1)
+            background: rgba(86,241,218,1);
+            transition: background-color 0.5s ease-out;
         }
         .button-color-2 {
-            background: rgba(125,242,170,1)
+            background: rgba(125,242,170,1);
+            transition: background-color 0.5s ease-out;
         }
         .button-color-3 {
-            background: rgba(174,245,137,1)
+            background: rgba(174,245,137,1);
+            transition: background-color 0.5s ease-out;
         }
         .button-color-4 {
-            background: rgba(232,218,161,1)
+            background: rgba(232,218,161,1);
+            transition: background-color 0.5s ease-out;
         }
         .button-color-5 {
-            background: rgba(253,191,167,1)
+            background: rgba(253,191,167,1);
+            transition: background-color 0.5s ease-out;
         }
         .button-color-6 {
-            background:  rgba(253,175,183,1)
+            background:  rgba(253,175,183,1);
+            transition: background-color 0.5s ease-out;
         }
         .button-color-7 {
             background: rgba(253,170,204,1);
+            transition: background-color 0.5s ease-out;
         }
         .button-color-8 {
             background: rgba(242,171,228,1);
+            transition: background-color 0.5s ease-out;
         }
         .button-color-9 {
-            background:rgba(221,180,253,1)
+            background:rgba(221,180,253,1);
+            transition: background-color 0.5s ease-out;
         }
         .button-color-10 {
-            background:rgba(190,205,253,1)
+            background:rgba(190,205,253,1);
+            transition: background-color 0.5s ease-out;
         }
         .button-color-11 {
-            background:rgba(142,228,249,1)
+            background:rgba(142,228,249,1);
+            transition: background-color 0.5s ease-out;
         }
         .button-color-12 {
-            background: rgba(85,240,240,1)
+            background: rgba(85,240,240,1);
+            transition: background-color 0.5s ease-out;
         }
 
         button {
             border-radius: 4px;
-            color: black;
+            color: dodgerblue;
             font-weight: 700;
             font-size: 1.3rem;
             padding: 0.5rem;
-            margin: 1.5rem auto;
+            margin: 1.5rem 0.5rem;
             display: inline-block;
-            max-height: 50px;
+            max-height: 48px;
+            background-color: black;
+            text-shadow: 2px 2px rgba(0,0,0,95%), -2px -2px rgba(255,255,255,95%);
+            backdrop-filter: blur();
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 13px 1px rgba(255,255,255,95%);
         }
 
         button a {
-            color: black;
+            color: dodgerblue;
             text-decoration: none;
             display: inline-block;
         }
 
         #speakerDiv {
             font-size: 12rem;
+            text-shadow: 6px 6px rgba(0,0,0,95%), -6px -6px rgba(255,255,255,95%);
         }
 
         .title-js {
             color: dodgerblue;
             font-weight: bolder;
-            text-shadow: 2px 2px rgba(0,0,0,45%);
+            text-shadow: 2px 2px rgba(0,0,0,95%), -2px -2px rgba(255,255,255,95%);
             margin-bottom: 0.5rem;
             font-size: 2rem;
             line-height: 1.75rem;
@@ -140,10 +168,14 @@
         .twitter-follow-button {
             margin-top: 2rem;
         }
+        .space-above {
+            margin-top: 1.5rem;
+        }
 
         #soundcloud-iframe{
             margin-top: 1rem;
-            width: 90%;
+            width: 500px;
+            max-width: 90%;
         }
 
     </style>
@@ -154,7 +186,7 @@
     <div id="title-container">
         <div class="title-js">JavaScript LIVE</div>
         <div class="title-js">Hot Mix Crunk DJ</div>
-        <div>💿 A Critical Opalescence 🪩</div>
+        <div class="space-above">💿 A Critical Opalescence 🪩</div>
         <div>🧙🏻‍♂️Indistinguishable From Magic ✨</div>
         <div>Powered by Kwyjibot v2.0.∞.<span id="song-counter">292</span></div>
     </div>

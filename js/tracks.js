@@ -10,6 +10,16 @@ const magicNumber = 5;
 
 let trackIndex = 0;
 
+const updateUIColors = (key, index) => {
+    return () => {
+        const colorKey = index % magicNumber > 1 ? getNextKey(getNextKey(key)) : getNextKey(key)
+        document.body.className = `color-${colorKey}`
+        document.getElementById('play-button').className = `button-color-${colorKey}`
+        document.getElementById('contact-button').className = `button-color-${colorKey}`
+        document.getElementById('pause-button').className = `button-color-${colorKey}`
+    }
+}
+
 const file  = (int, isLead) => `../music/${String(int).padStart(8, '0')}-${isLead ? 'lead' : 'body'}${filetype}`
 
 const getTracks = () => {
@@ -38,13 +48,7 @@ const getTracks = () => {
         updateActiveKey();
     }
     if (trackIndex % magicNumber !== 2) {
-        requestAnimationFrame(()=> {
-            const colorKey = trackIndex % magicNumber > 1 ? getNextKey(getNextKey(activeKey)) : getNextKey(activeKey)
-            document.body.className = `color-${colorKey}`
-            document.getElementById('play-button').className = `button-color-${colorKey}`
-            document.getElementById('contact-button').className = `button-color-${colorKey}`
-            document.getElementById('pause-button').className = `button-color-${colorKey}`
-        })
+        requestAnimationFrame(updateUIColors(activeKey, trackIndex))
     }
     trackIndex += 1;
     return {
