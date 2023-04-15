@@ -13,16 +13,16 @@
   "license": "ISC",
   "dependencies": {
     "@soundcut/decode-audio-data-fast": "^2.0.1",
-    "web-audio-api": "^0.2.2",
-    "webpack": "^5.74.0",
-    "webpack-dev-server": "^4.11.1"
+    "web-audio-api": "0.2.2",
+    "webpack": "5.79.0",
+    "webpack-dev-server": "4.11.1"
   },
   "devDependencies": {
-    "css-loader": "^6.7.1",
-    "html-webpack-plugin": "^5.5.0",
-    "javascript-obfuscator": "^4.0.0",
-    "style-loader": "^3.3.1",
-    "webpack-cli": "^4.10.0",
-    "webpack-obfuscator": "^3.5.1"
+    "css-loader": "6.7.1",
+    "html-webpack-plugin": "5.5.0",
+    "javascript-obfuscator": "4.0.0",
+    "style-loader": "3.3.1",
+    "webpack-cli": "4.10.0",
+    "webpack-obfuscator": "3.5.1"
   }
 }

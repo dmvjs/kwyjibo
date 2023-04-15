@@ -120,6 +120,55 @@
             transition: background-color 0.5s ease-out;
         }
 
+        .text-color-1 {
+            color: rgba(86,241,218,1);
+            transition: background-color 0.5s ease-out;
+        }
+        .text-color-2 {
+            color: rgba(125,242,170,1);
+            transition: background-color 0.5s ease-out;
+        }
+        .text-color-3 {
+            color: rgba(174,245,137,1);
+            transition: background-color 0.5s ease-out;
+        }
+        .text-color-4 {
+            color: rgba(232,218,161,1);
+            transition: background-color 0.5s ease-out;
+        }
+        .text-color-5 {
+            color: rgba(253,191,167,1);
+            transition: background-color 0.5s ease-out;
+        }
+        .text-color-6 {
+            color:  rgba(253,175,183,1);
+            transition: background-color 0.5s ease-out;
+        }
+        .text-color-7 {
+            color: rgba(253,170,204,1);
+            transition: background-color 0.5s ease-out;
+        }
+        .text-color-8 {
+            color: rgba(242,171,228,1);
+            transition: background-color 0.5s ease-out;
+        }
+        .text-color-9 {
+            color:rgba(221,180,253,1);
+            transition: background-color 0.5s ease-out;
+        }
+        .text-color-10 {
+            color:rgba(190,205,253,1);
+            transition: background-color 0.5s ease-out;
+        }
+        .text-color-11 {
+            color: rgba(142,228,249,1);
+            transition: background-color 0.5s ease-out;
+        }
+        .text-color-12 {
+            color: rgba(85,240,240,1);
+            transition: background-color 0.5s ease-out;
+        }
+
         button {
             border-radius: 4px;
             color: dodgerblue;
@@ -130,11 +179,9 @@
             display: inline-block;
             max-height: 48px;
             background-color: black;
-            text-shadow: 2px 2px rgba(0,0,0,95%), -2px -2px rgba(255,255,255,95%);
-            backdrop-filter: blur();
+            text-shadow: 2px 2px rgba(0,0,0,95%), -2px -2px rgba(0,0,0,95%), -2px 2px rgba(0,0,0,95%), 2px -2px rgba(0,0,0,95%), 12px 12px rgba(255,255,255,95%), -12px -12px rgba(255,255,255,95%), -12px 12px rgba(255,255,255,95%), 12px -12px rgba(255,255,255,95%);
             cursor: pointer;
             border: none;
-            box-shadow: 0 0 13px 1px rgba(255,255,255,95%);
         }
 
         button a {
@@ -151,7 +198,7 @@
         .title-js {
             color: dodgerblue;
             font-weight: bolder;
-            text-shadow: 2px 2px rgba(0,0,0,95%), -2px -2px rgba(255,255,255,95%);
+            text-shadow: 2px 2px rgba(0,0,0,95%), -2px -2px rgba(0,0,0,95%), -2px 2px rgba(0,0,0,95%), 2px -2px rgba(0,0,0,95%), 12px 12px rgba(255,255,255,95%), -12px -12px rgba(255,255,255,95%), -12px 12px rgba(255,255,255,95%), 12px -12px rgba(255,255,255,95%);
             margin-bottom: 0.5rem;
             font-size: 2rem;
             line-height: 1.75rem;
@@ -163,6 +210,39 @@
             padding-top: 0;
             margin-bottom: 0;
             padding-bottom: 0;
+        }
+
+        #key-holder, #tempo-holder {
+            position: absolute;
+            top: 18%;
+            font-style: initial;
+            line-height: 33px;
+            text-shadow: 2px 2px rgba(0,0,0,95%), -2px -2px rgba(0,0,0,95%), -2px 2px rgba(0,0,0,95%), 2px -2px rgba(0,0,0,95%), 12px 12px rgba(255,255,255,95%), -12px -12px rgba(255,255,255,95%), -12px 12px rgba(255,255,255,95%), 12px -12px rgba(255,255,255,95%);
+            color: white;
+        }
+
+        #tempo-holder {
+            right: 25%;
+        }
+
+        #key-holder {
+            left: 25%;
+        }
+
+        #key-enumeration {
+            font-size: 3em;
+            font-weight: bold;
+        }
+        #key-label {
+            letter-spacing: 2px;
+        }
+
+        #tempo-count {
+            font-size: 3em;
+            font-weight: bold;
+         }
+        #bpm-label {
+            letter-spacing: 2px;
         }
 
         .twitter-follow-button {
@@ -182,12 +262,20 @@
 </head>
 <body>
 <address>
+    <div id="tempo-holder">
+        <div id="tempo-count">??</div>
+        <div id="bpm-label">BPM</div>
+    </div>
+    <div id="key-holder">
+        <div id="key-enumeration">?</div>
+        <div id="key-label">KEY</div>
+    </div>
     <div id="speakerDiv">🔊</div>
     <div id="title-container">
         <div class="title-js">JavaScript LIVE</div>
         <div class="title-js">Hot Mix Crunk DJ</div>
-        <div class="space-above">💿 A Critical Opalescence 🪩</div>
-        <div>🧙🏻‍♂️Indistinguishable From Magic ✨</div>
+        <div id="first-song-label" class="space-above"></div>
+        <div id="second-song-label"></div>
         <div>Powered by Kwyjibot v2.0.∞.<span id="song-counter">292</span></div>
     </div>
 </address>
@@ -198,6 +286,8 @@
 <p>🧠 best experienced on a computer 💻️</p>
 <a href="https://twitter.com/cappinkirk?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @cappinkirk</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <p><small>FOR PROMOTIONAL USE ONLY</small></p>
+<button id="github-button"><a id='GitHub' href="https://github.com/dmvjs/kwyjibo">GitHub</a></button>
+<button id="youtube-button"><a id='YouTube' href="https://www.youtube.com/watch?v=61mAf_8swEE">YouTube</a></button>
 <button id="contact-button"><a id='contact' href="mailto:cappinkirk@gmail.com">Contact</a></button>
 </body>
 </html>
