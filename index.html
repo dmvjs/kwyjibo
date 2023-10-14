@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DJ Cappin&rsquo; Kirk (powered by Kwyjibot)</title>
+    <title>LIVE JavaScript DJ (powered by Kwyjibo)</title>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -18,168 +18,67 @@
             letter-spacing: -1px;
             font-size: 18px;
             background: black;
-            min-height: 100%;
+            height: 100%;
             margin: 0;
             padding: 0;
-        }
-        .color-1 {
-            background: rgba(86,241,218,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .color-2 {
-            background: rgba(125,242,170,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .color-3 {
-            background: rgba(174,245,137,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .color-4 {
-            background: rgba(232,218,161,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .color-5 {
-            background: rgba(253,191,167,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .color-6 {
-            background: rgba(253,175,183,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .color-7 {
-            background: rgba(253,170,204,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .color-8 {
-            background: rgba(242,171,228,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .color-9 {
-            background: rgba(221,180,253,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .color-10 {
-            background: rgba(190,205,253,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .color-11 {
-            background: rgba(142,228,249,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .color-12 {
-            background: rgba(85,240,240,1);
-            transition: background-color 0.5s ease-out;
-        }
+            background: url("bg-2048.jpg");
+            background-size: cover;
 
-        .button-color-1 {
-            background: rgba(86,241,218,1);
-            transition: background-color 0.5s ease-out;
         }
-        .button-color-2 {
-            background: rgba(125,242,170,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .button-color-3 {
-            background: rgba(174,245,137,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .button-color-4 {
-            background: rgba(232,218,161,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .button-color-5 {
-            background: rgba(253,191,167,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .button-color-6 {
-            background:  rgba(253,175,183,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .button-color-7 {
-            background: rgba(253,170,204,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .button-color-8 {
-            background: rgba(242,171,228,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .button-color-9 {
-            background:rgba(221,180,253,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .button-color-10 {
-            background:rgba(190,205,253,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .button-color-11 {
-            background:rgba(142,228,249,1);
-            transition: background-color 0.5s ease-out;
-        }
-        .button-color-12 {
-            background: rgba(85,240,240,1);
-            transition: background-color 0.5s ease-out;
+        @media only screen and (max-width: 320px) {
+            body {
+                overflow-x: hidden;
+                max-width: 100%;
+            }
         }
 
         .text-color-1 {
-            color: rgba(86,241,218,1);
-            transition: background-color 0.5s ease-out;
+            color: rgba(86,241,218,1)
         }
         .text-color-2 {
-            color: rgba(125,242,170,1);
-            transition: background-color 0.5s ease-out;
+            color: rgba(125,242,170,1)
         }
         .text-color-3 {
-            color: rgba(174,245,137,1);
-            transition: background-color 0.5s ease-out;
+            color: rgba(174,245,137,1)
         }
         .text-color-4 {
-            color: rgba(232,218,161,1);
-            transition: background-color 0.5s ease-out;
+            color: rgba(232,218,161,1)
         }
         .text-color-5 {
-            color: rgba(253,191,167,1);
-            transition: background-color 0.5s ease-out;
+            color: rgba(253,191,167,1)
         }
         .text-color-6 {
-            color:  rgba(253,175,183,1);
-            transition: background-color 0.5s ease-out;
+            color:  rgba(253,175,183,1)
         }
         .text-color-7 {
             color: rgba(253,170,204,1);
-            transition: background-color 0.5s ease-out;
         }
         .text-color-8 {
             color: rgba(242,171,228,1);
-            transition: background-color 0.5s ease-out;
         }
         .text-color-9 {
-            color:rgba(221,180,253,1);
-            transition: background-color 0.5s ease-out;
+            color:rgba(221,180,253,1)
         }
         .text-color-10 {
-            color:rgba(190,205,253,1);
-            transition: background-color 0.5s ease-out;
+            color:rgba(190,205,253,1)
         }
         .text-color-11 {
-            color: rgba(142,228,249,1);
-            transition: background-color 0.5s ease-out;
+            color:rgba(142,228,249,1)
         }
         .text-color-12 {
-            color: rgba(85,240,240,1);
-            transition: background-color 0.5s ease-out;
+            color: rgba(85,240,240,1)
         }
 
         button {
             border-radius: 4px;
             color: dodgerblue;
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             padding: 0.5rem;
-            margin: 1.5rem 0.5rem;
+            margin: 1.5rem 0;
             display: inline-block;
             max-height: 48px;
             background-color: black;
-            text-shadow: 2px 2px rgba(0,0,0,95%), -2px -2px rgba(0,0,0,95%), -2px 2px rgba(0,0,0,95%), 2px -2px rgba(0,0,0,95%), 12px 12px rgba(255,255,255,95%), -12px -12px rgba(255,255,255,95%), -12px 12px rgba(255,255,255,95%), 12px -12px rgba(255,255,255,95%);
             cursor: pointer;
             border: none;
         }
@@ -190,18 +89,8 @@
             display: inline-block;
         }
 
-        #speakerDiv {
-            font-size: 12rem;
-            text-shadow: 6px 6px rgba(0,0,0,95%), -6px -6px rgba(255,255,255,95%);
-        }
-
-        .title-js {
-            color: dodgerblue;
-            font-weight: bolder;
-            text-shadow: 2px 2px rgba(0,0,0,95%), -2px -2px rgba(0,0,0,95%), -2px 2px rgba(0,0,0,95%), 2px -2px rgba(0,0,0,95%), 12px 12px rgba(255,255,255,95%), -12px -12px rgba(255,255,255,95%), -12px 12px rgba(255,255,255,95%), 12px -12px rgba(255,255,255,95%);
-            margin-bottom: 0.5rem;
-            font-size: 2rem;
-            line-height: 1.75rem;
+        #title-container {
+            padding-top: 10px;
         }
 
         p {
@@ -213,78 +102,72 @@
         }
 
         #key-holder, #tempo-holder {
-            position: absolute;
-            top: 18%;
+            display: inline-block;
             font-style: initial;
             line-height: 33px;
-            text-shadow: 2px 2px rgba(0,0,0,95%), -2px -2px rgba(0,0,0,95%), -2px 2px rgba(0,0,0,95%), 2px -2px rgba(0,0,0,95%), 12px 12px rgba(255,255,255,95%), -12px -12px rgba(255,255,255,95%), -12px 12px rgba(255,255,255,95%), 12px -12px rgba(255,255,255,95%);
-            color: white;
-        }
-
-        #tempo-holder {
-            right: 25%;
-        }
-
-        #key-holder {
-            left: 25%;
-        }
-
-        #key-enumeration {
-            font-size: 3em;
-            font-weight: bold;
-        }
-        #key-label {
-            letter-spacing: 2px;
-        }
-
-        #tempo-count {
-            font-size: 3em;
-            font-weight: bold;
-         }
-        #bpm-label {
-            letter-spacing: 2px;
         }
 
         .twitter-follow-button {
             margin-top: 2rem;
         }
-        .space-above {
-            margin-top: 1.5rem;
+
+        .white {
+            color: white;
         }
 
-        #soundcloud-iframe{
-            margin-top: 1rem;
-            width: 500px;
-            max-width: 90%;
+        .header-spacing {
+            margin: 2px;
+        }
+
+        #now-playing {
+            display: none;
+        }
+
+        #play-button {
+            border: 2px solid dodgerblue;
+            border-radius: 17px;
+            padding: 40px 16px;
+            line-height: 0;
+            font-size: 3em;
+            font-weight: 900;
         }
 
     </style>
 </head>
 <body>
 <address>
-    <div id="tempo-holder">
-        <div id="tempo-count">??</div>
-        <div id="bpm-label">BPM</div>
-    </div>
-    <div id="key-holder">
-        <div id="key-enumeration">?</div>
-        <div id="key-label">KEY</div>
-    </div>
-    <div id="speakerDiv">🔊</div>
     <div id="title-container">
-        <div class="title-js">JavaScript LIVE</div>
-        <div class="title-js">Hot Mix Crunk DJ</div>
-        <div id="first-song-label" class="space-above"></div>
-        <div id="second-song-label"></div>
-        <div>Powered by Kwyjibot v2.0.∞.<span id="song-counter">292</span></div>
+        <div id="message">👋 👇 push PLAY 🔊 🔊</div>
+        <button id="play-button">▶️ PLAY</button>
+        <div id="now-playing">
+        <h3 class="white header-spacing">Now playing:</h3>
+        <div id="first-song-label" class="white"></div>
+        <div id="second-song-label" class="white"></div>
+        </div>
+        <div id="up-next">
+        <h3 class="white header-spacing">Up next:</h3>
+        <div id="third-song-label" class="white"></div>
+        <div id="fourth-song-label" class="white"></div>
+        </div>
+        <div id="tempo-holder" style="margin-right: 8px">
+            <span id="tempo-count" class="white">??</span>
+            <span id="bpm-label" class="white">BPM</span>
+        </div>
+        <div id="key-holder">
+            <span id="key-label" class="white">KEY</span>
+            <span id="key-enumeration" class="white">?</span>
+        </div>
+        <div class="white">Powered by Kwyjibo v3.0.∞.<span id="song-counter">322</span></div>
     </div>
 </address>
-<button id="play-button">▶️ PLAY</button>
-<button id="pause-button">⏸️ PAUSE</button>
-<p>💯% make sure your 📱 isn&rsquo;t on 🔇!</p>
-<p>📱? set your 📱 to NEVER sleep ⚙️</p>
-<p>🧠 best experienced on a computer 💻️</p>
-<a href="https://twitter.com/cappinkirk?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @cappinkirk</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div>
+    <span style="margin-right: 8px">
+        <a href="https://twitter.com/cappinkirk?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @cappinkirk</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </span>
+    <span>
+        <a href="https://twitter.com/dmvjs?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @dmvjs</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </span>
+</div>
 <p><small>FOR PROMOTIONAL USE ONLY</small></p>
 <button id="github-button"><a id='GitHub' href="https://github.com/dmvjs/kwyjibo">GitHub</a></button>
 <button id="youtube-button"><a id='YouTube' href="https://www.youtube.com/watch?v=61mAf_8swEE">YouTube</a></button>

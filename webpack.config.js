@@ -1,6 +1,6 @@
 import * as path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import WebpackObfuscatorPlugin from "webpack-obfuscator";
+//import WebpackObfuscatorPlugin from "webpack-obfuscator";
 
 const config = {
     entry: './js/index.js',
@@ -39,9 +39,9 @@ const config = {
             inject: 'body',
             template: 'index.html'
         }),
-        new WebpackObfuscatorPlugin ({
+        /*new WebpackObfuscatorPlugin ({
             rotateStringArray: true
-        }, [])
+        }, [])*/
     ],
     /**
      * This devserver controls the webpack dev server. You can change the port and directory, as well as other options

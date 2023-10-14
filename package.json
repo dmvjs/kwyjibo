@@ -6,13 +6,14 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=production && cp -R music web/music",
+    "build": "webpack --mode=development && cp -R music web/music",
     "serve": "npx webpack serve --open"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@soundcut/decode-audio-data-fast": "^2.0.1",
+    "preact": "^10.17.1",
     "web-audio-api": "0.2.2",
     "webpack": "5.79.0",
     "webpack-dev-server": "4.11.1"
