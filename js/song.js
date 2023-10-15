@@ -22,7 +22,6 @@ Array.prototype._shuffle = function () {
 const getSongs = (key) => {
     const nextKey = getNextKey(key !== undefined ? key : activeKey);
     const previousKey = getNextKey(key !== undefined ? key : activeKey, true);
-    console.log('🇨🇭', activeTempo, songs)
     let thisTempoSongs = songs.filter((item)=> item.bpm === activeTempo)
     let thisKeySongs = [
         ...new Set(thisTempoSongs.filter((item)=> {
