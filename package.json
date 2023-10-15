@@ -5,24 +5,18 @@
   "main": "js/index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=production && cp -R music web/music",
-    "serve": "npx webpack serve --open"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@soundcut/decode-audio-data-fast": "^2.0.1",
-    "web-audio-api": "0.2.2",
-    "webpack": "5.79.0",
-    "webpack-dev-server": "4.11.1"
+    "preact": "^10.17.1",
+    "web-audio-api": "0.2.2"
   },
   "devDependencies": {
-    "css-loader": "6.7.1",
-    "html-webpack-plugin": "5.5.0",
-    "javascript-obfuscator": "4.0.0",
-    "style-loader": "3.3.1",
-    "webpack-cli": "4.10.0",
-    "webpack-obfuscator": "3.5.1"
+    "vite": "^4.4.11"
   }
 }

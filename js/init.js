@@ -9,7 +9,7 @@ const counterSpan = document.getElementById('song-counter')
 counterSpan.innerHTML = String(songdata.length)
 
 export const showSongMatrix = (array) => {
-    for (const tempo of tempos) {
+    for (const tempo of tempos.filter(Boolean)) {
         const rv = (Array.from({length: 12}, (int, index)=> {
             return array.filter((item)=> {
                 if (item.bpm !== Number(tempo)) {
@@ -21,7 +21,7 @@ export const showSongMatrix = (array) => {
                 return item.key === index + 1
             })
         }))
-        console.log(tempo, rv.flat().length, rv)
+        console.log(tempo, rv)
     }
 }
 

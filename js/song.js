@@ -1,41 +1,66 @@
 import {activeKey, getNextKey} from "./key.js";
 import {songdata} from "./songdata.js";
 import {activeTempo} from "./tempo.js";
-import {cryptoRandom} from "./cryptoRandom.js";
+import {quantumRandom} from "./cryptoRandom.js";
 
 let songs;
 
 export const resetSongs = () => {
     songs = songdata;
-    console.log(songs)
+    console.log('🏁', songs)
 }
 
 resetSongs();
 
 Array.prototype._shuffle = function () {
-    return this.map(value => ({ value, sort: cryptoRandom() }))
-        .sort((a, b) => a.sort - b.sort)
+    const value = this.map(value => ({ value, sort: quantumRandom() }))
+        .sort((a, b) => a.sort > b.sort ? -1 : b.sort > a.sort ? 1 : 0)
         .map(({ value }) => value)
+    return value
 }
 
-const getSongs = () => {
-    let thisTempoSongs = songs.filter((item)=> item.bpm === activeTempo)._shuffle()
-    return {thisTempoSongs};
+const getSongs = (key) => {
+    const nextKey = getNextKey(key !== undefined ? key : activeKey);
+    const previousKey = getNextKey(key !== undefined ? key : activeKey, true);
+    let thisTempoSongs = songs.filter((item)=> item.bpm === activeTempo)
+    let thisKeySongs = [
+        ...new Set(thisTempoSongs.filter((item)=> {
+            if (item.computedKey) {
+                return item.computedKey === activeKey ||
+                    item.computedKey === nextKey ||
+                    item.computedKey === previousKey
+            }
+            return item.key === activeKey ||
+                item.key === nextKey ||
+                item.key === previousKey
+        }))]
+    return {thisKeySongs, thisTempoSongs};
 }
 
 const getSong = (key, artist) => {
-    let {thisTempoSongs} = getSongs(key)
+    let {thisKeySongs, thisTempoSongs} = getSongs(key)
+    if (thisKeySongs.length) {
+        const choiceArray = thisKeySongs.filter(s=>s.artist !== artist)._shuffle()
+        return getId(choiceArray);
+    }
+    console.log('🔪', thisTempoSongs.length)
     if (thisTempoSongs.length) {
-        return getId(thisTempoSongs.filter(s=>s.artist !== artist))
+        return getId(thisTempoSongs.filter(s=>s.artist !== artist)._shuffle())
     }
 }
 
+export const getSongById = (id) => {
+    return songs.find((item)=>item.id === id)
+}
+
 const getId = (array) => {
-    const songIndex = Math.floor(cryptoRandom() * array.length)
-    const {artist, id} = array[songIndex];
-    console.log(activeKey, array[songIndex])
-    songs = songs.filter((item)=>item.id !== id)._shuffle()
-    return {artist, id};
+    const songIndex = Math.floor(quantumRandom() * array.length)
+    const {artist, computedKey, id, title, key} = array[songIndex];
+    console.log(computedKey !== undefined ?  computedKey : key, artist, title)
+    const selectedSong = getSongById(id);
+    return {artist: selectedSong.artist, id: selectedSong.id}
 }
 
 export {getSong}
+
+

@@ -1,21 +1,29 @@
 import {context} from "./context.js";
+import {hideElement, showElement} from "./tracks.js";
 
 const playButton = document.getElementById('play-button')
-const pauseButton = document.getElementById('pause-button')
-pauseButton.hidden = true;
+const message = document.getElementById('message')
 
 const myEvent = ('ontouchstart' in document.documentElement) ? 'touchend' : 'click';
 playButton.addEventListener(myEvent, startApplication);
-pauseButton.addEventListener(myEvent, pauseApplication);
+let isFirst = null;
 
 function startApplication () {
-    pauseButton.hidden = false;
-    playButton.hidden = true;
+    if (isFirst === null) {
+        showElement(document.getElementById('now-playing'))
+        hideElement(document.getElementById('up-next'))
+        isFirst = 1;
+    }
+    playButton.removeEventListener(myEvent, startApplication);
+    message.innerText = "⚛ QUANTUM POWERED";
+    playButton.innerText = '⏸️ PAUSE'
+    playButton.addEventListener(myEvent, pauseApplication);
     context.resume();
 }
 
 function pauseApplication () {
-    pauseButton.hidden = true;
-    playButton.hidden = false;
+    playButton.removeEventListener(myEvent, pauseApplication);
+    playButton.innerText = '▶️ PLAY'
     context.suspend();
+    playButton.addEventListener(myEvent, startApplication);
 }

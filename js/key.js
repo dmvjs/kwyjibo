@@ -1,6 +1,6 @@
 import {config} from "./config.js";
-import {cryptoRandom} from "./cryptoRandom.js";
-let initialKey = config.initialKey ?? parseInt(String(Math.floor(cryptoRandom() * 12)), 10) + 1
+import {quantumRandom} from "./cryptoRandom.js";
+let initialKey = config.initialKey ?? parseInt(String(Math.floor(quantumRandom() * 12)), 10) + 1
 let activeKey = config.initialKey ?? (initialKey); // 1-12
 
 function getNextKey(inputKey, prevKey) {
