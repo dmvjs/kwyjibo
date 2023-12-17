@@ -12,5 +12,5 @@ export const cryptoRandom = () => {
 export const quantumRandom = () => {
     const quantumValue = q.getFloat()
     const cryptoRandomValue = cryptoRandom()
-    return Number.isNaN(quantumValue) ? cryptoRandomValue :quantumValue
+    return Number.isNaN(quantumValue) ? cryptoRandomValue : quantumValue
 }

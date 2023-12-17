@@ -48,13 +48,13 @@ export const updateUI = (key, firstSongId, secondSongId) => {
         const thirdSongUI = songdata.filter(item=>item.id === (window.playedSongs[(trackIndex - 2) < 0 ? 0 : trackIndex - 2][0]))[0]
         const fourthSongUI = songdata.filter(item=>item.id === (window.playedSongs[(trackIndex - 2) < 0 ? 0 : trackIndex - 2][1]))[0]
         firstSongLabel.innerText = `${thirdSongUI.artist} - ${thirdSongUI.title}`
-        secondSongLabel.innerText = `${fourthSongUI.artist} - ${fourthSongUI.title}`
-        thirdSongLabel.innerText = `${firstSongUI.artist} - ${firstSongUI.title}`
-        fourthSongLabel.innerText = `${secondSongUI.artist} - ${secondSongUI.title}`
-        firstSongLabel.className = `text-color-${thirdSongUI.computedKey || thirdSongUI.key}`
-        secondSongLabel.className = `text-color-${fourthSongUI.computedKey || fourthSongUI.key}`
+        secondSongLabel.innerText = `${fourthSongUI?.artist || ''} - ${fourthSongUI?.title || ''}`
+        thirdSongLabel.innerText = `${firstSongUI.artist || ''} - ${firstSongUI.title || ''}`
+        fourthSongLabel.innerText = `${secondSongUI?.artist || ''} - ${secondSongUI?.title || ''}`
+        firstSongLabel.className = `text-color-${thirdSongUI?.computedKey || thirdSongUI?.key}`
+        secondSongLabel.className = `text-color-${fourthSongUI?.computedKey || fourthSongUI?.key}`
         thirdSongLabel.className = `text-color-${firstSongUI.computedKey || firstSongUI.key}`
-        fourthSongLabel.className = `text-color-${secondSongUI.computedKey || secondSongUI.key}`
+        fourthSongLabel.className = `text-color-${secondSongUI?.computedKey || secondSongUI?.key}`
         tempoCount.innerText = firstSongUI.bpm;
         keyEnumeration.innerText = key;
         keyEnumeration.className = `text-color-${key}`
@@ -67,25 +67,36 @@ export const updateUI = (key, firstSongId, secondSongId) => {
 
 export const file  = (int, isLead) => `../music/${String(int).padStart(8, '0')}-${isLead ? 'lead' : 'body'}${filetype}`
 
-const getTracks = (track1, track2) => {
+const getTracks = (track1, track2, skipSamples = false) => {
+    const isUsingTracksFromURL = track1 !== undefined;
     const isMagicTime = trackIndex % magicNumber === 0;
     if (isMagicTime) {
-        console.log('station identification…')
+        // console.log('station identification…')
     }
     const firstSongFromURL = track1 && getSongById(track1);
-    const secondSongFromURL = track2 && getSongById(track2);
+    const secondSongFromURL = track2 ? getSongById(track2) : null;
     const firstSong = firstSongFromURL || trackIndex % magicNumber === 1 ? null : getSong()
     const firstSongId = trackIndex % magicNumber === 1 ? holder[trackIndex - 1][0] : firstSongFromURL?.id || firstSong.id;
-    const secondSongId = trackIndex % magicNumber === 1 ? holder[trackIndex - 1][1] : secondSongFromURL?.id || getSong(firstSong.key, firstSong.artist).id;
+    const secondSongId = trackIndex % magicNumber === 1 ? holder[trackIndex - 1][1] : isUsingTracksFromURL ? track2 ? secondSongFromURL?.id : null : getSong(firstSong.key, firstSong.artist).id;
     if (!isMagicTime) {
-        console.log('followed by…')
+        // console.log('followed by…')
     }
     const firstTrack = file(firstSongId, isMagicTime)
-    const secondTrack = file(secondSongId, isMagicTime)
-    const thirdTrack = isMagicTime ? `../music/${samples[Math.floor(quantumRandom() * samples.length)]}${filetype}` : null;
-    const fourthTrack = isMagicTime ? justStarTrekIntro[0] : null;
-    const returnArray =  [firstTrack, secondTrack];
-    if (thirdTrack) {
+    let secondTrack;
+    if (secondSongId) {
+        secondTrack = file(secondSongId, isMagicTime)
+    }
+    let thirdTrack;
+    let fourthTrack;
+    if (!skipSamples) {
+        thirdTrack = isMagicTime ? `../music/${samples[Math.floor(quantumRandom() * samples.length)]}${filetype}` : null;
+        fourthTrack = isMagicTime ? justStarTrekIntro[0] : null;
+    }
+    const returnArray =  [firstTrack];
+    if (secondTrack) {
+        returnArray.push(secondTrack)
+    }
+    if (!skipSamples && thirdTrack) {
         returnArray.push(thirdTrack)
         returnArray.push(fourthTrack)
     }

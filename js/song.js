@@ -40,10 +40,9 @@ const getSongs = (key) => {
 const getSong = (key, artist) => {
     let {thisKeySongs, thisTempoSongs} = getSongs(key)
     if (thisKeySongs.length) {
-        const choiceArray = thisKeySongs.filter(s=>s.artist !== artist)._shuffle()
+        const choiceArray = thisKeySongs.filter(s=>s.artist !== artist)
         return getId(choiceArray);
     }
-    console.log('🔪', thisTempoSongs.length)
     if (thisTempoSongs.length) {
         return getId(thisTempoSongs.filter(s=>s.artist !== artist)._shuffle())
     }
@@ -53,11 +52,11 @@ export const getSongById = (id) => {
     return songs.find((item)=>item.id === id)
 }
 
-const getId = (array) => {
+const getId = (array)  => {
     const songIndex = Math.floor(quantumRandom() * array.length)
     const {artist, computedKey, id, title, key} = array[songIndex];
-    console.log(computedKey !== undefined ?  computedKey : key, artist, title)
     const selectedSong = getSongById(id);
+    songs = songs.filter((item)=>item.id !== id)
     return {artist: selectedSong.artist, id: selectedSong.id}
 }
 

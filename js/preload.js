@@ -20,18 +20,27 @@ function init() {
     const tracksFromURL = params.tracks || null;
     if (tracksFromURL) {
         usingTracksFromURL = true;
-        const tracks = JSON.parse(tracksFromURL);
-        if (Array.isArray(tracks)) {
-            bufferLoader = new BufferLoader(
-                context,
-                getTracks(tracks[tracksFromURLIndex][0], tracks[tracksFromURLIndex][1]),
-                finishedLoading
-            );
-            if (tracks[tracksFromURLIndex + 1]) {
-                tracksFromURLIndex += 1;
-            } else {
-                tracksFromURLIndex = 0;
+        let tracks
+        try {
+            tracks = JSON.parse(tracksFromURL);
+            if (typeof tracks === 'number') {
+                tracks = [[tracks]]
             }
+        } catch(e) {
+            if (!Array.isArray(tracks)) {
+                tracks = tracksFromURL.split('-').filter(Boolean).map(x=>x.split(',').filter(Boolean).map(v=> parseInt(v, 10)))
+                console.log(tracks)
+            }
+        }
+        bufferLoader = new BufferLoader(
+            context,
+            getTracks(tracks[tracksFromURLIndex][0], tracks?.[tracksFromURLIndex]?.[1], true),
+            finishedLoading
+        );
+        if (tracks[tracksFromURLIndex + 1]) {
+            tracksFromURLIndex += 1;
+        } else {
+            tracksFromURLIndex = 0;
         }
     } else {
         bufferLoader = new BufferLoader(
@@ -67,12 +76,14 @@ function finishedLoading(bufferList, tempo) {
     if (bufferList[1]) {
         getAndStartBuffer(bufferList[1], bufferPadding)
     }
-    if (bufferList[2]) {
-        // delay the start until halfway through the bar
-        getAndStartBuffer(bufferList[2], bufferPadding + ((60 / activeTempo) * 16) / 2)
-    }
-    if (bufferList[3]) {
-        getAndStartBuffer(bufferList[3], bufferPadding)
+    if (!usingTracksFromURL) {
+        if (bufferList[2]) {
+            // delay the start until halfway through the bar
+            getAndStartBuffer(bufferList[2], bufferPadding + ((60 / activeTempo) * 16) / 2)
+        }
+        if (bufferList[3]) {
+            getAndStartBuffer(bufferList[3], bufferPadding)
+        }
     }
 
     const barDuration = 60 / tempo;

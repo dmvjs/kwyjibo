@@ -11,12 +11,10 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@soundcut/decode-audio-data-fast": "^2.0.1",
-    "preact": "^10.17.1",
-    "web-audio-api": "0.2.2"
-  },
   "devDependencies": {
     "vite": "^4.4.11"
+  },
+  "dependencies": {
+    "prettier": "^3.0.3"
   }
 }
