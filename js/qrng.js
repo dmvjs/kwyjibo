@@ -450,7 +450,7 @@ export class QRNG {
         return this.getInteger(0, 2) == 1;
     }
 
-    // Randomize / shuffle the elements of an array
+    // Randomize / shuffle.js the elements of an array
     shuffle(arr) {
         let newArr = [];
         let arrCopy = arr.slice(0);

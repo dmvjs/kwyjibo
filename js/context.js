@@ -1,4 +1,5 @@
-const context = new AudioContext();
+
+
+export const context = new AudioContext();
 context.suspend();
 
-export{context}

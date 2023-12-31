@@ -7,19 +7,18 @@ let songs;
 
 export const resetSongs = () => {
     songs = songdata;
-    console.log('🏁', songs)
 }
 
 resetSongs();
 
 Array.prototype._shuffle = function () {
     const value = this.map(value => ({ value, sort: quantumRandom() }))
-        .sort((a, b) => a.sort > b.sort ? -1 : b.sort > a.sort ? 1 : 0)
+        .sort((a, b) => a.sort - b.sort )
         .map(({ value }) => value)
     return value
 }
 
-const getSongs = (key) => {
+export const getSongs = (key) => {
     const nextKey = getNextKey(key !== undefined ? key : activeKey);
     const previousKey = getNextKey(key !== undefined ? key : activeKey, true);
     let thisTempoSongs = songs.filter((item)=> item.bpm === activeTempo)
@@ -53,8 +52,9 @@ export const getSongById = (id) => {
 }
 
 const getId = (array)  => {
-    const songIndex = Math.floor(quantumRandom() * array.length)
-    const {artist, computedKey, id, title, key} = array[songIndex];
+    const rando = quantumRandom()
+    const songIndex = Math.floor(rando * array.length)
+    const {id} = array[songIndex];
     const selectedSong = getSongById(id);
     songs = songs.filter((item)=>item.id !== id)
     return {artist: selectedSong.artist, id: selectedSong.id}

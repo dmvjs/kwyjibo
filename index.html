@@ -33,6 +33,56 @@
             }
         }
 
+        #key-radio input:checked#key-1 + label {
+            background-color: rgba(86,241,218,1);
+            color: black;
+        }
+        #key-radio input:checked#key-2 + label {
+            background-color: rgba(125,242,170,1);
+            color: black;
+
+        }
+        #key-radio input:checked#key-3 + label {
+            background-color: rgba(174,245,137,1);
+            color: black;
+        }
+        #key-radio input:checked#key-4 + label {
+            background-color: rgba(232,218,161,1);
+            color: black;
+        }
+        #key-radio input:checked#key-5 + label {
+            background-color: rgba(253,191,167,1);
+            color: black;
+        }
+        #key-radio input:checked#key-6 + label {
+            background-color:  rgba(253,175,183,1);
+            color: black;
+        }
+        #key-radio input:checked#key-7 + label {
+            background-color: rgba(253,170,204,1);
+            color: black;
+        }
+        #key-radio input:checked#key-8 + label {
+            background-color: rgba(242,171,228,1);
+            color: black;
+        }
+        #key-radio input:checked#key-9 + label {
+            background-color:rgba(221,180,253,1);
+            color: black;
+        }
+        #key-radio input:checked#key-10 + label {
+            background-color:rgba(190,205,253,1);
+            color: black;
+        }
+        #key-radio input:checked#key-11 + label {
+            background-color:rgba(142,228,249,1);
+            color: black;
+        }
+        #key-radio input:checked#key-12 + label {
+            background-color: rgba(85,240,240,1);
+            color: black;
+        }
+
         .text-color-1 {
             color: rgba(86,241,218,1)
         }
@@ -70,13 +120,17 @@
             color: rgba(85,240,240,1)
         }
 
+        #message {
+            margin-top: 24px;
+        }
+
         button {
             border-radius: 4px;
             color: dodgerblue;
             font-weight: 700;
             font-size: 1.1rem;
             padding: 0.5rem;
-            margin: 1.5rem 0;
+            margin: 8px 4px;
             display: inline-block;
             max-height: 48px;
             background-color: black;
@@ -106,6 +160,7 @@
             display: inline-block;
             font-style: initial;
             line-height: 33px;
+            text-shadow: 1px 1px 1px black;
         }
 
         .twitter-follow-button {
@@ -122,33 +177,216 @@
 
         #now-playing {
             display: none;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 1px rgba(0,0,0,1);
+            background: rgba(0,0,0,0.85);
+            padding: 16px 24px;
+            border-radius: 8px;
+            max-width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 8px;
+        }
+        #now-playing h3 {
+            margin-bottom: 8px;
+        }
+        #first-song-label, #second-song-label{
+            margin-bottom: 8px;
+            line-height: 1.1;
+            font-size: 1.125rem;
+            font-style: normal;
         }
 
         #play-button {
+            height: 60px;
             border: 2px solid dodgerblue;
-            border-radius: 17px;
-            padding: 40px 16px;
+            border-radius: 8px;
+            padding: 16px 24px;
             line-height: 0;
-            font-size: 3em;
+            font-size: 1.5rem;
             font-weight: 900;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin-top: 8px;
+        }
+
+        #share-button {
+            height: 60px;
+            border: 2px solid orangered;
+            border-radius: 8px;
+            padding: 16px 24px;
+            line-height: 0;
+            font-size: 1.5rem;
+            font-weight: 900;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            display: none;
+            color: orangered;
+        }
+
+
+        select {
+            width: 300px;
+            cursor: pointer;
+            height: 36px;
+            font-size: 1rem;
+            line-height: 16px;
+            -webkit-appearance: menulist-button;
+            -moz-appearance: none;
+            margin-bottom: 8px;
+        }
+
+        #tempo-radio {
+            display: flex;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            cursor: pointer;
+        }
+
+        .radio {
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #tempo-radio, #key-radio {
+            display: flex;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        #tempo-radio input, #key-radio input {
+            position: absolute !important;
+            clip: rect(0, 0, 0, 0);
+            height: 1px;
+            width: 1px;
+            border: 0;
+            overflow: hidden;
+        }
+
+        #tempo-radio label, #key-radio label {
+            font-style: normal;
+            background-color: #222;
+            color: #CCC;
+            font-size: 14px;
+            line-height: 1;
+            text-align: center;
+            padding: 8px 16px;
+            margin-right: -1px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 1px 3px black, 0 1px rgba(255, 255, 255, 0.1);
+            transition: all 0.1s ease-in-out;
+        }
+
+        #tempo-radio input:checked + label, #key-radio input:checked + label {
+            background-color: dodgerblue;
+            box-shadow: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        #tempo-radio label:hover, #key-radio label:hover {
+            cursor: pointer;
+        }
+
+        #tempo-radio label:first-of-type, #key-radio label:first-of-type {
+            border-radius: 4px 0 0 4px;
+        }
+
+        #tempo-radio label:last-of-type, #key-radio label:last-of-type {
+            border-radius: 0 4px 4px 0;
+        }
+
+        #key-radio {
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #key-radio label {
+            max-width: unset;
+            padding: 8px 7px;
+        }
+
+        #counter-holder {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: right;
+            max-width: 100px;
+            margin-left: auto;
+            margin-right: auto;
+            display: inline-block;
+        }
+
+        #ck-logo{
+            height: 320px;
+            margin-top: 24px;
+            mix-blend-mode: lighten;
         }
 
     </style>
 </head>
 <body>
-<address>
     <div id="title-container">
-        <div id="message">👋 👇 push PLAY 🔊 🔊</div>
-        <button id="play-button">▶️ PLAY</button>
+        <div id="tempo-radio">
+            <input type="radio" id="tempo-1" name="tempo" value="0">
+            <label for="tempo-1" class="radio">84 BPM</label>
+            <input type="radio" id="tempo-2" name="tempo" value="1">
+            <label for="tempo-2" class="radio">94 BPM</label>
+            <input type="radio" id="tempo-3" name="tempo" value="2">
+            <label for="tempo-3" class="radio">102 BPM</label>
+        </div>
+        <div id="key-radio">
+            <input type="radio" id="key-1" name="key" value="1">
+            <label for="key-1" class="radio">1</label>
+            <input type="radio" id="key-2" name="key" value="2">
+            <label for="key-2" class="radio">2</label>
+            <input type="radio" id="key-3" name="key" value="3">
+            <label for="key-3" class="radio">3</label>
+            <input type="radio" id="key-4" name="key" value="4">
+            <label for="key-4" class="radio">4</label>
+            <input type="radio" id="key-5" name="key" value="5">
+            <label for="key-5" class="radio">5</label>
+            <input type="radio" id="key-6" name="key" value="6">
+            <label for="key-6" class="radio">6</label>
+            <input type="radio" id="key-7" name="key" value="7">
+            <label for="key-7" class="radio">7</label>
+            <input type="radio" id="key-8" name="key" value="8">
+            <label for="key-8" class="radio">8</label>
+            <input type="radio" id="key-9" name="key" value="9">
+            <label for="key-9" class="radio">9</label>
+            <input type="radio" id="key-10" name="key" value="10">
+            <label for="key-10" class="radio">10</label>
+            <input type="radio" id="key-11" name="key" value="11">
+            <label for="key-11" class="radio">11</label>
+            <input type="radio" id="key-12" name="key" value="12">
+            <label for="key-12" class="radio">12</label>
+        </div>
         <div id="now-playing">
         <h3 class="white header-spacing">Now playing:</h3>
         <div id="first-song-label" class="white"></div>
         <div id="second-song-label" class="white"></div>
         </div>
         <div id="up-next">
-        <h3 class="white header-spacing">Up next:</h3>
-        <div id="third-song-label" class="white"></div>
-        <div id="fourth-song-label" class="white"></div>
+            <h3 class="white header-spacing"><span id="counter-holder"></span></h3>
+            <div id="third-song-label" class="white"></div>
+            <div id="fourth-song-label" class="white"></div>
+            <div>
+                <select id="deck-1" name="deck-1"></select>
+            </div>
+            <div>
+                <select id="deck-2" name="deck-2"></select>
+            </div>
+            <!--<button id="mix-button">🪩 MIX</button>-->
+        <!--<div id="third-song-label" class="white"></div>
+        <div id="fourth-song-label" class="white"></div>-->
         </div>
         <div id="tempo-holder" style="margin-right: 8px">
             <span id="tempo-count" class="white">??</span>
@@ -158,9 +396,13 @@
             <span id="key-label" class="white">KEY</span>
             <span id="key-enumeration" class="white">?</span>
         </div>
+        <button id="play-button">▶️ PLAY</button>
+        <button id="share-button">COPY URL</button>
+        <!--<div id="autopilot">Autopilot Mode</div>
+        <div id="user">User mode</div>-->
         <div class="white">Powered by Kwyjibo v3.0.∞.<span id="song-counter">322</span></div>
+        <div><img id="ck-logo" src="CK.png" alt="CK" width="300px" height="300px"></div>
     </div>
-</address>
 <div>
     <span style="margin-right: 8px">
         <a href="https://twitter.com/cappinkirk?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @cappinkirk</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -169,16 +411,6 @@
         <a href="https://twitter.com/dmvjs?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @dmvjs</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </span>
 </div>
-<!--<div>
-    <div>
-<label for="tempos">tempo:</label>
-    <select name="tempos" id="tempos"></select>
-        </div><div>
-<label for="songs">track:</label>
-    <select name="songs" id="songs">
-</select>
-</div>
-</div>-->
 <p><small>FOR PROMOTIONAL USE ONLY</small></p>
 <button id="github-button"><a id='GitHub' href="https://github.com/dmvjs/kwyjibo">GitHub</a></button>
 <button id="youtube-button"><a id='YouTube' href="https://www.youtube.com/watch?v=61mAf_8swEE">YouTube</a></button>

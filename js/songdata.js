@@ -260,16 +260,14 @@ const songdata = [{
     id: 44,
     artist: "Nelly",
     title: "Shake Ya Tailfeather",
-    key: 4,
+    key: 11,
     bpm: 94,
-    computedKey: 11,
 }, {
     id: 45,
     artist: "Too Short",
     title: "Quit Hatin",
-    key: 2,
+    key: 12,
     bpm: 94,
-    computedKey: 12,
 }, {
     id: 46,
     artist: "Ludacris",
@@ -437,9 +435,8 @@ const songdata = [{
     id: 73,
     artist: "Chris Brown",
     title: "Get Like Me",
-    key: 2,
+    key: 1,
     bpm: 84,
-    computedKey: 1
 }, {
     id: 74,
     artist: "Ludacris",
@@ -450,30 +447,26 @@ const songdata = [{
     id: 75,
     artist: "Lil Wayne",
     title: "Stuntin' Like My Daddy",
-    key: 3,
+    key: 11,
     bpm: 84,
-    computedKey: 11
 }, {
     id: 76,
     artist: "Super Duck Breaks",
     title: "Beak This",
-    key: 3,
+    key: 10,
     bpm: 84,
-    computedKey: 10
 }, {
     id: 77,
     artist: "Trillville",
     title: "Some Cut",
-    key: 8,
+    key: 9,
     bpm: 84,
-    computedKey: 9
 }, {
     id: 78,
     artist: "Nelly",
     title: "E.I.",
-    key: 7,
+    key: 1,
     bpm: 84,
-    computedKey: 1
 }, {
     id: 79,
     artist: "504 Boys",
@@ -484,9 +477,8 @@ const songdata = [{
     id: 80,
     artist: "T.I.",
     title: "Big Things Poppin'",
-    key: 6,
+    key: 5,
     bpm: 84,
-    computedKey: 5
 }, {
     id: 81,
     artist: "P$C",
@@ -503,16 +495,14 @@ const songdata = [{
     id: 83,
     artist: "T.I.",
     title: "24's",
-    key: 4,
+    key: 11,
     bpm: 84,
-    computedKey: 11
 }, {
     id: 84,
     artist: "54th Platoon",
     title: "Holdin' It Down",
-    key: 4,
+    key: 12,
     bpm: 84,
-    computedKey: 12
 }, {
     id: 85,
     artist: "Lil Scrappy",
@@ -523,9 +513,8 @@ const songdata = [{
     id: 86,
     artist: "Bubba Sparxxx",
     title: "Ugly",
-    key: 3,
+    key: 11,
     bpm: 94,
-    computedKey: 11
 }, {
     id: 87,
     artist: "Nas",
@@ -536,16 +525,14 @@ const songdata = [{
     id: 88,
     artist: "Quint Black",
     title: "Shake Dem Haters Remix",
-    key: 5,
+    key: 12,
     bpm: 94,
-    computedKey: 12
 }, {
     id: 89,
     artist: "Da Sha Ra",
     title: "Bootin' Up",
-    key: 2,
+    key: 1,
     bpm: 94,
-    computedKey: 1
 }, {
     id: 90,
     artist: "Usher",
@@ -556,16 +543,14 @@ const songdata = [{
     id: 91,
     artist: "Three 6 Mafia",
     title: "You Scared Part 2",
-    key: 5,
+    key: 1,
     bpm: 84,
-    computedKey: 1
 }, {
     id: 92,
     artist: "Nelly",
     title: "Country Grammar",
-    key: 7,
+    key: 6,
     bpm: 84,
-    computedKey: 6
 }, {
     id: 93,
     artist: "Webbie",
@@ -576,9 +561,8 @@ const songdata = [{
     id: 94,
     artist: "T.I.",
     title: "Top Back",
-    key: 5,
+    key: 1,
     bpm: 84,
-    computedKey: 1
 }, {
     id: 95,
     artist: "David Banner",
@@ -601,93 +585,80 @@ const songdata = [{
     id: 98,
     artist: "Three 6 Mafia",
     title: "Ask & Get It",
-    key: 9,
+    key: 4,
     bpm: 84,
-    computedKey: 4
 }, {
     id: 99,
     artist: "Three 6 Mafia",
     title: "Who Run It",
-    key: 11,
+    key: 6,
     bpm: 84,
-    computedKey: 6
 }, {
     id: 100,
     artist: "Jay-Z",
     title: "Hey Papi",
-    key: 2,
+    key: 12,
     bpm: 84,
-    computedKey: 12
 }, {
     id: 101,
     artist: "Project Pat",
     title: "Ooh Nuttin",
-    key: 8,
+    key: 2,
     bpm: 84,
-    computedKey: 2
 }, {
     id: 102,
     artist: "Lil Troy",
     title: "We Gon Lean",
-    key: 8,
+    key: 2,
     bpm: 84,
-    computedKey: 2
 }, {
     id: 103,
     artist: "Youngbloodz",
     title: "Datz Me",
-    key: 11,
+    key: 6,
     bpm: 84,
-    computedKey: 6
 }, {
     id: 104,
     artist: "Project Pat",
     title: "Dont Save Her",
-    key: 8,
+    key: 3,
     bpm: 84,
-    computedKey: 3
 }, {
     id: 105,
     artist: "E-40",
     title: "Rep Yo City",
-    key: 5,
+    key: 1,
     bpm: 84,
-    computedKey: 1
 }, {
     id: 106,
     artist: "Lil Jon",
     title: "I Dont Give a What",
-    key: 1,
+    key:8,
     bpm: 84,
-    computedKey: 8
 }, {
     id: 107,
     artist: "Rich Boy",
     title: "Throw Some Ds",
-    key: 5,
+    key:4,
     bpm: 84,
-    computedKey: 4
 }, {
     id: 108,
     artist: "Project Pat",
     title: "Gel and Weave",
-    key: 11,
+    key: 5,
     bpm: 84,
-    computedKey: 5
 }, {
     id: 109,
     artist: "Wacko Skip & Juvenile",
     title: "Nolia Clap",
-    key: 1,
+    key: 2,
     bpm: 84,
-    computedKey: 2
 }, {
     id: 110,
     artist: "Lil Wayne",
     title: "Fireman",
-    key: 11,
+    key: 6,
     bpm: 84,
-    computedKey: 6
 }, {
     id: 111,
     artist: "Yung Joc",
@@ -710,16 +681,14 @@ const songdata = [{
     id: 114,
     artist: "DJ KaySlay",
     title: "Who Gives A ...",
-    key: 9,
+    key: 4,
     bpm: 84,
-    computedKey: 4
 }, {
     id: 115,
     artist: "Nelly",
     title: "Air Force Ones",
-    key: 7,
+    key: 10,
     bpm: 84,
-    computedKey: 10
 }, {
     id: 116,
     artist: "Lil Jon",
@@ -730,37 +699,32 @@ const songdata = [{
     id: 117,
     artist: "Nelly",
     title: "Grillz",
-    key: 12,
+    key: 11,
     bpm: 84,
-    computedKey: 11
 }, {
     id: 118,
     artist: "Cam'Ron",
     title: "Down and Out",
-    key: 12,
     bpm: 84,
-    computedKey: 4
+    key: 4
 }, {
     id: 119,
     artist: "Busta Rhymes",
     title: "Break Yo Neck",
-    key: 11,
     bpm: 84,
-    computedKey: 8
+    key: 8
 }, {
     id: 120,
     artist: "Project Pat",
     title: "Back Clap Remix",
-    key: 8,
     bpm: 84,
-    computedKey: 12
+    key: 12
 }, {
     id: 121,
     artist: "Three 6 Mafia",
     title: "Ridin Spinners",
-    key: 1,
     bpm: 84,
-    computedKey: 8
+    key: 8
 }, {
     id: 122,
     artist: "Ludacris",
@@ -777,23 +741,20 @@ const songdata = [{
     id: 124,
     artist: "Juelz Santana",
     title: "There It Go",
-    key: 7,
     bpm: 102,
-    computedKey: 6
+    key: 6
 }, {
     id: 125,
     artist: "LL Cool J",
     title: "Headsprung",
-    key: 5,
     bpm: 102,
-    computedKey: 1
+    key: 1
 }, {
     id: 126,
     artist: "Sean Paul",
     title: "Get Busy",
-    key: 3,
     bpm: 102,
-    computedKey: 2
+    key: 2
 }, {
     id: 127,
     artist: "Choppa",
@@ -804,23 +765,20 @@ const songdata = [{
     id: 128,
     artist: "Master P",
     title: "Rock It",
-    key: 2,
     bpm: 102,
-    computedKey: 1
+    key: 1
 }, {
     id: 129,
     artist: "Too Short",
     title: "Blow the Whistle",
-    key: 2,
     bpm: 102,
-    computedKey: 5
+    key: 5
 }, {
     id: 130,
     artist: "Too Short",
     title: "Burn Rubber",
-    key: 1,
     bpm: 102,
-    computedKey: 5
+    key: 5
 }, {
     id: 131,
     artist: "Lil Jon",
@@ -861,23 +819,20 @@ const songdata = [{
     id: 137,
     artist: "Usher",
     title: "Yeah",
-    key: 5,
     bpm: 102,
-    computedKey: 6
+    key: 6
 }, {
     id: 138,
     artist: "T.I.",
     title: "I'm Serious Remix",
-    key: 8,
     bpm: 102,
-    computedKey: 9
+    key: 9
 }, {
     id: 139,
     artist: "Busta Rhymes",
     title: "Light Your A$$ On Fire",
-    key: 7,
     bpm: 102,
-    computedKey: 12
+    key: 12
 }, {
     id: 140,
     artist: "Missy Elliott",
@@ -888,16 +843,14 @@ const songdata = [{
     id: 141,
     artist: "E-40",
     title: "Tell Me When To Go",
-    key: 3,
     bpm: 102,
-    computedKey: 9
+    key: 9
 }, {
     id: 142,
     artist: "The Showboys",
     title: "Drag Rap",
-    key: 8,
     bpm: 94,
-    computedKey: 9
+    key: 9
 }, {
     id: 143,
     artist: "Young Gunz",
@@ -908,45 +861,39 @@ const songdata = [{
     id: 144,
     artist: "Petey Pablo",
     title: "Freek a Leek",
-    key: 6,
     bpm: 102,
-    computedKey: 1
+    key: 1
 }, {
     id: 145,
     artist: "Ludacris",
     title: "Stand Up",
-    key: 4,
     bpm: 102,
-    computedKey: 3
+    key: 3
 }, {
     id: 146,
     artist: "Cheeky Blakk",
     title: "B*tch Get Off Me",
-    key: 9,
     bpm: 102,
-    computedKey: 1
+    key: 1
 }, {
     id: 147,
     artist: "Jay-Z",
     title: "Just Wanna Luv U",
-    key: 10,
     bpm: 102,
     linkageId: 1,
-    computedKey: 4
+    key: 4
 }, {
     id: 148,
     artist: "Silky Slim",
     title: "Sista Sista",
-    key: 4,
     bpm: 102,
-    computedKey: 6
+    key: 6
 }, {
     id: 149,
     artist: "Ludacris",
     title: "Area Codes",
-    key: 9,
     bpm: 102,
-    computedKey: 8
+    key: 8
 }, {
     id: 150,
     artist: "Chris Brown",
@@ -957,37 +904,32 @@ const songdata = [{
     id: 151,
     artist: "Ying Yang Twins",
     title: "Whistle While You Twerk",
-    key: 3,
     bpm: 102,
-    computedKey: 2
+    key: 2
 }, {
     id: 152,
     artist: "5th Ward Webbie",
     title: "On Da Wall",
-    key: 12,
     bpm: 102,
-    computedKey: 11
+    key: 11
 }, {
     id: 153,
     artist: "5th Ward Webbie",
     title: "Toot It Up",
-    key: 11,
     bpm: 102,
-    computedKey: 6
+    key: 6
 }, {
     id: 154,
     artist: "The Pack",
     title: "Vans",
-    key: 11,
     bpm: 102,
-    computedKey: 2
+    key: 2
 }, {
     id: 155,
     artist: "Montell Jordan",
     title: "This Is How We Do It",
-    key: 5,
     bpm: 102,
-    computedKey: 4
+    key: 4
 }, {
     id: 156,
     artist: "Ying Yang Twins",
@@ -998,44 +940,38 @@ const songdata = [{
     id: 157,
     artist: "FRESH",
     title: "Cake Boy",
-    key: 1,
     bpm: 84,
-    computedKey: 2
+    key: 2
 }, {
     id: 158,
     artist: "Bloodclot Breaks",
     title: "Kuttin Like a Maniac",
-    key: 4,
     bpm: 84,
-    computedKey: 2
+    key: 2
 }, {
     id: 159,
     artist: "Super Seal",
     title: "Side B Break",
-    key: 2,
     bpm: 84,
-    computedKey: 8
+    key: 8
 }, {
     id: 160,
     artist: "Fat Joe",
     title: "Make It Rain",
-    key: 9,
     bpm: 84,
-    computedKey: 11
+    key: 11
 }, {
     id: 161,
     artist: "Crime Mobb",
     title: "Rock Ya Hips",
-    key: 2,
     bpm: 84,
-    computedKey: 1
+    key: 1
 }, {
     id: 162,
     artist: "Crime Mobb",
     title: "Stilettos",
-    key: 9,
     bpm: 84,
-    computedKey: 1
+    key: 1
 }, {
     id: 163,
     artist: "DJ DMD",
@@ -1046,30 +982,26 @@ const songdata = [{
     id: 164,
     artist: "Ludacris",
     title: "Catch Up",
-    key: 4,
     bpm: 84,
-    computedKey: 11
+    key: 11
 }, {
     id: 165,
     artist: "8-Ball & MJG",
     title: "Pimp Hard",
-    key: 5,
     bpm: 84,
-    computedKey: 12
+    key: 12
 }, {
     id: 166,
     artist: "Three 6 Mafia",
     title: "Chickenheads",
-    key: 6,
     bpm: 84,
-    computedKey: 1
+    key: 1
 }, {
     id: 167,
     artist: "Bravehearts",
     title: "Quick to Back Down",
-    key: 9,
     bpm: 84,
-    computedKey: 4
+    key: 4
 }, {
     id: 168,
     artist: "G-Unit",
@@ -1080,16 +1012,14 @@ const songdata = [{
     id: 169,
     artist: "Gangsta Boo",
     title: "Where Dem Dollas At",
-    key: 1,
     bpm: 84,
-    computedKey: 2
+    key: 2
 }, {
     id: 170,
     artist: "Tango",
     title: "Wobble & Shake It",
-    key: 8,
     bpm: 84,
-    computedKey: 9
+    key: 9
 }, /*{
     id: 171,
     artist: "Too Short",
@@ -1106,9 +1036,8 @@ const songdata = [{
     id: 173,
     artist: "Jim Jones",
     title: "Weatherman",
-    key: 1,
     bpm: 84,
-    computedKey: 3
+    key: 3
 }, {
     id: 174,
     artist: "Ludacris",
@@ -1155,16 +1084,14 @@ const songdata = [{
     id: 181,
     artist: "DJ Felli Fell",
     title: "Get Buck in Here",
-    key: 2,
     bpm: 102,
-    computedKey: 1
+    key: 1
 }, {
     id: 182,
     artist: "B.G.",
     title: "Bling Bling",
-    key: 10,
     bpm: 102,
-    computedKey: 9
+    key: 9
 }, /*{
     id: 183,
     artist: "Cassie",
@@ -1187,23 +1114,20 @@ const songdata = [{
     id: 186,
     artist: "Too Short",
     title: "Keep Bouncing",
-    key: 6,
     bpm: 102,
-    computedKey: 10
+    key: 10
 }, {
     id: 187,
     artist: "Notorious BIG",
     title: "Nasty Girl",
-    key: 11,
     bpm: 102,
-    computedKey: 12
+    key: 12
 }, {
     id: 188,
     artist: "Saweetie",
     title: "Up Now",
-    key: 5,
     bpm: 102,
-    computedKey: 2
+    key: 2
 }, {
     id: 189,
     artist: "Missy Elliott",
@@ -1238,30 +1162,28 @@ const songdata = [{
     id: 194,
     artist: "50 Cent",
     title: "Candy Shop",
-    key: 11,
     bpm: 102,
-    computedKey: 6
+    key: 6
 }, /*{
     id: 195,
     artist: "A Tribe Called Quest",
     title: "Electric Relaxation",
     key: 2,
     bpm: 102,
-    computedKey: 9
+    key: 9
 }, *//*{
     id: 196,
     artist: "Beastie Boys",
     title: "Sure Shot European B-Boy Remix",
     key: 8,
     bpm: 102,
-    computedKey: 2
+    key: 2
 }, */{
     id: 197,
     artist: "Busta Rhymes",
     title: "Pass the Courvosier",
-    key: 4,
     bpm: 102,
-    computedKey: 12
+    key: 12
 }, {
     id: 198,
     artist: "Chris Brown",
@@ -1274,49 +1196,48 @@ const songdata = [{
     title: "Mistadobalina",
     key: 3,
     bpm: 102,
-    computedKey: 10
+    key: 10
 }*/ {
     id: 200,
     artist: "FM",
     title: "Gimme What You Got",
-    key: 8,
     bpm: 102,
-    computedKey: 2
+    key: 2
 }, /*{
     id: 201,
     artist: "De La Soul",
     title: "Still Ego Trippin",
     key: 3,
     bpm: 102,
-    computedKey: 11
+    key: 11
 }*/ /*{
     id: 202,
     artist: "Fu2",
     title: "Boomin In Ya Jeep",
     key: 4,
     bpm: 102,
-    computedKey: 1
+    key: 1
 }*/ /*{
     id: 203,
     artist: "Ice Cube",
     title: "We Be Clubbin Remix",
     key: 5,
     bpm: 102,
-    computedKey: 12
+    key: 12
 }, *//*{
     id: 204,
     artist: "Richard Browne",
     title: "Baddis Ting",
     key: 6,
     bpm: 102,
-    computedKey: 2
+    key: 2
 }*/ /*{
     id: 205,
     artist: "Lloyd",
     title: "Girls Around the World",
     key: 6,
     bpm: 102,
-    computedKey: 1
+    key: 1
 }, {
     id: 206,
     artist: "Lloyd",
@@ -1339,16 +1260,14 @@ const songdata = [{
     id: 209,
     artist: "Naughty by Nature",
     title: "O.P.P.",
-    key: 11,
     bpm: 102,
-    computedKey: 6
+    key: 6
 }, {
     id: 210,
     artist: "Onyx",
     title: "Slam",
-    key: 8,
     bpm: 102,
-    computedKey: 3
+    key: 3
 }, /*{
     id: 211,
     artist: "Public Enemy",
@@ -1361,7 +1280,7 @@ const songdata = [{
     title: "Security First World",
     key: 2,
     bpm: 102,
-    computedKey: 9
+    key: 9
 }*/ {
     id: 213,
     artist: "R Kelly",
@@ -1374,56 +1293,53 @@ const songdata = [{
     title: "I'll Be Dat",
     key: 4,
     bpm: 102,
-    computedKey: 8
+    key: 8
 }, {
     id: 215,
     artist: "Sean Paul",
     title: "Like Glue",
     key: 12,
     bpm: 102,
-    computedKey: 7
+    key: 7
 }*/ {
     id: 216,
     artist: "Skee Lo",
     title: "I Wish",
-    key: 6,
     bpm: 102,
-    computedKey: 1
+    key: 1
 }, {
     id: 217,
     artist: "Swizz Beats",
     title: "Money In the Bank",
-    key: 5,
     bpm: 102,
-    computedKey: 2
+    key: 2
 }, {
     id: 218,
     artist: "The Game",
     title: "How We Do",
-    key: 9,
     bpm: 102,
-    computedKey: 4
+    key: 4
 }, /*{
     id: 219,
     artist: "Pharcyde",
     title: "Ya Mama J-Swift",
     key: 7,
     bpm: 102,
-    computedKey: 2
+    key: 2
 },*/ /*{
     id: 220,
     artist: "Tony Touch",
     title: "Capicu",
     key: 3,
     bpm: 102,
-    computedKey: 11
+    key: 11
 }, {
     id: 221,
     artist: "Travis Barker",
     title: "100",
     key: 1,
     bpm: 102,
-    computedKey: 8
+    key: 8
 }, {
     id: 222,
     artist: "Mike Epps",
@@ -1434,23 +1350,21 @@ const songdata = [{
     id: 223,
     artist: "Busta Rhymes",
     title: "Dangerous",
-    key: 9,
     bpm: 102,
-    computedKey: 12
+    key: 12
 }, {
     id: 224,
     artist: "The Game",
     title: "Hate It or Love It",
-    key: 1,
     bpm: 102,
-    computedKey: 12
+    key: 12
 }, /*{
     id: 225,
     artist: "Naughty by Nature",
     title: "The Hood Comes First",
     key: 1,
     bpm: 102,
-    computedKey: 12
+    key: 12
 }, {
     id: 226,
     artist: "Def Jef",
@@ -1469,7 +1383,7 @@ const songdata = [{
     title: "Blindfolded",
     key: 8,
     bpm: 102,
-    computedKey: 11
+    key: 11
 }, *//*{
     id: 229,
     artist: "Cypress Hill",
@@ -1516,9 +1430,8 @@ const songdata = [{
     id: 236,
     artist: "Ying Yang Twins",
     title: "Twerking in the Mirror",
-    key: 10,
     bpm: 102,
-    computedKey: 2
+    key: 2
 }, /*{
     id: 237,
     artist: "Nas & KRS One",
@@ -1549,7 +1462,7 @@ const songdata = [{
     title: "By My Side",
     key: 10,
     bpm: 102,
-    computedKey: 2
+    key: 2
 }, */{
     id: 242,
     artist: "Beyonce",
@@ -1592,7 +1505,7 @@ const songdata = [{
     title: "That Woman",
     key: 1,
     bpm: 94,
-    computedKey: 2
+    key: 2
 }, {
     id: 249,
     artist: "Pauly Perry",
@@ -1611,14 +1524,14 @@ const songdata = [{
     title: "You Came Up",
     key: 4,
     bpm: 94,
-    computedKey: 12
+    key: 12
 }, {
     id: 252,
     artist: "Ice T",
     title: "Mixed Up",
     key: 1,
     bpm: 94,
-    computedKey: 11
+    key: 11
 }, {
     id: 253,
     artist: "Handsome Boy Modeling School",
@@ -1631,7 +1544,7 @@ const songdata = [{
     title: "Everyday Thing to Roll",
     key: 4,
     bpm: 94,
-    computedKey: 11
+    key: 11
 }, {
     id: 255,
     artist: "Kool Keith",
@@ -1650,21 +1563,21 @@ const songdata = [{
     title: "Fourmation",
     key: 1,
     bpm: 94,
-    computedKey: 8
+    key: 8
 }, {
     id: 258,
     artist: "Da Brat",
     title: "Funkdafied DJ Club Edit",
     key: 7,
     bpm: 94,
-    computedKey: 2
+    key: 2
 }, {
     id: 259,
     artist: "Kool G Rap",
     title: "Fash Life",
     key: 1,
     bpm: 94,
-    computedKey: 2
+    key: 2
 }, */{
     id: 260,
     artist: "Amerie",
@@ -1675,9 +1588,8 @@ const songdata = [{
     id: 261,
     artist: "Busta Rhymes",
     title: "Turn It Up",
-    key: 11,
     bpm: 94,
-    computedKey: 6
+    key: 6
 }, /*{
     id: 262,
     artist: "AZ",
@@ -1688,37 +1600,36 @@ const songdata = [{
     id: 263,
     artist: "Youngbloodz",
     title: "Cadillac Pimpin",
-    key: 6,
     bpm: 94,
-    computedKey: 2
+    key: 2
 }, /*{
     id: 264,
     artist: "Large Professor",
     title: "IJUSTWANNACHILL",
     key: 11,
     bpm: 94,
-    computedKey: 6
+    key: 6
 }, {
     id: 265,
     artist: "Souls of Mischief",
     title: "Home Game",
     key: 11,
     bpm: 94,
-    computedKey: 6
+    key: 6
 }, {
     id: 266,
     artist: "Souls of Mischief",
     title: "Proper Aim",
     key:6,
     bpm: 94,
-    computedKey: 5
+    key: 5
 }, {
     id: 267,
     artist: "Scott Lark",
     title: "Razzle Dazzle",
     key: 1,
     bpm: 94,
-    computedKey: 5
+    key: 5
 }, {
     id: 268,
     artist: "Audio Two",
@@ -1731,14 +1642,13 @@ const songdata = [{
     title: "Global Dynamics",
     key: 4,
     bpm: 94,
-    computedKey: 11
+    key: 11
 }, */{
     id: 270,
     artist: "Junior MAFIA",
     title: "Get Money",
-    key: 10,
     bpm: 94,
-    computedKey: 5
+    key: 5
 }, /*{
     id: 271,
     artist: "Lady of Rage",
@@ -1751,14 +1661,13 @@ const songdata = [{
     title: "Schooled in the Trade",
     key: 6,
     bpm: 94,
-    computedKey: 2
+    key: 2
 }, */{
     id: 273,
     artist: "Rihanna feat Young Jeezy",
     title: "Hard",
-    key: 10,
     bpm: 94,
-    computedKey: 5
+    key: 5
 }, /*{
     id: 274,
     artist: "Mad Skillz",
@@ -1775,9 +1684,8 @@ const songdata = [{
     id: 276,
     artist: "Funkdoobiest",
     title: "Bow Wow Wow Remix",
-    key: 6,
     bpm: 102,
-    computedKey: 11
+    key: 11
 }, /*{
     id: 277,
     artist: "Def Jef",
@@ -1830,16 +1738,14 @@ const songdata = [{
     id: 285,
     artist: "Juelz Santana",
     title: "Hey Ma",
-    key: 4,
     bpm: 84,
-    computedKey: 6
+    key: 6
 }, {
     id: 286,
     artist: "Hurricane Chris",
     title: "Hand Clap",
-    key: 6,
     bpm: 84,
-    computedKey: 11
+    key: 11
 }, {
     id: 287,
     artist: "Eightball",
@@ -1868,23 +1774,20 @@ const songdata = [{
     id: 292,
     artist: "Funk Shid Up",
     title: "Sucka Stepped Up",
-    key: 11,
     bpm: 84,
-    computedKey: 6
+    key: 6
 }, {
     id: 293,
     artist: "G-Eazy",
     title: "1942",
-    key: 9,
     bpm: 84,
-    computedKey: 2
+    key: 2
 }, {
     id: 294,
     artist: "Missy Elliott",
     title: "Hot Boyz",
-    key: 4,
     bpm: 84,
-    computedKey: 11
+    key: 11
 }, /*{
     id: 295,
     artist: "Scarface",
@@ -1895,16 +1798,15 @@ const songdata = [{
     id: 296,
     artist: "T-Pain",
     title: "Got Money",
-    key: 8,
     bpm: 84,
-    computedKey: 9
+    key: 9
 }, /*{
     id: 297,
     artist: "Kool Keith",
     title: "The Real Beginner",
     key: 7,
     bpm: 94,
-    computedKey: 2
+    key: 2
 }, */{
     id: 298,
     artist: "Audio Two",
@@ -1923,7 +1825,7 @@ const songdata = [{
     title: "What They Call Me",
     key: 1,
     bpm: 94,
-    computedKey: 8
+    key: 8
 }, */{
     id: 301,
     artist: "City Girls",
@@ -1940,9 +1842,8 @@ const songdata = [{
     id: 303,
     artist: "Cam'Ron",
     title: "Oh Boy",
-    key: 1,
     bpm: 84,
-    computedKey: 1
+    key: 1
 }, {
     id: 304,
     artist: "T.I.",
@@ -3185,6 +3086,102 @@ const songdata = [{
     title: "Billie Eilish",
     key: 1,
     bpm: 102
-}]
+}, {
+    id: 511,
+    artist: "Blueface",
+    title: "Thotiana",
+    key: 1,
+    bpm: 102
+}, {
+    id: 512,
+    artist: "Black Sheep",
+    title: "The Choice is Yours",
+    key: 3,
+    bpm: 102
+}, {
+    id: 513,
+    artist: "Shakira",
+    title: "Hips Don't Lie",
+    key: 3,
+    bpm: 102
+}, {
+    id: 514,
+    artist: "Beastie Boys",
+    title: "AWOL",
+    key: 1,
+    bpm: 102
+}, {
+    id: 515,
+    artist: "Ray J",
+    title: "Wait a Minute",
+    key: 1,
+    bpm: 102
+}, {
+    id: 516,
+    artist: "Frankie Cutlass",
+    title: "Puerto Rico",
+    key: 10,
+    bpm: 102
+}, {
+    id: 517,
+    artist: "T.I.",
+    title: "Bring Em Out",
+    key: 9,
+    bpm: 102
+}, {
+    id: 518,
+    artist: "PLO",
+    title: "Get Me Lit",
+    key: 1,
+    bpm: 102
+}, {
+    id: 519,
+    artist: "Ol Dirty Bastard",
+    title: "Baby I've Got Your Money",
+    key: 4,
+    bpm: 102
+}, {
+    id: 520,
+    artist: "Notorious BIG",
+    title: "Mo Money Mo Problems",
+    key: 1,
+    bpm: 102
+}, {
+    id: 521,
+    artist: "Showbiz & AG",
+    title: "Party Groove",
+    key: 10,
+    bpm: 102
+}, {
+    id: 522,
+    artist: "Mario",
+    title: "Boom Remix",
+    key: 1,
+    bpm: 102
+}, {
+    id: 523,
+    artist: "Positive K",
+    title: "I Got a Man",
+    key: 5,
+    bpm: 102
+}, {
+    id: 524,
+    artist: "Busta Rhymes",
+    title: "What It Is",
+    key: 4,
+    bpm: 102
+}, {
+    id: 525,
+    artist: "Puff Daddy",
+    title: "Can't Nobody Hold Me Down",
+    key: 5,
+    bpm: 102
+}, {
+    id: 526,
+    artist: "Kilo",
+    title: "Get In Line 2",
+    key: 3,
+    bpm: 102
+}]._shuffle();
 
 export {songdata}

@@ -1,4 +1,10 @@
-import {getTracks} from "./tracks.js";
+import {
+    getSelectedSongIds,
+    getTracks,
+    hideElement,
+    isMagicTime,
+    showElement,
+} from "./tracks.js";
 import {BufferLoader} from "./BufferLoader.js";
 import {context} from "./context.js";
 import {bufferPadding, getBuffer, replenishBuffers, setBufferPadding} from "./buffers.js";
@@ -13,47 +19,108 @@ let tempoChangeIndex = 0;
 let tracksFromURLIndex = 0
 let usingTracksFromURL = false;
 
-function init() {
-    const params = new Proxy(new URLSearchParams(window.location.search), {
-        get: (searchParams, prop) => searchParams.get(prop),
-    });
-    const tracksFromURL = params.tracks || null;
-    if (tracksFromURL) {
-        usingTracksFromURL = true;
-        let tracks
-        try {
-            tracks = JSON.parse(tracksFromURL);
-            if (typeof tracks === 'number') {
-                tracks = [[tracks]]
-            }
-        } catch(e) {
-            if (!Array.isArray(tracks)) {
-                tracks = tracksFromURL.split('-').filter(Boolean).map(x=>x.split(',').filter(Boolean).map(v=> parseInt(v, 10)))
-                console.log(tracks)
-            }
-        }
-        bufferLoader = new BufferLoader(
-            context,
-            getTracks(tracks[tracksFromURLIndex][0], tracks?.[tracksFromURLIndex]?.[1], true),
-            finishedLoading
-        );
-        if (tracks[tracksFromURLIndex + 1]) {
-            tracksFromURLIndex += 1;
-        } else {
-            tracksFromURLIndex = 0;
-        }
-    } else {
-        bufferLoader = new BufferLoader(
-            context,
-            getTracks(),
-            finishedLoading
-        );
-    }
-
-    bufferLoader.load();
+export const resetTempoIndex = () => {
+    tempoChangeIndex  = 0;
 }
 
-function getAndStartBuffer(bufferListItem, time, addListener) {
+export const init = () => {
+    setTimeout(() => {
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        const tracksFromURL = params.tracks || null;
+        if (tracksFromURL) {
+            usingTracksFromURL = true;
+            let tracks
+            try {
+                // if you just provide a number value for tracks it will repeat a single track
+                if (typeof tracks === 'number') {
+                    tracks = [[tracks]]
+                } else {
+                    tracks = JSON.parse(tracksFromURL);
+                }
+            } catch (e) {
+                if (!Array.isArray(tracks)) {
+                    // a string like this will also work: 1,2-3,4-5,6 and will evaluate to [[1,2],[3,4],[5,6]]
+                    tracks = tracksFromURL.split('-').filter(Boolean).map(x => x.split(',').filter(Boolean).map(v => parseInt(v, 10)))
+                    console.log(tracks)
+                }
+            }
+            bufferLoader = new BufferLoader(
+                context,
+                getTracks(tracks[tracksFromURLIndex][0], tracks[tracksFromURLIndex][1], true),
+                finishedLoading
+            );
+            if (tracks[tracksFromURLIndex + 1]) {
+                tracksFromURLIndex += 1;
+            } else {
+                tracksFromURLIndex = 0;
+            }
+            bufferLoader.load();
+        } else if (isFirst || isMagicTime) {
+            setTimeout(() => {
+                const ids = getSelectedSongIds();
+                if (ids && typeof ids[0]?.id === 'number' && typeof ids[1]?.id === 'number') {
+                    bufferLoader = new BufferLoader(
+                        context,
+                        getTracks(ids[0].id, ids[1].id),
+                        finishedLoading
+                    );
+                } else {
+                    bufferLoader = new BufferLoader(
+                        context,
+                        getTracks(),
+                        finishedLoading
+                    );
+                }
+                hideElement(document.getElementById('up-next'))
+                bufferLoader.load();
+            })
+        } else {
+            const element = document.getElementById('counter-holder')
+            const numberOfSeconds = 32;
+            element.innerText = `${numberOfSeconds - 1}`;
+            const interval = setInterval(() => {
+                const value = parseInt(element.innerText, 10)
+                element.innerText = `${value - 1}`
+                if (value - 1 < 7) {
+                    element.style.color = 'lightyellow'
+                }
+                if (value - 1 < 3) {
+                    element.style.color = 'pink'
+                }
+                if (value - 1 >= 7) {
+                    element.style.color = 'white'
+                }
+
+            }, 1000);
+            element.style.display = 'inline-block'
+            setTimeout(() => {
+                const ids = getSelectedSongIds();
+                if (ids && typeof ids[0]?.id === 'number' && typeof ids[1]?.id === 'number') {
+                    bufferLoader = new BufferLoader(
+                        context,
+                        getTracks(ids[0].id, ids[1].id),
+                        finishedLoading
+                    );
+                } else {
+                    bufferLoader = new BufferLoader(
+                        context,
+                        getTracks(),
+                        finishedLoading
+                    );
+                }
+                hideElement(element)
+                hideElement(document.getElementById('up-next'))
+                clearInterval(interval)
+                bufferLoader.load();
+            }, numberOfSeconds * 1000)
+        }
+    })
+
+}
+
+function getAndStartBuffer(bufferListItem, time, addListener, buffers) {
     let timestamp;
     let source = getBuffer()
     source.buffer = bufferListItem;
@@ -62,6 +129,10 @@ function getAndStartBuffer(bufferListItem, time, addListener) {
     source.stop(time + bufferListItem.duration)
     if (addListener) {
         source.addEventListener('ended', (event) => {
+            (buffers || []).forEach((buffer)=> {
+                buffer = null;
+            })
+            showElement(document.getElementById('up-next'))
             if (event?.timeStamp && event.timeStamp - timestamp < 30) {
                 return;
             }
@@ -72,7 +143,7 @@ function getAndStartBuffer(bufferListItem, time, addListener) {
 }
 
 function finishedLoading(bufferList, tempo) {
-    getAndStartBuffer(bufferList[0], bufferPadding, true)
+    getAndStartBuffer(bufferList[0], bufferPadding, true, [bufferList[0], bufferList[1], bufferList[2], bufferList[3]])
     if (bufferList[1]) {
         getAndStartBuffer(bufferList[1], bufferPadding)
     }
@@ -113,4 +184,4 @@ function finishedLoading(bufferList, tempo) {
     }
 }
 
-window.onload = init;
+// window.onload = init;
