@@ -23,6 +23,8 @@
             margin: 0;
             padding: 0;
             background: url("bg-2048.jpg");
+            background-color: #090911;
+            background-repeat: no-repeat;
             background-size: cover;
 
         }
@@ -212,8 +214,14 @@
             margin-top: 8px;
         }
 
+        #play-button:active, #play-button:focus {
+            border: 2px solid blue;
+            color: blue;
+        }
+
         #share-button {
             height: 60px;
+            display: block !important;
             border: 2px solid orangered;
             border-radius: 8px;
             padding: 16px 24px;
@@ -223,16 +231,26 @@
             width: 300px;
             margin-left: auto;
             margin-right: auto;
-            display: none;
             color: orangered;
+            margin-top: 0;
+        }
+
+        #share-button:active, #share-button:focus {
+            border: 2px solid darkorange;
+            color: darkorange;
         }
 
 
         select {
+            border-radius: 8px;
+            background-color: black;
+            color: dodgerblue;
+            border: 2px solid dodgerblue;
             width: 300px;
             cursor: pointer;
-            height: 36px;
-            font-size: 1rem;
+            height: 48px;
+
+            font-size: 14px;
             line-height: 16px;
             -webkit-appearance: menulist-button;
             -moz-appearance: none;
@@ -277,7 +295,7 @@
             font-size: 14px;
             line-height: 1;
             text-align: center;
-            padding: 8px 16px;
+            padding: 8px;
             margin-right: -1px;
             border: 1px solid rgba(0, 0, 0, 0.2);
             box-shadow: inset 0 1px 3px black, 0 1px rgba(255, 255, 255, 0.1);
@@ -329,7 +347,9 @@
             height: 320px;
             margin-top: 24px;
             mix-blend-mode: lighten;
+            margin-bottom: 48px;
         }
+
 
     </style>
 </head>
@@ -342,6 +362,8 @@
             <label for="tempo-2" class="radio">94 BPM</label>
             <input type="radio" id="tempo-3" name="tempo" value="2">
             <label for="tempo-3" class="radio">102 BPM</label>
+            <input type="radio" id="tempo-4" name="tempo" value="3">
+            <label for="tempo-4" class="radio">123 BPM</label>
         </div>
         <div id="key-radio">
             <input type="radio" id="key-1" name="key" value="1">
@@ -384,9 +406,6 @@
             <div>
                 <select id="deck-2" name="deck-2"></select>
             </div>
-            <!--<button id="mix-button">🪩 MIX</button>-->
-        <!--<div id="third-song-label" class="white"></div>
-        <div id="fourth-song-label" class="white"></div>-->
         </div>
         <div id="tempo-holder" style="margin-right: 8px">
             <span id="tempo-count" class="white">??</span>
@@ -398,10 +417,7 @@
         </div>
         <button id="play-button">▶️ PLAY</button>
         <button id="share-button">COPY URL</button>
-        <!--<div id="autopilot">Autopilot Mode</div>
-        <div id="user">User mode</div>-->
         <div class="white">Powered by Kwyjibo v3.0.∞.<span id="song-counter">322</span></div>
-        <div><img id="ck-logo" src="CK.png" alt="CK" width="300px" height="300px"></div>
     </div>
 <div>
     <span style="margin-right: 8px">
@@ -415,5 +431,6 @@
 <button id="github-button"><a id='GitHub' href="https://github.com/dmvjs/kwyjibo">GitHub</a></button>
 <button id="youtube-button"><a id='YouTube' href="https://www.youtube.com/watch?v=61mAf_8swEE">YouTube</a></button>
 <button id="contact-button"><a id='contact' href="mailto:cappinkirk@gmail.com">Contact</a></button>
+<div><img id="ck-logo" src="CK.png" alt="CK" width="300px" height="300px"></div>
 </body>
 </html>

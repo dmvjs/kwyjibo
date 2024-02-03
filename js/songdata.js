@@ -1,4 +1,4 @@
-const songdata = [{
+export const songdata = [{
     id: 1,
     artist: "Ying Yang Twins",
     title: "I Yi Yi",
@@ -3182,6 +3182,148 @@ const songdata = [{
     title: "Get In Line 2",
     key: 3,
     bpm: 102
-}]._shuffle();
-
-export {songdata}
+}, {
+    id: 527,
+    artist: "Griff & Booman",
+    title: "Oop Day",
+    key: 9,
+    bpm: 123
+}, {
+    id: 528,
+    artist: "DJ Booman",
+    title: "Sweet Dreams",
+    key: 1,
+    bpm: 123
+}, {
+    id: 529,
+    artist: "Spenich",
+    title: "I Been Blessed",
+    key: 1,
+    bpm: 123
+}, {
+    id: 530,
+    artist: "Soho",
+    title: "Hot Music Bassline Mix",
+    key: 5,
+    bpm: 123
+}, {
+    id: 531,
+    artist: "DJ Samir",
+    title: "Samir's Theme",
+    key: 9,
+    bpm: 123
+}, {
+    id: 532,
+    artist: "Royal House",
+    title: "Party People",
+    key: 9,
+    bpm: 123
+}, {
+    id: 533,
+    artist: "House of Venus",
+    title: "Dish and Tell B*tch Mix",
+    key: 8,
+    bpm: 123
+}, {
+    id: 534,
+    artist: "Virgo",
+    title: "Go Wild Rhythm Tracks",
+    key: 9,
+    bpm: 123
+}, {
+    id: 535,
+    artist: "Two Without Hats",
+    title: "The Breeze Fua Mix",
+    key: 4,
+    bpm: 123
+}, {
+    id: 536,
+    artist: "LNR",
+    title: "Work It to the Bone",
+    key: 1,
+    bpm: 123
+}, {
+    id: 537,
+    artist: "Ralphi Rosari",
+    title: "You Used to Hold Me",
+    key: 1,
+    bpm: 123
+}, {
+    id: 538,
+    artist: "Double Impact",
+    title: "The Manic Track",
+    key: 3,
+    bpm: 123
+}, {
+    id: 539,
+    artist: "Armando",
+    title: "100% Dissin You Armandos Mix ",
+    key: 6,
+    bpm: 123
+}, {
+    id: 540,
+    artist: "Harddrive",
+    title: "Deep Inside",
+    key: 9,
+    bpm: 123
+}, {
+    id: 541,
+    artist: "Armando",
+    title: "100% Dissin You Climax Mix",
+    key: 2,
+    bpm: 123
+}, {
+    id: 542,
+    artist: "Bust a Groove",
+    title: "Deep Inside",
+    key: 3,
+    bpm: 123
+}, {
+    id: 543,
+    artist: "Lakim Shabazz",
+    title: "Adding On",
+    key: 1,
+    bpm: 123
+}, {
+    id: 544,
+    artist: "DJ Cappin Kirk",
+    title: "Test Alignment Beat",
+    key: 1,
+    bpm: 123
+}, {
+    id: 545,
+    artist: "DJ Freeze",
+    title: "Burning Hot",
+    key: 8,
+    bpm: 123
+},  {
+    id: 546,
+    artist: "Jammin Gerald",
+    title: "Get Da Ho '94",
+    key: 4,
+    bpm: 123
+},  {
+    id: 547,
+    artist: "Dave Nada",
+    title: "Drummers Rock",
+    key: 10,
+    bpm: 123
+},  {
+    id: 548,
+    artist: "Rednex",
+    title: "Cotton Eye Joe",
+    key: 7,
+    bpm: 123
+},  {
+    id: 549,
+    artist: "Chip E",
+    title: "Like This Dub Mix",
+    key: 6,
+    bpm: 123
+},  {
+    id: 550,
+    artist: "A Guy Called Gerald",
+    title: "Blow Your House Down",
+    key: 6,
+    bpm: 123
+}]

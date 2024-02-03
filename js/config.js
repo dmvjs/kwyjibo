@@ -4,8 +4,8 @@ const config = !window.location.hostname.includes('localhost') ? {
     //fileType: '.wav',
 } : {
     // initialKey: 1,
-    // initialTempo: 102,
-    fileType: '.wav',
+    //initialTempo: 123,
+    //fileType: '.wav',
 }
 
 export {config}
