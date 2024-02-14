@@ -50,5 +50,6 @@ export const setActiveTempo = (x) => {
   }
   resetTempoIndex();
   setKey({ target: { value: activeKey } });
+  updateTempoUI(x);
   tempoCount.innerText = activeTempo;
 };

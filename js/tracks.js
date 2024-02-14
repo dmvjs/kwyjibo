@@ -60,10 +60,10 @@ export const updateUI = (key, firstSongId, secondSongId) => {
         window.playedSongs[trackIndex - 2 < 0 ? 0 : trackIndex - 2][1],
     )[0];
     firstSongLabel.innerText = `${thirdSongUI.artist || ""} - ${
-      firstSongUI.title || ""
+      thirdSongUI.title || ""
     }`;
     secondSongLabel.innerText = `${fourthSongUI?.artist || ""} - ${
-      secondSongUI?.title || ""
+      fourthSongUI?.title || ""
     }`;
     firstSongLabel.className = `text-color-${thirdSongUI?.key}`;
     secondSongLabel.className = `text-color-${fourthSongUI?.key}`;
