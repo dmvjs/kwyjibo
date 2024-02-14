@@ -9,6 +9,7 @@ import { addTracks } from "./share.js";
 import { showElement, updateActiveKey } from "./dom.js";
 import { getSong, getSongs } from "./getSongs.js";
 import "./shuffle.js";
+import { file } from "./utils.js";
 
 let holder = {};
 const magicNumber = 5;
@@ -29,9 +30,6 @@ export let fsID;
 export let ssID;
 
 export const updateUI = (key, firstSongId, secondSongId) => {
-  /*if (trackIndex >= 3) {
-        showElement(document.getElementById('share-button'));
-    }*/
   fsID = firstSongId;
   ssID = secondSongId;
   return () => {
@@ -61,10 +59,10 @@ export const updateUI = (key, firstSongId, secondSongId) => {
         item.id ===
         window.playedSongs[trackIndex - 2 < 0 ? 0 : trackIndex - 2][1],
     )[0];
-    firstSongLabel.innerText = `${firstSongUI.artist || ""} - ${
+    firstSongLabel.innerText = `${thirdSongUI.artist || ""} - ${
       firstSongUI.title || ""
     }`;
-    secondSongLabel.innerText = `${secondSongUI?.artist || ""} - ${
+    secondSongLabel.innerText = `${fourthSongUI?.artist || ""} - ${
       secondSongUI?.title || ""
     }`;
     firstSongLabel.className = `text-color-${thirdSongUI?.key}`;
@@ -88,13 +86,13 @@ export const getSelectedSongIds = () => {
   const firstSong =
     deck1Select.value === "-1"
       ? null
-      : songs.thisKeySongs.find((s) => {
+      : songs.thisTempoSongs.find((s) => {
           return s.id === parseInt(deck1Select.value, 10);
         });
   const secondSong =
     deck2Select.value === "-1"
       ? null
-      : songs.thisKeySongs.find((s) => {
+      : songs.thisTempoSongs.find((s) => {
           return s.id === parseInt(deck2Select.value, 10);
         });
   return [firstSong, secondSong];
@@ -115,10 +113,10 @@ export const loadSongsIntoSelect = () => {
   deck2Select.appendChild(optionDefault2);
   deck2Select.value = "-1";
 
-  const firstID = [...new Set(songs.thisTempoSongs)]
+  const firstID = [...new Set(songs.thisKeySongs)]
     .filter(Boolean)
     ._shuffle()[0];
-  const secondID = [...new Set(songs.thisTempoSongs)]
+  const secondID = [...new Set(songs.thisKeySongs)]
     .filter(Boolean)
     .filter((x) => x.artist !== firstID.artist)
     ._shuffle()[0];
@@ -144,11 +142,6 @@ export const loadSongsIntoSelect = () => {
   deck1Select.value = firstID.id;
   deck2Select.value = secondID.id;
 };
-
-export const file = (int, isLead) =>
-  `../music/${String(int).padStart(8, "0")}-${
-    isLead ? "lead" : "body"
-  }${filetype}`;
 export const getTracks = (track1, track2, skipSamples = false) => {
   const isUsingTracksFromURL = track1 !== undefined;
   isMagicTime = trackIndex % magicNumber === 0;

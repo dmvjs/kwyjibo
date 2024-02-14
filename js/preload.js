@@ -109,7 +109,7 @@ export const init = () => {
       bufferLoader.load();
     } else {
       const element = document.getElementById("counter-holder");
-      const numberOfSeconds = 32;
+      const numberOfSeconds = 31;
       element.innerText = `${numberOfSeconds - 1}`;
       const interval = setInterval(() => {
         const value = parseInt(element.innerText, 10);
