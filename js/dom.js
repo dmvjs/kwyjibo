@@ -27,12 +27,16 @@ export const showElement = (element) => {
 
 export const setKey = (e) => {
   setActiveKey(parseInt(e.target.value, 10));
-  const keyEnumeration = document.getElementById("key-enumeration");
-  keyEnumeration.innerText = activeKey;
-  keyEnumeration.className = `text-color-${activeKey}`;
   loadSongsIntoSelect();
   setInitialKey(activeKey);
 };
+
+export const deck1Select = document.getElementById("deck-1");
+export const deck2Select = document.getElementById("deck-2");
+export const firstSongLabel = document.getElementById("first-song-label");
+export const secondSongLabel = document.getElementById("second-song-label");
+export const thirdSongLabel = document.getElementById("third-song-label");
+export const fourthSongLabel = document.getElementById("fourth-song-label");
 
 export const initializeKeyListeners = () => {
   const key1 = document.getElementById("key-1");
@@ -61,8 +65,6 @@ export const initializeKeyListeners = () => {
   key11.addEventListener("change", setKey);
   key12.addEventListener("change", setKey);
 
-  const keyLabel = document.getElementById("key-enumeration");
-  keyLabel.innerText = activeKey;
   const el = document.getElementById(`key-${activeKey}`);
   el.checked = true;
 };

@@ -6,58 +6,60 @@ import { activeTempo, updateTempoUI } from "./tempo.js";
 import { quantumRandom } from "./cryptoRandom.js";
 import { songdata } from "./songdata.js";
 import { addTracks } from "./share.js";
-import { showElement, updateActiveKey } from "./dom.js";
+import {
+  deck1Select,
+  deck2Select,
+  firstSongLabel,
+  fourthSongLabel,
+  hideElement,
+  secondSongLabel,
+  showElement,
+  thirdSongLabel,
+  updateActiveKey,
+} from "./dom.js";
 import { getSong, getSongs } from "./getSongs.js";
 import "./shuffle.js";
 import { file } from "./utils.js";
 
 let holder = {};
-const magicNumber = 5;
+export const magicNumber = 5;
 
 export let trackIndex = 0;
 export let isMagicTime = trackIndex % magicNumber === 0;
 
-export const deck1Select = document.getElementById("deck-1");
-export const deck2Select = document.getElementById("deck-2");
-export const keyEnumeration = document.getElementById("key-enumeration");
-export const tempoCount = document.getElementById("tempo-count");
-export const firstSongLabel = document.getElementById("first-song-label");
-export const secondSongLabel = document.getElementById("second-song-label");
-export const thirdSongLabel = document.getElementById("third-song-label");
-export const fourthSongLabel = document.getElementById("fourth-song-label");
-
 export let fsID;
 export let ssID;
 
-export const updateUI = (key, firstSongId, secondSongId) => {
+export const updateUI = (
+  key,
+  firstSongId,
+  secondSongId,
+  trackIndex,
+  isFromCountdown = false,
+) => {
   fsID = firstSongId;
   ssID = secondSongId;
   return () => {
     document.body.className = `color-${key}`;
-    tempoCount.innerText = songdata.filter(
-      (item) => item.id === firstSongId,
-    )[0].bpm;
     window.playedSongs = window.playedSongs || [];
     window.playedSongs.push([firstSongId, secondSongId]);
     const firstSongUI = songdata.filter(
       (item) =>
-        item.id ===
-        window.playedSongs[trackIndex - 1 < 0 ? 0 : trackIndex - 1][0],
+        item.id === window.playedSongs[trackIndex < 0 ? 0 : trackIndex][0],
     )[0];
     const secondSongUI = songdata.filter(
       (item) =>
-        item.id ===
-        window.playedSongs[trackIndex - 1 < 0 ? 0 : trackIndex - 1][1],
+        item.id === window.playedSongs[trackIndex < 0 ? 0 : trackIndex][1],
     )[0];
     const thirdSongUI = songdata.filter(
       (item) =>
         item.id ===
-        window.playedSongs[trackIndex - 2 < 0 ? 0 : trackIndex - 2][0],
+        window.playedSongs[trackIndex - 1 < 0 ? 0 : trackIndex - 1][0],
     )[0];
     const fourthSongUI = songdata.filter(
       (item) =>
         item.id ===
-        window.playedSongs[trackIndex - 2 < 0 ? 0 : trackIndex - 2][1],
+        window.playedSongs[trackIndex - 1 < 0 ? 0 : trackIndex - 1][1],
     )[0];
     firstSongLabel.innerText = `${thirdSongUI.artist || ""} - ${
       thirdSongUI.title || ""
@@ -65,18 +67,26 @@ export const updateUI = (key, firstSongId, secondSongId) => {
     secondSongLabel.innerText = `${fourthSongUI?.artist || ""} - ${
       fourthSongUI?.title || ""
     }`;
+    thirdSongLabel.innerText = `${firstSongUI?.artist || ""} - ${
+      firstSongUI.title || ""
+    }`;
+    fourthSongLabel.innerText = `${secondSongUI?.artist || ""} - ${
+      secondSongUI?.title || ""
+    }`;
     firstSongLabel.className = `text-color-${thirdSongUI?.key}`;
     secondSongLabel.className = `text-color-${fourthSongUI?.key}`;
     thirdSongLabel.className = `text-color-${firstSongUI.key}`;
     fourthSongLabel.className = `text-color-${secondSongUI?.key}`;
     loadSongsIntoSelect();
-    tempoCount.innerText = firstSongUI.bpm;
-    keyEnumeration.innerText = key;
-    keyEnumeration.className = `text-color-${key}`;
     document.getElementById("play-button").className = `button-color-${key}`;
     document.getElementById("contact-button").className = `button-color-${key}`;
     document.getElementById("youtube-button").className = `button-color-${key}`;
     document.getElementById("github-button").className = `button-color-${key}`;
+    if (isFromCountdown) {
+      showElement(document.getElementById("on-deck"));
+    } else {
+      hideElement(document.getElementById("on-deck"));
+    }
     showElement(document.getElementById("now-playing"));
   };
 };
@@ -113,10 +123,21 @@ export const loadSongsIntoSelect = () => {
   deck2Select.appendChild(optionDefault2);
   deck2Select.value = "-1";
 
+  let playedSongs = [];
+  if (window.playedSongs?.length) {
+    playedSongs = [...new Set(window.playedSongs.flat())];
+    playedSongs = playedSongs.slice(
+      playedSongs.length - Math.min(90, playedSongs.length),
+      playedSongs.length,
+    );
+  }
+
   const firstID = [...new Set(songs.thisKeySongs)]
+    .filter((song) => !playedSongs.includes(song.id))
     .filter(Boolean)
     ._shuffle()[0];
   const secondID = [...new Set(songs.thisKeySongs)]
+    .filter((song) => !playedSongs.includes(song.id))
     .filter(Boolean)
     .filter((x) => x.artist !== firstID.artist)
     ._shuffle()[0];
@@ -142,7 +163,12 @@ export const loadSongsIntoSelect = () => {
   deck1Select.value = firstID.id;
   deck2Select.value = secondID.id;
 };
-export const getTracks = (track1, track2, skipSamples = false) => {
+export const getTracks = (
+  track1,
+  track2,
+  skipSamples = false,
+  isFromCountdown = false,
+) => {
   const isUsingTracksFromURL = track1 !== undefined;
   isMagicTime = trackIndex % magicNumber === 0;
   if (isMagicTime) {
@@ -192,7 +218,7 @@ export const getTracks = (track1, track2, skipSamples = false) => {
     returnArray.push(fourthTrack);
   }
   requestAnimationFrame(
-    updateUI(activeKey, firstSongId, secondSongId, trackIndex),
+    updateUI(activeKey, firstSongId, secondSongId, trackIndex, isFromCountdown),
   );
   if (isMagicTime) {
     holder[trackIndex] = [firstSongId, secondSongId];

@@ -27,7 +27,6 @@ export const tempo1Input = document.getElementById("tempo-1");
 export const tempo2Input = document.getElementById("tempo-2");
 export const tempo3Input = document.getElementById("tempo-3");
 export const tempo4Input = document.getElementById("tempo-4");
-export const tempoCount = document.getElementById("tempo-count");
 
 export const updateTempoUI = (tempo) => {
   if (tempo === 84) {
@@ -51,5 +50,4 @@ export const setActiveTempo = (x) => {
   resetTempoIndex();
   setKey({ target: { value: activeKey } });
   updateTempoUI(x);
-  tempoCount.innerText = activeTempo;
 };

@@ -177,7 +177,7 @@
             margin: 2px;
         }
 
-        #now-playing {
+        #now-playing, #on-deck {
             display: none;
             letter-spacing: 1px;
             text-shadow: 1px 1px 1px rgba(0,0,0,1);
@@ -187,9 +187,10 @@
             max-width: 250px;
             margin-left: auto;
             margin-right: auto;
-            margin-bottom: 8px;
+            margin-bottom: 16px;
+            margin-top: 16px;
         }
-        #now-playing h3 {
+        #now-playing h3, #on-deck h3 {
             margin-bottom: 8px;
         }
         #first-song-label, #second-song-label{
@@ -347,13 +348,25 @@
             height: 320px;
             margin-top: 24px;
             mix-blend-mode: lighten;
-            margin-bottom: 48px;
+            margin-bottom: 16px;
+        }
+
+        #hurricane-container {
+            display: none;
+            padding: 8px;
+            line-height: 22px;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            background-color: aquamarine;
         }
 
 
     </style>
 </head>
 <body>
+<div id="hurricane-container">
+    <div class="hurricane-message">You are in playback mode. Inputs are disabled until the program is complete </div>
+</div>
     <div id="title-container">
         <div id="tempo-radio">
             <input type="radio" id="tempo-1" name="tempo" value="0">
@@ -391,32 +404,28 @@
             <input type="radio" id="key-12" name="key" value="12">
             <label for="key-12" class="radio">12</label>
         </div>
-        <div id="now-playing">
-        <h3 class="white header-spacing">Now playing:</h3>
-        <div id="first-song-label" class="white"></div>
-        <div id="second-song-label" class="white"></div>
-        </div>
+        <button id="play-button">▶️ PLAY</button>
+        <button id="share-button">COPY URL</button>
         <div id="up-next">
-            <h3 class="white header-spacing"><span id="counter-holder"></span></h3>
-            <div id="third-song-label" class="white"></div>
-            <div id="fourth-song-label" class="white"></div>
             <div>
                 <select id="deck-1" name="deck-1"></select>
             </div>
             <div>
                 <select id="deck-2" name="deck-2"></select>
             </div>
+            <h3 class="white header-spacing">Yo DJ 👆 <span id="counter-holder"></span></h3>
         </div>
-        <div id="tempo-holder" style="margin-right: 8px">
-            <span id="tempo-count" class="white">??</span>
-            <span id="bpm-label" class="white">BPM</span>
+        <div id="now-playing">
+            <h3 class="white header-spacing">Now playing:</h3>
+            <div id="first-song-label" class="white"></div>
+            <div id="second-song-label" class="white"></div>
         </div>
-        <div id="key-holder">
-            <span id="key-label" class="white">KEY</span>
-            <span id="key-enumeration" class="white">?</span>
+        <div id="on-deck">
+            <h3 class="white header-spacing">Next up:</h3>
+            <div id="third-song-label" class="white"></div>
+            <div id="fourth-song-label" class="white"></div>
         </div>
-        <button id="play-button">▶️ PLAY</button>
-        <button id="share-button">COPY URL</button>
+        <div><img id="ck-logo" src="CK.png" alt="CK" width="300px" height="300px"></div>
         <div class="white">Powered by Kwyjibo v3.0.∞.<span id="song-counter">322</span></div>
     </div>
 <div>
@@ -431,6 +440,5 @@
 <button id="github-button"><a id='GitHub' href="https://github.com/dmvjs/kwyjibo">GitHub</a></button>
 <button id="youtube-button"><a id='YouTube' href="https://www.youtube.com/watch?v=61mAf_8swEE">YouTube</a></button>
 <button id="contact-button"><a id='contact' href="mailto:cappinkirk@gmail.com">Contact</a></button>
-<div><img id="ck-logo" src="CK.png" alt="CK" width="300px" height="300px"></div>
 </body>
 </html>

@@ -16,7 +16,9 @@ function startApplication() {
   playButton.removeEventListener(myEvent, startApplication);
   playButton.innerText = "⏸️ PAUSE";
   playButton.addEventListener(myEvent, pauseApplication);
-  context.resume();
+  setTimeout(() => {
+    context.resume();
+  }, 500);
 }
 
 function pauseApplication() {
