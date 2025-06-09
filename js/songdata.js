@@ -302,13 +302,13 @@ export const songdata = [
     key: 11,
     bpm: 94,
   },
-  {
+  /* {
     id: 45,
     artist: "Too Short",
     title: "Quit Hatin",
     key: 12,
     bpm: 94,
-  },
+  }, */
   {
     id: 46,
     artist: "Ludacris",
@@ -483,13 +483,13 @@ export const songdata = [
     key: 11,
     bpm: 84,
   },
-  {
+  /* {
     id: 71,
     artist: "Too Short",
     title: "Quit Hatin'",
     key: 5,
     bpm: 84,
-  },
+  }, */
   {
     id: 72,
     artist: "Kelis",
@@ -2535,13 +2535,13 @@ export const songdata = [
     key: 1,
     bpm: 84,
   },
-  {
+  /* {
     id: 371,
     artist: "Coolio",
     title: "Gangstas Paradise",
     key: 12,
     bpm: 84,
-  },
+  }, */
   {
     id: 372,
     artist: "Eminem",
@@ -2629,7 +2629,7 @@ export const songdata = [
     title: "9mm & Techs",
     key: 4,
     bpm: 84
-}, */ {
+}, */ /* {
     id: 385,
     artist: "Eazy-E",
     title: "BNK",
@@ -2649,7 +2649,7 @@ export const songdata = [
     title: "Gwop",
     key: 4,
     bpm: 84,
-  },
+  }, */
   {
     id: 388,
     artist: "Yo Gotti",
@@ -2892,13 +2892,13 @@ export const songdata = [
     key: 12,
     bpm: 84,
   },
-  {
+  /* {
     id: 424,
     artist: "Joeski Love",
     title: "Pee Wee Dance",
     key: 10,
     bpm: 84,
-  },
+  }, */
   {
     id: 425,
     artist: "Birdman",
@@ -3184,7 +3184,7 @@ export const songdata = [
     key: 9,
     bpm: 94,
   },
-  {
+  /* {
     id: 466,
     artist: "OMB Peezy",
     title: "Think You Ready",
@@ -3197,7 +3197,7 @@ export const songdata = [
     title: "Bring Some Mo",
     key: 12,
     bpm: 94,
-  },
+  }, */
   {
     id: 468,
     artist: "Rick Ross & Meek Mill",
@@ -3261,13 +3261,13 @@ export const songdata = [
     key: 1,
     bpm: 94,
   },
-  {
+  /* {
     id: 477,
     artist: "Country Dons & SL",
     title: "Just Eat",
     key: 2,
     bpm: 94,
-  },
+  }, */
   {
     id: 478,
     artist: "The Game",
@@ -3425,7 +3425,7 @@ export const songdata = [
     title: "Sause",
     key: 2,
     bpm: 102
-}, */ {
+}, */ /* {
     id: 502,
     artist: "Pap Chanel",
     title: "Apple Jacks",
@@ -3438,7 +3438,7 @@ export const songdata = [
     title: "U Luv It",
     key: 1,
     bpm: 102,
-  },
+  }, */
   {
     id: 504,
     artist: "French Montana",
@@ -3467,13 +3467,13 @@ export const songdata = [
     key: 8,
     bpm: 102,
   },
-  {
+  /* {
     id: 508,
     artist: "OhGeesy",
     title: "Tour Bus",
     key: 1,
     bpm: 102,
-  },
+  }, */
   {
     id: 509,
     artist: "Beadz feat Erica Banks",
@@ -3544,13 +3544,13 @@ export const songdata = [
     key: 1,
     bpm: 102,
   },
-  {
+  /* {
     id: 519,
     artist: "Ol Dirty Bastard",
     title: "Baby I've Got Your Money",
     key: 4,
     bpm: 102,
-  },
+  }, */
   {
     id: 520,
     artist: "Notorious BIG",
@@ -3586,13 +3586,13 @@ export const songdata = [
     key: 4,
     bpm: 102,
   },
-  {
+  /* {
     id: 525,
     artist: "Puff Daddy",
     title: "Can't Nobody Hold Me Down",
     key: 5,
     bpm: 102,
-  },
+  }, */
   {
     id: 526,
     artist: "Kilo",
@@ -3600,7 +3600,7 @@ export const songdata = [
     key: 3,
     bpm: 102,
   },
-  {
+  /* {
     id: 527,
     artist: "Griff & Booman",
     title: "Oop Day",
@@ -3949,5 +3949,5 @@ export const songdata = [
     title: "Keep Movin",
     key: 1,
     bpm: 123,
-  },
+  }, */
 ];

@@ -13,7 +13,6 @@ import {
   tempo1Input,
   tempo2Input,
   tempo3Input,
-  tempo4Input,
   updateTempoUI,
 } from "./tempo.js";
 
@@ -73,7 +72,7 @@ export const initializeTempo = () => {
   tempo1Input.addEventListener("change", onTempoChange);
   tempo2Input.addEventListener("change", onTempoChange);
   tempo3Input.addEventListener("change", onTempoChange);
-  tempo4Input.addEventListener("change", onTempoChange);
+  //tempo4Input.addEventListener("change", onTempoChange);
   setActiveTempo(activeTempo);
   updateTempoUI(activeTempo);
   loadSongsIntoSelect();

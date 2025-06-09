@@ -6,7 +6,7 @@ import {
   trackIndex,
 } from "./tracks.js";
 import { BufferLoader } from "./BufferLoader.js";
-import { context } from "./context.js";
+import { getContext } from "./context.js";
 import {
   bufferPadding,
   getBuffer,
@@ -77,15 +77,13 @@ export const init = () => {
     hideElement(document.getElementById("on-deck"));
     const hasError = () => (window.location = "/");
 
-    fetch(file(tracks[tracksFromURLIndex][0], trackIndex % magicNumber === 0))
-      .then(
-        fetch(
-          file(tracks[tracksFromURLIndex][1], trackIndex % magicNumber === 0),
-        ),
-      )
+    Promise.all([
+      fetch(file(tracks[tracksFromURLIndex][0], trackIndex % magicNumber === 0)),
+      fetch(file(tracks[tracksFromURLIndex][1], trackIndex % magicNumber === 0))
+    ])
       .then(() => {
         bufferLoader = new BufferLoader(
-          context,
+          getContext(),
           getTracks(
             tracks[tracksFromURLIndex][0],
             tracks[tracksFromURLIndex][1],
@@ -97,7 +95,8 @@ export const init = () => {
         removeSongFromListById(tracks[tracksFromURLIndex][1].id);
         setTracksFromUrlIndex(tracksFromURLIndex + 1);
         bufferLoader.load();
-      }, hasError);
+      })
+      .catch(hasError);
   } else if (isFirst || isMagicTime) {
     loadTracks();
     hideElement(document.getElementById("up-next"));
@@ -138,19 +137,22 @@ export const init = () => {
 const loadTracks = (isFromCountdown = false, isStartingCountdown = false) => {
   const ids = getSelectedSongIds();
   if (ids && typeof ids[0]?.id === "number" && typeof ids[1]?.id === "number") {
-    fetch(file(ids[0].id, trackIndex % magicNumber === 0))
-      .then(fetch(file(ids[1].id, trackIndex % magicNumber === 0)))
+    Promise.all([
+      fetch(file(ids[0].id, trackIndex % magicNumber === 0)),
+      fetch(file(ids[1].id, trackIndex % magicNumber === 0))
+    ])
       .then(() => {
         bufferLoader = new BufferLoader(
-          context,
+          getContext(),
           getTracks(ids[0].id, ids[1].id, undefined, isFromCountdown),
           finishedLoading,
         );
         bufferLoader.load();
-      }, hasError);
+      })
+      .catch(hasError);
   } else {
     bufferLoader = new BufferLoader(
-      context,
+      getContext(),
       getTracks(
         undefined,
         undefined,
@@ -167,9 +169,51 @@ function getAndStartBuffer(bufferListItem, time, addListener, buffers) {
   let timestamp;
   let source = getBuffer();
   source.buffer = bufferListItem;
-  source.connect(context.destination);
+  
+  // Create gain nodes for volume control
+  const gainNode = getContext().createGain();
+  
+  // Create audio processing chain
+  const compressor = getContext().createDynamicsCompressor();
+  compressor.threshold.value = -24;
+  compressor.knee.value = 30;
+  compressor.ratio.value = 12;
+  compressor.attack.value = 0.003;
+  compressor.release.value = 0.25;
+  
+  // Create stereo enhancement
+  const stereoEnhancer = getContext().createStereoPanner();
+  stereoEnhancer.pan.value = 0; // Center position
+  
+  // Create EQ for sparkle
+  const eq = getContext().createBiquadFilter();
+  eq.type = 'highshelf';
+  eq.frequency.value = 3000; // 3kHz shelf
+  eq.gain.value = 3; // Subtle boost
+  
+  // Connect main processing chain
+  source.connect(gainNode);
+  gainNode.connect(compressor);
+  compressor.connect(eq);
+  eq.connect(stereoEnhancer);
+  stereoEnhancer.connect(getContext().destination);
+  
+  // Set initial volume
+  gainNode.gain.setValueAtTime(1, time);
+  
+  // If this is a transition, fade out the previous track
+  if (addListener) {
+    const fadeDuration = (60 / activeTempo) * 4;
+    const fadeStartTime = time + bufferListItem.duration - fadeDuration;
+    
+    // Fade out main track
+    gainNode.gain.setValueAtTime(1, fadeStartTime);
+    gainNode.gain.linearRampToValueAtTime(0, time + bufferListItem.duration);
+  }
+  
   source.start(time);
   source.stop(time + bufferListItem.duration);
+  
   if (addListener) {
     source.addEventListener("ended", (event) => {
       (buffers || []).forEach((buffer) => {
@@ -230,7 +274,7 @@ function finishedLoading(bufferList, tempo) {
       } else if (activeTempo === 94) {
         setActiveTempo(102);
       } else if (activeTempo === 102) {
-        setActiveTempo(123);
+        setActiveTempo(84);
       } else if (activeTempo === 123) {
         setActiveTempo(84);
       }
