@@ -1,4 +1,4 @@
-import {context} from "./context.js";
+import {getContext} from "./context.js";
 
 let bufferPadding = 0;
 
@@ -9,7 +9,7 @@ function setBufferPadding (x) {
 }
 
 const buffers = Array.from({length: 44}, ()=> {
-    return context.createBufferSource();
+    return getContext().createBufferSource();
 })
 
 const getBuffer = () => {
@@ -18,7 +18,7 @@ const getBuffer = () => {
 
 const replenishBuffers = (howMany) => {
     Array.from({length: howMany}, ()=> {
-        buffers.push(context.createBufferSource());
+        buffers.push(getContext().createBufferSource());
     })
 }
 

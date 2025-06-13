@@ -26,7 +26,7 @@ export const onTempoChange = (e) => {
 export const tempo1Input = document.getElementById("tempo-1");
 export const tempo2Input = document.getElementById("tempo-2");
 export const tempo3Input = document.getElementById("tempo-3");
-export const tempo4Input = document.getElementById("tempo-4");
+// export const tempo4Input = document.getElementById("tempo-4");
 
 export const updateTempoUI = (tempo) => {
   if (tempo === 84) {
@@ -36,7 +36,7 @@ export const updateTempoUI = (tempo) => {
   } else if (tempo === 102) {
     tempo3Input.checked = true;
   } else if (tempo === 123) {
-    tempo4Input.checked = true;
+    // tempo4Input.checked = true;
   }
 };
 
