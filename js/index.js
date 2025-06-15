@@ -102,7 +102,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
     let lastTempo = null;
     playlistDisplay.innerHTML = `<h3>Full Playlist:</h3><ul style="list-style-type: none; padding: 0;">`;
-    parsed.forEach((pair, index) => {
+    let displayIndex = 1;
+    for (let i = 0; i < parsed.length; i++) {
+      const pair = parsed[i];
       const song1 = songdata.find((s) => s.id === pair[0]);
       const song2 = songdata.find((s) => s.id === pair[1]);
       // Pick a new random emoji for each line
@@ -113,28 +115,26 @@ window.addEventListener("DOMContentLoaded", () => {
         tempoHeading = `<li style=\"margin:16px 0 4px 0;font-weight:bold;color:#ffd600;\">Tempo: ${song1.bpm} BPM</li>`;
         lastTempo = song1.bpm;
       }
+      // Omit duplicate if this pair is the same as the previous (i.e., main after intro)
+      if (i > 0 && parsed[i][0] === parsed[i-1][0] && parsed[i][1] === parsed[i-1][1]) {
+        continue; // skip duplicate (main)
+      }
       if (song1 && song2) {
         const key1 = getKeyName(song1.key);
         const key2 = getKeyName(song2.key);
-        playlistDisplay.innerHTML += `${tempoHeading}<li style=\"margin-bottom: 10px;\">${
-          index + 1
-        }. ${song1.artist} - ${song1.title} (<b>${key1}</b>) x ${
-          song2.artist
-        } - ${song2.title} (<b>${key2}</b>)</li>`;
+        playlistDisplay.innerHTML += `${tempoHeading}<li style=\"margin-bottom: 10px;\">${displayIndex}. ${song1.artist} - ${song1.title} (<b>${key1}</b>) x ${song2.artist} - ${song2.title} (<b>${key2}</b>)</li>`;
         console.log(
-          `${lineEmoji} ${index + 1}. ${song1.artist} - ${
-            song1.title
-          } (${key1}) x ${song2.artist} - ${song2.title} (${key2})`,
+          `${lineEmoji} ${displayIndex}. ${song1.artist} - ${song1.title} (${key1}) x ${song2.artist} - ${song2.title} (${key2})`,
         );
+        displayIndex++;
       } else {
-        playlistDisplay.innerHTML += `${tempoHeading}<li style=\"margin-bottom: 10px;\">${
-          index + 1
-        }. Track ID not found in song data</li>`;
+        playlistDisplay.innerHTML += `${tempoHeading}<li style=\"margin-bottom: 10px;\">${displayIndex}. Track ID not found in song data</li>`;
         console.log(
-          `${lineEmoji} ${index + 1}. Track ID not found in song data`,
+          `${lineEmoji} ${displayIndex}. Track ID not found in song data`,
         );
+        displayIndex++;
       }
-    });
+    }
     playlistDisplay.innerHTML += "</ul>";
 
     document.body.appendChild(playlistDisplay);
@@ -172,9 +172,11 @@ window.addEventListener("DOMContentLoaded", () => {
       if (firstPair) {
         playlist[0] = firstPair;
       }
+      // Map playlist to integer IDs only for the URL
+      const intPlaylist = playlist.map(pair => pair.map(id => parseInt(id, 10)));
       // Build the share URL
       const url = new URL(getBaseUrl());
-      url.searchParams.set("tracks", JSON.stringify(playlist));
+      url.searchParams.set("tracks", JSON.stringify(intPlaylist));
       // Redirect
       window.location.href = url.href;
     });
@@ -187,9 +189,11 @@ window.addEventListener("DOMContentLoaded", () => {
       threeHourBtn.innerText = "Generating...";
       // Generate the three hour mix (using a new function or duration override)
       const { playlist } = generateOneHourMix({ durationSeconds: 3 * 3600 });
+      // Map playlist to integer IDs only for the URL
+      const intPlaylist = playlist.map(pair => pair.map(id => parseInt(id, 10)));
       // Build the share URL
       const url = new URL(getBaseUrl());
-      url.searchParams.set("tracks", JSON.stringify(playlist));
+      url.searchParams.set("tracks", JSON.stringify(intPlaylist));
       // Redirect
       window.location.href = url.href;
     });
@@ -205,9 +209,11 @@ window.addEventListener("DOMContentLoaded", () => {
         durationSeconds: Infinity, // No time limit
         useAllSongs: true, // New flag to use all songs
       });
+      // Map playlist to integer IDs only for the URL
+      const intPlaylist = playlist.map(pair => pair.map(id => parseInt(id, 10)));
       // Build the share URL
       const url = new URL(getBaseUrl());
-      url.searchParams.set("tracks", JSON.stringify(playlist));
+      url.searchParams.set("tracks", JSON.stringify(intPlaylist));
       // Redirect
       window.location.href = url.href;
     });
