@@ -75,3 +75,24 @@ export const keySort = (a,b) => {
     return aScore < bScore ? 1 : aScore > bScore ? -1 : 0;
 }
 
+// Key number to musical key name mapping (Camelot style, starting at C)
+export const keyNames = [
+  'C',    // 1
+  'C#',   // 2
+  'D',    // 3
+  'D#',   // 4
+  'E',    // 5
+  'F',    // 6
+  'F#',   // 7
+  'G',    // 8
+  'G#',   // 9
+  'A',    // 10
+  'A#',   // 11
+  'B'     // 12
+];
+
+export function getKeyName(num) {
+  // num is 1-based
+  return keyNames[(num - 1 + 12) % 12] || '?';
+}
+

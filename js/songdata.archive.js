@@ -153,7 +153,13 @@ export const songdata = [
     key: 12,
     bpm: 94,
   },
-  {
+  /*{
+    id: 23,
+    artist: "Dr. Dre",
+    title: "G Thang",
+    key: 11,
+    bpm: 94
+}, */ {
     id: 24,
     artist: "Lil Mo",
     title: "Superwoman Remix",
@@ -174,7 +180,19 @@ export const songdata = [
     key: 4,
     bpm: 94,
   },
-  {
+  /*{
+    id: 27,
+    artist: "Outcast",
+    title: "ATLiens Bad Boy Remix",
+    key: 11,
+    bpm: 94
+}, */ /*{
+    id: 28,
+    artist: "Miss B",
+    title: "Bottle Action",
+    key: 2,
+    bpm: 94,
+}, */ {
     id: 29,
     artist: "Ludacris",
     title: "Ho",
@@ -202,7 +220,13 @@ export const songdata = [
     key: 1,
     bpm: 94,
   },
-  {
+  /*{
+    id: 33,
+    artist: "Jay-Z",
+    title: "Excuse Me Miss",
+    key: 1,
+    bpm: 94,
+}, */ {
     id: 34,
     artist: "Juvenile",
     title: "Ha",
@@ -237,7 +261,13 @@ export const songdata = [
     key: 8,
     bpm: 94,
   },
-  {
+  /*{
+    id: 39,
+    artist: "Eminem",
+    title: "Get You Mad",
+    key: 6,
+    bpm: 94
+}, */ {
     id: 40,
     artist: "Sean Paul",
     title: "Baby Boy",
@@ -272,6 +302,13 @@ export const songdata = [
     key: 11,
     bpm: 94,
   },
+  /* {
+    id: 45,
+    artist: "Too Short",
+    title: "Quit Hatin",
+    key: 12,
+    bpm: 94,
+  }, */
   {
     id: 46,
     artist: "Ludacris",
@@ -321,7 +358,13 @@ export const songdata = [
     key: 9,
     bpm: 94,
   },
-  {
+  /*{
+    id: 53,
+    artist: "Jay-Z",
+    title: "Just Wanna Love U",
+    key: 1,
+    bpm: 94,
+}, */ {
     id: 54,
     artist: "Juvenile",
     title: "From Her Mama",
@@ -440,6 +483,13 @@ export const songdata = [
     key: 11,
     bpm: 84,
   },
+  /* {
+    id: 71,
+    artist: "Too Short",
+    title: "Quit Hatin'",
+    key: 5,
+    bpm: 84,
+  }, */
   {
     id: 72,
     artist: "Kelis",
@@ -1134,7 +1184,13 @@ export const songdata = [
     bpm: 84,
     key: 9,
   },
-  {
+  /*{
+    id: 171,
+    artist: "Too Short",
+    title: "Freaky Tales Part 2",
+    key: 1,
+    bpm: 84
+}, */ {
     id: 172,
     artist: "Webbie",
     title: "How U Ridin'",
@@ -1211,21 +1267,19 @@ export const songdata = [
     bpm: 102,
     key: 9,
   },
-  {
+  /*{
     id: 183,
     artist: "Cassie",
     title: "Me & U",
     key: 1,
-    bpm: 102,
-  },
-  {
+    bpm: 102
+}, */ /*{
     id: 184,
     artist: "Freeway",
     title: "Flipside",
     key: 1,
-    bpm: 102,
-  },
-  {
+    bpm: 102
+}, */ {
     id: 185,
     artist: "Busta Rhymes",
     title: "Fire It Up",
@@ -1295,21 +1349,21 @@ export const songdata = [
     bpm: 102,
     key: 6,
   },
-  {
+  /*{
     id: 195,
     artist: "A Tribe Called Quest",
     title: "Electric Relaxation",
+    key: 2,
     bpm: 102,
-    key: 9,
-  },
-  {
+    key: 9
+}, */ /*{
     id: 196,
     artist: "Beastie Boys",
     title: "Sure Shot European B-Boy Remix",
+    key: 8,
     bpm: 102,
-    key: 2,
-  },
-  {
+    key: 2
+}, */ {
     id: 197,
     artist: "Busta Rhymes",
     title: "Pass the Courvosier",
@@ -1323,14 +1377,62 @@ export const songdata = [
     key: 5,
     bpm: 102,
   },
-  {
+  /*{
+    id: 199,
+    artist: "Del the Funky Homosapien",
+    title: "Mistadobalina",
+    key: 3,
+    bpm: 102,
+    key: 10
+}*/ {
     id: 200,
     artist: "FM",
     title: "Gimme What You Got",
     bpm: 102,
     key: 2,
   },
-  {
+  /*{
+    id: 201,
+    artist: "De La Soul",
+    title: "Still Ego Trippin",
+    key: 3,
+    bpm: 102,
+    key: 11
+}*/ /*{
+    id: 202,
+    artist: "Fu2",
+    title: "Boomin In Ya Jeep",
+    key: 4,
+    bpm: 102,
+    key: 1
+}*/ /*{
+    id: 203,
+    artist: "Ice Cube",
+    title: "We Be Clubbin Remix",
+    key: 5,
+    bpm: 102,
+    key: 12
+}, */ /*{
+    id: 204,
+    artist: "Richard Browne",
+    title: "Baddis Ting",
+    key: 6,
+    bpm: 102,
+    key: 2
+}*/ /*{
+    id: 205,
+    artist: "Lloyd",
+    title: "Girls Around the World",
+    key: 6,
+    bpm: 102,
+    key: 1
+}, {
+    id: 206,
+    artist: "Lloyd",
+    title: "You",
+    key: 12,
+    bpm: 102,
+}, */ {
     id: 207,
     artist: "Master P",
     title: "Ghetto D",
@@ -1358,42 +1460,41 @@ export const songdata = [
     bpm: 102,
     key: 3,
   },
-  {
+  /*{
     id: 211,
     artist: "Public Enemy",
     title: "Louder Than a Bomb JMJ Remix",
     key: 2,
-    bpm: 102,
-  },
-  {
+    bpm: 102
+}, {
     id: 212,
     artist: "Public Enemy",
     title: "Security First World",
+    key: 2,
     bpm: 102,
-    key: 9,
-  },
-  {
+    key: 9
+}*/ {
     id: 213,
     artist: "R Kelly",
     title: "Playas Only",
     key: 1,
     bpm: 102,
   },
-  {
+  /*{
     id: 214,
     artist: "Redman",
     title: "I'll Be Dat",
+    key: 4,
     bpm: 102,
-    key: 8,
-  },
-  {
+    key: 8
+}, {
     id: 215,
     artist: "Sean Paul",
     title: "Like Glue",
+    key: 12,
     bpm: 102,
-    key: 7,
-  },
-  {
+    key: 7
+}*/ {
     id: 216,
     artist: "Skee Lo",
     title: "I Wish",
@@ -1414,7 +1515,34 @@ export const songdata = [
     bpm: 102,
     key: 4,
   },
-  {
+  /*{
+    id: 219,
+    artist: "Pharcyde",
+    title: "Ya Mama J-Swift",
+    key: 7,
+    bpm: 102,
+    key: 2
+},*/ /*{
+    id: 220,
+    artist: "Tony Touch",
+    title: "Capicu",
+    key: 3,
+    bpm: 102,
+    key: 11
+}, {
+    id: 221,
+    artist: "Travis Barker",
+    title: "100",
+    key: 1,
+    bpm: 102,
+    key: 8
+}, {
+    id: 222,
+    artist: "Mike Epps",
+    title: "Tryna Be a Gangsta",
+    key: 12,
+    bpm: 102
+}, */ {
     id: 223,
     artist: "Busta Rhymes",
     title: "Dangerous",
@@ -1428,14 +1556,40 @@ export const songdata = [
     bpm: 102,
     key: 12,
   },
-  {
+  /*{
+    id: 225,
+    artist: "Naughty by Nature",
+    title: "The Hood Comes First",
+    key: 1,
+    bpm: 102,
+    key: 12
+}, {
+    id: 226,
+    artist: "Def Jef",
+    title: "Black to the Future",
+    key: 1,
+    bpm: 102
+}, */ {
     id: 227,
     artist: "Ying Yang Twins",
     title: "Twurkulator Part 2",
     key: 7,
     bpm: 102,
   },
-  {
+  /*{
+    id: 228,
+    artist: "Kelis",
+    title: "Blindfolded",
+    key: 8,
+    bpm: 102,
+    key: 11
+}, */ /*{
+    id: 229,
+    artist: "Cypress Hill",
+    title: "Insane in the Brain",
+    key: 7,
+    bpm: 102
+}, */ {
     id: 230,
     artist: "Next",
     title: "Too Close",
@@ -1449,28 +1603,70 @@ export const songdata = [
     key: 11,
     bpm: 102,
   },
-  {
+  /*{
+    id: 232,
+    artist: "K-Solo",
+    title: "Letterman",
+    key: 11,
+    bpm: 102
+}, {
+    id: 233,
+    artist: "Ini Kimoze",
+    title: "Here Comes the Hotstepper",
+    key: 11,
+    bpm: 102
+}, {
+    id: 234,
+    artist: "J-Dilla",
+    title: "The $",
+    key: 11,
+    bpm: 102
+}, {
+    id: 235,
+    artist: "Pharcyde",
+    title: "Soul Flower",
+    key: 10,
+    bpm: 102
+}, */ {
     id: 236,
     artist: "Ying Yang Twins",
     title: "Twerking in the Mirror",
     bpm: 102,
     key: 2,
   },
-  {
+  /*{
+    id: 237,
+    artist: "Nas & KRS One",
+    title: "Classic",
+    key: 10,
+    bpm: 102
+}, */ /*{
     id: 238,
     artist: "T-Pain",
     title: "One More Drink",
     key: 10,
-    bpm: 102,
-  },
-  {
+    bpm: 102
+}, */ {
     id: 239,
     artist: "Kid Cudi",
     title: "Poker Face",
     key: 10,
     bpm: 102,
   },
-  {
+  /*{
+    id: 240,
+    artist: "Jay Rock",
+    title: "All My Life",
+    key: 11,
+    bpm: 102
+}, {
+    id: 241,
+    artist: "Jadakiss",
+    title: "By My Side",
+    key: 10,
+    bpm: 102,
+    key: 2
+}, */ {
     id: 242,
     artist: "Beyonce",
     title: "Naughty Girl",
@@ -1484,7 +1680,110 @@ export const songdata = [
     key: 7,
     bpm: 94,
   },
-  {
+  /*{
+    id: 244,
+    artist: "Black Milk",
+    title: "Sound of the City",
+    key: 1,
+    bpm: 94
+}, {
+    id: 245,
+    artist: "De La Soul",
+    title: "Itsoweezee",
+    key: 1,
+    bpm: 94
+}, {
+    id: 246,
+    artist: "Del the Funky Homosapien",
+    title: "Memory Loss",
+    key: 1,
+    bpm: 94
+}, {
+    id: 247,
+    artist: "Jay Dee",
+    title: "Circus",
+    key: 1,
+    bpm: 94
+}, {
+    id: 248,
+    artist: "Mystikal",
+    title: "That Woman",
+    key: 1,
+    bpm: 94,
+    key: 2
+}, {
+    id: 249,
+    artist: "Pauly Perry",
+    title: "Paulas Jam",
+    key: 1,
+    bpm: 94
+}, {
+    id: 250,
+    artist: "Steady B",
+    title: "Yo Motha",
+    key: 1,
+    bpm: 94
+}, {
+    id: 251,
+    artist: "Big Punisher",
+    title: "You Came Up",
+    key: 4,
+    bpm: 94,
+    key: 12
+}, {
+    id: 252,
+    artist: "Ice T",
+    title: "Mixed Up",
+    key: 1,
+    bpm: 94,
+    key: 11
+}, {
+    id: 253,
+    artist: "Handsome Boy Modeling School",
+    title: "If It Wasnt for You",
+    key: 1,
+    bpm: 94,
+}, {
+    id: 254,
+    artist: "G-Mo",
+    title: "Everyday Thing to Roll",
+    key: 4,
+    bpm: 94,
+    key: 11
+}, {
+    id: 255,
+    artist: "Kool Keith",
+    title: "I Dont Believe You Remix",
+    key: 11,
+    bpm: 94,
+}, {
+    id: 256,
+    artist: "Cocoa Brovas",
+    title: "Super Brooklyn",
+    key: 8,
+    bpm: 94,
+}, {
+    id: 257,
+    artist: "Souls of Mischief",
+    title: "Fourmation",
+    key: 1,
+    bpm: 94,
+    key: 8
+}, {
+    id: 258,
+    artist: "Da Brat",
+    title: "Funkdafied DJ Club Edit",
+    key: 7,
+    bpm: 94,
+    key: 2
+}, {
+    id: 259,
+    artist: "Kool G Rap",
+    title: "Fash Life",
+    key: 1,
+    bpm: 94,
+    key: 2
+}, */ {
     id: 260,
     artist: "Amerie",
     title: "1 Thing",
@@ -1498,28 +1797,94 @@ export const songdata = [
     bpm: 94,
     key: 6,
   },
-  {
+  /*{
+    id: 262,
+    artist: "AZ",
+    title: "Sugar Hill",
+    key: 4,
+    bpm: 94
+}, */ {
     id: 263,
     artist: "Youngbloodz",
     title: "Cadillac Pimpin",
     bpm: 94,
     key: 2,
   },
-  {
+  /*{
+    id: 264,
+    artist: "Large Professor",
+    title: "IJUSTWANNACHILL",
+    key: 11,
+    bpm: 94,
+    key: 6
+}, {
+    id: 265,
+    artist: "Souls of Mischief",
+    title: "Home Game",
+    key: 11,
+    bpm: 94,
+    key: 6
+}, {
+    id: 266,
+    artist: "Souls of Mischief",
+    title: "Proper Aim",
+    key:6,
+    bpm: 94,
+    key: 5
+}, {
+    id: 267,
+    artist: "Scott Lark",
+    title: "Razzle Dazzle",
+    key: 1,
+    bpm: 94,
+    key: 5
+}, {
+    id: 268,
+    artist: "Audio Two",
+    title: "Top Billin",
+    key: 4,
+    bpm: 94
+}, {
+    id: 269,
+    artist: "Dilated Peoples",
+    title: "Global Dynamics",
+    key: 4,
+    bpm: 94,
+    key: 11
+}, */ {
     id: 270,
     artist: "Junior MAFIA",
     title: "Get Money",
     bpm: 94,
     key: 5,
   },
-  {
+  /*{
+    id: 271,
+    artist: "Lady of Rage",
+    title: "Afro Puffs",
+    key: 6,
+    bpm: 94
+}, */ /*{
+    id: 272,
+    artist: "People Under the Stairs",
+    title: "Schooled in the Trade",
+    key: 6,
+    bpm: 94,
+    key: 2
+}, */ {
     id: 273,
     artist: "Rihanna feat Young Jeezy",
     title: "Hard",
     bpm: 94,
     key: 5,
   },
-  {
+  /*{
+    id: 274,
+    artist: "Mad Skillz",
+    title: "Its Goin Down",
+    key: 6,
+    bpm: 94
+}, */ {
     id: 275,
     artist: "Eve",
     title: "Tamborine Remix",
@@ -1533,21 +1898,45 @@ export const songdata = [
     bpm: 102,
     key: 11,
   },
-  {
+  /*{
+    id: 277,
+    artist: "Def Jef",
+    title: "On The Real Tip",
+    key: 2,
+    bpm: 102
+}, */ {
     id: 278,
     artist: "Bhad Barbie",
     title: "Bestie",
     key: 4,
     bpm: 102,
   },
-  {
+  /*{
+    id: 279,
+    artist: "Anjalixne the Pharoah",
+    title: "Jump Shot",
+    key: 6,
+    bpm: 102
+}, */ {
     id: 280,
     artist: "DMX",
     title: "Stop Bein Greedy",
     key: 5,
     bpm: 102,
   },
-  {
+  /*{
+    id: 281,
+    artist: "Naughty by Nature",
+    title: "Everythings Gonna Be Alright",
+    key: 3,
+    bpm: 102
+}, */ /*{
+    id: 282,
+    artist: "Timbaland",
+    title: "Clock Strikes",
+    key: 9,
+    bpm: 102
+}, */ {
     id: 283,
     artist: "Baby",
     title: "Do That",
@@ -1624,14 +2013,27 @@ export const songdata = [
     bpm: 84,
     key: 11,
   },
-  {
+  /*{
+    id: 295,
+    artist: "Scarface",
+    title: "Homies & Thugs",
+    key: 8,
+    bpm: 84
+}, */ {
     id: 296,
     artist: "T-Pain",
     title: "Got Money",
     bpm: 84,
     key: 9,
   },
-  {
+  /*{
+    id: 297,
+    artist: "Kool Keith",
+    title: "The Real Beginner",
+    key: 7,
+    bpm: 94,
+    key: 2
+}, */ {
     id: 298,
     artist: "Audio Two",
     title: "Top Billin",
@@ -1645,14 +2047,27 @@ export const songdata = [
     key: 10,
     bpm: 94,
   },
-  {
+  /*{
+    id: 300,
+    artist: "Rah Digga",
+    title: "What They Call Me",
+    key: 1,
+    bpm: 94,
+    key: 8
+}, */ {
     id: 301,
     artist: "City Girls",
     title: "P&ssy Talk",
     key: 1,
     bpm: 102,
   },
-  {
+  /*{
+    id: 302,
+    artist: "DJ DMD",
+    title: "Mr. 25/8",
+    key: 2,
+    bpm: 84,
+}, */ {
     id: 303,
     artist: "Cam'Ron",
     title: "Oh Boy",
@@ -1666,7 +2081,13 @@ export const songdata = [
     key: 2,
     bpm: 84,
   },
-  {
+  /*{
+    id: 305,
+    artist: "Gangstaar",
+    title: "Code of the Streets",
+    key: 5,
+    bpm: 102
+}, */ {
     id: 306,
     artist: "Lord Tariq & Peter Gunz",
     title: "Deva Vu Uptown Baby",
@@ -1813,7 +2234,19 @@ export const songdata = [
     key: 4,
     bpm: 102,
   },
-  {
+  /*{
+    id: 327,
+    artist: "Ice-T",
+    title: "I Ain't New to This",
+    key: 5,
+    bpm: 102
+}, {
+    id: 328,
+    artist: "LL Cool J",
+    title: "How I'm Comin",
+    key: 10,
+    bpm: 102
+}, */ {
     id: 329,
     artist: "Fat Joe",
     title: "Lean Back Remix",
@@ -1897,7 +2330,19 @@ export const songdata = [
     key: 9,
     bpm: 84,
   },
-  {
+  /*{
+    id: 341,
+    artist: "Drake",
+    title: "Say Something",
+    key: 8,
+    bpm: 84
+}, */ /*{
+    id: 342,
+    artist: "Blueprint",
+    title: "Corner Store",
+    key: 1,
+    bpm: 84
+}, */ {
     id: 343,
     artist: "Bun B",
     title: "That's Gangsta",
@@ -1911,7 +2356,13 @@ export const songdata = [
     key: 1,
     bpm: 84,
   },
-  {
+  /*{
+    id: 345,
+    artist: "Erykah Badu",
+    title: "On & On",
+    key: 9,
+    bpm: 84
+}, */ {
     id: 346,
     artist: "Young Jeezy",
     title: "Get Some Money",
@@ -2051,7 +2502,13 @@ export const songdata = [
     key: 5,
     bpm: 84,
   },
-  {
+  /*{
+    id: 366,
+    artist: "Dead Prez",
+    title: "Hip Hop",
+    key: 3,
+    bpm: 84
+}, */ {
     id: 367,
     artist: "Cali Swag District",
     title: "Teach Me How to Dougie",
@@ -2065,13 +2522,26 @@ export const songdata = [
     key: 2,
     bpm: 84,
   },
-  {
+  /* {
+    id: 369,
+    artist: "MC Thick",
+    title: "Marerro",
+    key: 11,
+    bpm: 84
+}, */ {
     id: 370,
     artist: "Kilo",
     title: "Tick Tock Bass Remix",
     key: 1,
     bpm: 84,
   },
+  /* {
+    id: 371,
+    artist: "Coolio",
+    title: "Gangstas Paradise",
+    key: 12,
+    bpm: 84,
+  }, */
   {
     id: 372,
     artist: "Eminem",
@@ -2121,7 +2591,25 @@ export const songdata = [
     key: 9,
     bpm: 84,
   },
-  {
+  /*{
+    id: 379,
+    artist: "Scarface",
+    title: "Mary Jane",
+    key: 3,
+    bpm: 84
+}, */ /*{
+    id: 380,
+    artist: "Plies",
+    title: "Shawty",
+    key: 4,
+    bpm: 84
+}, {
+    id: 381,
+    artist: "Plies",
+    title: "Bust It Baby",
+    key: 9,
+    bpm: 84
+}, */ {
     id: 382,
     artist: "Juvenile",
     title: "Rodeo",
@@ -2135,6 +2623,33 @@ export const songdata = [
     key: 11,
     bpm: 84,
   },
+  /*{
+    id: 384,
+    artist: "Hurricane",
+    title: "9mm & Techs",
+    key: 4,
+    bpm: 84
+}, */ /* {
+    id: 385,
+    artist: "Eazy-E",
+    title: "BNK",
+    key: 2,
+    bpm: 84,
+  },
+  {
+    id: 386,
+    artist: "Dorrough",
+    title: "Handcuffs",
+    key: 2,
+    bpm: 84,
+  },
+  {
+    id: 387,
+    artist: "Krysheem",
+    title: "Gwop",
+    key: 4,
+    bpm: 84,
+  }, */
   {
     id: 388,
     artist: "Yo Gotti",
@@ -2142,7 +2657,13 @@ export const songdata = [
     key: 4,
     bpm: 84,
   },
-  {
+  /*{
+    id: 389,
+    artist: "Joi",
+    title: "Pretty Boy",
+    key: 10,
+    bpm: 84
+}, */ {
     id: 390,
     artist: "ASAP",
     title: "Rocky Cocky",
@@ -2163,21 +2684,51 @@ export const songdata = [
     key: 4,
     bpm: 84,
   },
-  {
+  /*{
+    id: 393,
+    artist: "Quasimoto",
+    title: "Boom Music",
+    key: 1,
+    bpm: 84
+}, */ /*{
+    id: 394,
+    artist: "Click",
+    title: "Hurricane",
+    key: 11,
+    bpm: 84
+}, */ /*{
+    id: 395,
+    artist: "J-Dilla",
+    title: "Tomita",
+    key: 1,
+    bpm: 84
+}, */ {
     id: 396,
     artist: "The Game",
     title: "Put You In the Game",
     key: 6,
     bpm: 84,
   },
-  {
+  /*{
+    id: 397,
+    artist: "Dr Dre",
+    title: "Been There Done That",
+    key: 12,
+    bpm: 84
+}, */ {
     id: 398,
     artist: "Pitbull",
     title: "Dem Miami Boys",
     key: 2,
     bpm: 84,
   },
-  {
+  /*{
+    id: 399,
+    artist: "Aaliyah",
+    title: "If Your Girl Only Knew",
+    key: 9,
+    bpm: 84
+}, */ {
     id: 400,
     artist: "Notorious BIG",
     title: "Big Poppa",
@@ -2212,7 +2763,13 @@ export const songdata = [
     key: 11,
     bpm: 84,
   },
-  {
+  /*{
+    id: 405,
+    artist: "Master P",
+    title: "Make Em Say Uhhh",
+    key: 2,
+    bpm: 84
+},*/ {
     id: 406,
     artist: "Beastie Boys",
     title: "Posse In Effect",
@@ -2233,7 +2790,13 @@ export const songdata = [
     key: 3,
     bpm: 84,
   },
-  {
+  /*{
+    id: 409,
+    artist: "Eminem",
+    title: "My Name Is",
+    key: 9,
+    bpm: 84
+}, */ {
     id: 410,
     artist: "Luniz",
     title: "I Got 5 On It",
@@ -2254,21 +2817,26 @@ export const songdata = [
     key: 2,
     bpm: 84,
   },
-  {
+  /*{
+    id: 413,
+    artist: "Jay-Z",
+    title: "Dead Presidents",
+    key: 6,
+    bpm: 84
+}, */ {
     id: 414,
     artist: "Lil Wayne",
     title: "The Block is Hot",
     key: 2,
     bpm: 84,
   },
-  {
+  /*{
     id: 415,
     artist: "Rihanna",
     title: "Umbrella",
     key: 3,
-    bpm: 84,
-  },
-  {
+    bpm: 84
+}, */ {
     id: 416,
     artist: "Cassidy",
     title: "Drink & My 2 Step",
@@ -2324,6 +2892,13 @@ export const songdata = [
     key: 12,
     bpm: 84,
   },
+  /* {
+    id: 424,
+    artist: "Joeski Love",
+    title: "Pee Wee Dance",
+    key: 10,
+    bpm: 84,
+  }, */
   {
     id: 425,
     artist: "Birdman",
@@ -2352,21 +2927,19 @@ export const songdata = [
     key: 11,
     bpm: 94,
   },
-  {
+  /*{
     id: 429,
     artist: "DaBaby",
     title: "Baby Sitter",
     key: 7,
-    bpm: 94,
-  },
-  {
+    bpm: 94
+}*/ /*{
     id: 430,
     artist: "Too Short",
     title: "I Ain't Trippin",
     key: 12,
-    bpm: 94,
-  },
-  {
+    bpm: 94
+}, */ {
     id: 431,
     artist: "T.I.",
     title: "Get Loose",
@@ -2611,6 +3184,20 @@ export const songdata = [
     key: 9,
     bpm: 94,
   },
+  /* {
+    id: 466,
+    artist: "OMB Peezy",
+    title: "Think You Ready",
+    key: 9,
+    bpm: 94,
+  },
+  {
+    id: 467,
+    artist: "Lil Eazzyy",
+    title: "Bring Some Mo",
+    key: 12,
+    bpm: 94,
+  }, */
   {
     id: 468,
     artist: "Rick Ross & Meek Mill",
@@ -2674,6 +3261,13 @@ export const songdata = [
     key: 1,
     bpm: 94,
   },
+  /* {
+    id: 477,
+    artist: "Country Dons & SL",
+    title: "Just Eat",
+    key: 2,
+    bpm: 94,
+  }, */
   {
     id: 478,
     artist: "The Game",
@@ -2681,7 +3275,43 @@ export const songdata = [
     key: 8,
     bpm: 94,
   },
-  {
+  /*{
+    id: 479,
+    artist: "",
+    title: "",
+    key: 8,
+    bpm: 94
+}, {
+    id: 480,
+    artist: "",
+    title: "",
+    key: 8,
+    bpm: 94
+}, {
+    id: 481,
+    artist: "",
+    title: "",
+    key: 8,
+    bpm: 94
+}, {
+    id: 482,
+    artist: "",
+    title: "",
+    key: 8,
+    bpm: 94
+}, {
+    id: 483,
+    artist: "",
+    title: "",
+    key: 8,
+    bpm: 94
+}, {
+    id: 484,
+    artist: "",
+    title: "",
+    key: 8,
+    bpm: 94
+}*/ {
     id: 485,
     artist: "10 KANs",
     title: "D In Your Life",
@@ -2716,7 +3346,19 @@ export const songdata = [
     key: 1,
     bpm: 102,
   },
-  {
+  /*/!*{
+    id: 490,
+    artist: "NORE",
+    title: "Chillin",
+    key: 9,
+    bpm: 102
+}, *!/{
+    id: 491,
+    artist: "Notorious BIG",
+    title: "Only You",
+    key: 11,
+    bpm: 102
+}, */ {
     id: 492,
     artist: "Derek B",
     title: "Good Groove",
@@ -2730,7 +3372,19 @@ export const songdata = [
     key: 1,
     bpm: 102,
   },
-  {
+  /*{
+    id: 494,
+    artist: "Bubba Sparxx",
+    title: "I Like It a Lot",
+    key: 3,
+    bpm: 102
+}, */ /*{
+    id: 495,
+    artist: "Ja Rule",
+    title: "Always On Time",
+    key: 1,
+    bpm: 102
+}, */ {
     id: 496,
     artist: "LL Cool J",
     title: "Eat Em Up L Chill Remix",
@@ -2765,13 +3419,26 @@ export const songdata = [
     key: 5,
     bpm: 102,
   },
-  {
+  /*{
+    id: 501,
+    artist: "K.Comedy, Key Glock & Mac",
+    title: "Sause",
+    key: 2,
+    bpm: 102
+}, */ /* {
     id: 502,
     artist: "Pap Chanel",
     title: "Apple Jacks",
     key: 1,
     bpm: 102,
   },
+  {
+    id: 503,
+    artist: "AD Christian & O.T. Genasis",
+    title: "U Luv It",
+    key: 1,
+    bpm: 102,
+  }, */
   {
     id: 504,
     artist: "French Montana",
@@ -2800,6 +3467,13 @@ export const songdata = [
     key: 8,
     bpm: 102,
   },
+  /* {
+    id: 508,
+    artist: "OhGeesy",
+    title: "Tour Bus",
+    key: 1,
+    bpm: 102,
+  }, */
   {
     id: 509,
     artist: "Beadz feat Erica Banks",
@@ -2870,6 +3544,13 @@ export const songdata = [
     key: 1,
     bpm: 102,
   },
+  /* {
+    id: 519,
+    artist: "Ol Dirty Bastard",
+    title: "Baby I've Got Your Money",
+    key: 4,
+    bpm: 102,
+  }, */
   {
     id: 520,
     artist: "Notorious BIG",
@@ -2905,6 +3586,13 @@ export const songdata = [
     key: 4,
     bpm: 102,
   },
+  /* {
+    id: 525,
+    artist: "Puff Daddy",
+    title: "Can't Nobody Hold Me Down",
+    key: 5,
+    bpm: 102,
+  }, */
   {
     id: 526,
     artist: "Kilo",
@@ -2912,4 +3600,354 @@ export const songdata = [
     key: 3,
     bpm: 102,
   },
+  /* {
+    id: 527,
+    artist: "Griff & Booman",
+    title: "Oop Day",
+    key: 9,
+    bpm: 123,
+  },
+  {
+    id: 528,
+    artist: "DJ Booman",
+    title: "Sweet Dreams",
+    key: 1,
+    bpm: 123,
+  },
+  {
+    id: 529,
+    artist: "Spenich",
+    title: "I Been Blessed",
+    key: 1,
+    bpm: 123,
+  },
+  {
+    id: 530,
+    artist: "Soho",
+    title: "Hot Music Bassline Mix",
+    key: 5,
+    bpm: 123,
+  },
+  {
+    id: 531,
+    artist: "DJ Samir",
+    title: "Samir's Theme",
+    key: 9,
+    bpm: 123,
+  },
+  {
+    id: 532,
+    artist: "Royal House",
+    title: "Party People",
+    key: 9,
+    bpm: 123,
+  },
+  {
+    id: 533,
+    artist: "House of Venus",
+    title: "Dish and Tell B*tch Mix",
+    key: 8,
+    bpm: 123,
+  },
+  {
+    id: 534,
+    artist: "Virgo",
+    title: "Go Wild Rhythm Tracks",
+    key: 9,
+    bpm: 123,
+  },
+  {
+    id: 535,
+    artist: "Two Without Hats",
+    title: "The Breeze Fua Mix",
+    key: 4,
+    bpm: 123,
+  },
+  {
+    id: 536,
+    artist: "LNR",
+    title: "Work It to the Bone",
+    key: 1,
+    bpm: 123,
+  },
+  {
+    id: 537,
+    artist: "Ralphi Rosari",
+    title: "You Used to Hold Me",
+    key: 1,
+    bpm: 123,
+  },
+  {
+    id: 538,
+    artist: "Double Impact",
+    title: "The Manic Track",
+    key: 3,
+    bpm: 123,
+  },
+  {
+    id: 539,
+    artist: "Armando",
+    title: "100% Dissin You Armandos Mix ",
+    key: 6,
+    bpm: 123,
+  },
+  {
+    id: 540,
+    artist: "Harddrive",
+    title: "Deep Inside",
+    key: 9,
+    bpm: 123,
+  },
+  {
+    id: 541,
+    artist: "Armando",
+    title: "100% Dissin You Climax Mix",
+    key: 2,
+    bpm: 123,
+  },
+  {
+    id: 542,
+    artist: "Bust a Groove",
+    title: "Deep Inside",
+    key: 3,
+    bpm: 123,
+  },
+  {
+    id: 543,
+    artist: "Lakim Shabazz",
+    title: "Adding On",
+    key: 1,
+    bpm: 123,
+  },
+  {
+    id: 544,
+    artist: "DJ Cappin Kirk",
+    title: "Test Alignment Beat",
+    key: 1,
+    bpm: 123,
+  },
+  {
+    id: 545,
+    artist: "DJ Freeze",
+    title: "Burning Hot",
+    key: 8,
+    bpm: 123,
+  },
+  {
+    id: 546,
+    artist: "Jammin Gerald",
+    title: "Get Da Ho '94",
+    key: 4,
+    bpm: 123,
+  },
+  {
+    id: 547,
+    artist: "Dave Nada",
+    title: "Drummers Rock",
+    key: 10,
+    bpm: 123,
+  },
+  {
+    id: 548,
+    artist: "Rednex",
+    title: "Cotton Eye Joe",
+    key: 7,
+    bpm: 123,
+  },
+  {
+    id: 549,
+    artist: "Chip E",
+    title: "Like This Dub Mix",
+    key: 6,
+    bpm: 123,
+  },
+  {
+    id: 550,
+    artist: "A Guy Called Gerald",
+    title: "Blow Your House Down",
+    key: 6,
+    bpm: 123,
+  },
+  {
+    id: 551,
+    artist: "House of Gypsies",
+    title: "Sum Say High The Masters Mix",
+    key: 8,
+    bpm: 123,
+  },
+  {
+    id: 552,
+    artist: "Those Guys",
+    title: "Love, Love, Love Baltimore Doo Doo Mix",
+    key: 4,
+    bpm: 123,
+  },
+  {
+    id: 553,
+    artist: "Rhythm Warfare",
+    title: "Two Notches",
+    key: 6,
+    bpm: 123,
+  },
+  {
+    id: 554,
+    artist: "Ragga Twins",
+    title: "Lamborghini",
+    key: 1,
+    bpm: 123,
+  },
+  {
+    id: 555,
+    artist: "DJ Debonaire Samir",
+    title: "See Line Club",
+    key: 7,
+    bpm: 123,
+  },
+  {
+    id: 556,
+    artist: "Reese & Santonio",
+    title: "Rock to the Beat",
+    key: 2,
+    bpm: 123,
+  },
+  {
+    id: 557,
+    artist: "Sticky People",
+    title: "Party Time Dub",
+    key: 8,
+    bpm: 123,
+  },
+  {
+    id: 558,
+    artist: "Mike Mumbles",
+    title: "Black Sheep",
+    key: 8,
+    bpm: 123,
+  },
+  {
+    id: 559,
+    artist: "Princess Di",
+    title: "Make Me Sweat Trendy Tribal Mix",
+    key: 1,
+    bpm: 123,
+  },
+  {
+    id: 560,
+    artist: "Apostle 1",
+    title: "Souls on Fire",
+    key: 8,
+    bpm: 123,
+  },
+  {
+    id: 561,
+    artist: "Petra",
+    title: "Keep the World Clean Dub",
+    key: 7,
+    bpm: 123,
+  },
+  {
+    id: 562,
+    artist: "Happy Mondays",
+    title: "Stinkin Thinkin",
+    key: 2,
+    bpm: 123,
+  },
+  {
+    id: 563,
+    artist: "Mysterious Art",
+    title: "Don't Hold Back",
+    key: 5,
+    bpm: 123,
+  },
+  {
+    id: 564,
+    artist: "Lidell Townsell",
+    title: "Nu Nu",
+    key: 4,
+    bpm: 123,
+  },
+  {
+    id: 565,
+    artist: "Todd Terry",
+    title: "Check This Out",
+    key: 3,
+    bpm: 123,
+  },
+  {
+    id: 566,
+    artist: "Renegade Soundwave",
+    title: "The Phantom",
+    key: 7,
+    bpm: 123,
+  },
+  {
+    id: 567,
+    artist: "Full Effect",
+    title: "Here We Go Again",
+    key: 2,
+    bpm: 123,
+  },
+  {
+    id: 568,
+    artist: "Bonus Breaks",
+    title: "Break Goes On",
+    key: 5,
+    bpm: 123,
+  },
+  {
+    id: 569,
+    artist: "DJ Tim & Pizazz",
+    title: "The Right Price Tims 22 Dollar Mix",
+    key: 2,
+    bpm: 123,
+  },
+  {
+    id: 570,
+    artist: "Jamma Quadrant",
+    title: "One Batte Con",
+    key: 6,
+    bpm: 123,
+  },
+  {
+    id: 571,
+    artist: "SOS",
+    title: "I Got the Rhythm",
+    key: 3,
+    bpm: 123,
+  },
+  {
+    id: 572,
+    artist: "Sounds of Soul",
+    title: "Ya Chew",
+    key: 2,
+    bpm: 123,
+  },
+  {
+    id: 573,
+    artist: "Alyus",
+    title: "Follow Me Can You Feel the Dub",
+    key: 1,
+    bpm: 123,
+  },
+  {
+    id: 574,
+    artist: "Chip E",
+    title: "Like This House Remix",
+    key: 6,
+    bpm: 123,
+  },
+  {
+    id: 575,
+    artist: "Howard Street Connection ",
+    title: "Dooo It",
+    key: 2,
+    bpm: 123,
+  },
+  {
+    id: 576,
+    artist: "Cajmere",
+    title: "Keep Movin",
+    key: 1,
+    bpm: 123,
+  }, */
 ];

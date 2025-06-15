@@ -4,32 +4,28 @@ import { init } from "./preload.js";
 const playButton = document.getElementById("play-button");
 let userHasPressedPlay = false;
 let wakeLock = null;
+let playClicked = false;
 
 const myEvent =
   "ontouchstart" in document.documentElement ? "touchend" : "click";
-playButton.addEventListener(myEvent, startApplication);
+playButton.addEventListener(myEvent, function () {
+  if (playClicked) return;
+  playClicked = true;
+  startApplication();
+  setTimeout(() => {
+    playClicked = false;
+  }, 1000);
+});
 
 async function requestWakeLock() {
   try {
-    if ('wakeLock' in navigator) {
+    if ("wakeLock" in navigator) {
       // Only request if we don't already have one
       if (wakeLock === null) {
-        wakeLock = await navigator.wakeLock.request('screen');
-        console.log('Wake Lock is active');
-        
-        // Handle when wake lock is released by the system
-        wakeLock.addEventListener('release', () => {
-          console.log('Wake Lock was released by the system');
-          wakeLock = null;
-          // If we're still playing, try to reacquire
-          if (userHasPressedPlay) {
-            requestWakeLock();
-          }
-        });
+        wakeLock = await navigator.wakeLock.request("screen");
       }
     }
   } catch (err) {
-    console.error(`Wake Lock request failed: ${err.name}, ${err.message}`);
     wakeLock = null;
   }
 }
@@ -39,10 +35,7 @@ async function releaseWakeLock() {
     try {
       await wakeLock.release();
       wakeLock = null;
-      console.log('Wake Lock released');
-    } catch (err) {
-      console.error(`Wake Lock release failed: ${err.name}, ${err.message}`);
-    }
+    } catch (err) {}
   }
 }
 
@@ -54,13 +47,13 @@ async function startApplication() {
   playButton.removeEventListener(myEvent, startApplication);
   playButton.innerText = "⏸️ PAUSE";
   playButton.addEventListener(myEvent, pauseApplication);
-  
+
   // Resume audio context
   const context = getContext();
-  if (context.state === 'suspended') {
+  if (context.state === "suspended") {
     context.resume();
   }
-  
+
   // Request wake lock
   await requestWakeLock();
 }
@@ -69,21 +62,21 @@ async function pauseApplication() {
   playButton.removeEventListener(myEvent, pauseApplication);
   playButton.innerText = "▶️ PLAY";
   getContext().suspend();
-  
+
   // Release wake lock
   await releaseWakeLock();
-  
+
   playButton.addEventListener(myEvent, startApplication);
 }
 
 // Handle visibility change
-document.addEventListener('visibilitychange', async () => {
-  if (document.visibilityState === 'visible' && userHasPressedPlay) {
+document.addEventListener("visibilitychange", async () => {
+  if (document.visibilityState === "visible" && userHasPressedPlay) {
     await requestWakeLock();
   }
 });
 
 // Cleanup on page unload
-window.addEventListener('beforeunload', async () => {
+window.addEventListener("beforeunload", async () => {
   await releaseWakeLock();
 });

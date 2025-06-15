@@ -215,6 +215,9 @@
             margin-right: auto;
             display: block;
             margin-top: 8px;
+            background: black;
+            color: dodgerblue;
+            transition: color 0.1s, border-color 0.1s;
         }
 
         #play-button:active, #play-button:focus {
@@ -243,6 +246,72 @@
             color: darkorange;
         }
 
+        #generate-mix-button {
+            height: 60px;
+            display: block !important;
+            border: 2px solid #1ecb1e;
+            border-radius: 8px;
+            padding: 16px 24px;
+            line-height: 0;
+            font-size: 1.5rem;
+            font-weight: 900;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #1ecb1e;
+            margin-top: 0;
+        }
+
+        #generate-mix-button:active, #generate-mix-button:focus {
+            border: 2px solid #158a15;
+            color: #158a15;
+        }
+
+        #three-hour-mix-button {
+            height: 60px;
+            display: block !important;
+            border: 2px solid #ffd600;
+            border-radius: 8px;
+            padding: 16px 24px;
+            line-height: 0;
+            font-size: 1.5rem;
+            font-weight: 900;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #ffd600;
+            margin-top: 8px;
+            background: black;
+            transition: color 0.1s, border-color 0.1s;
+        }
+
+        #three-hour-mix-button:active, #three-hour-mix-button:focus {
+            border: 2px solid #bfa600;
+            color: #bfa600;
+        }
+
+        #full-library-mix-button {
+            height: 60px;
+            display: block !important;
+            border: 2px solid #ffd600;
+            border-radius: 8px;
+            padding: 16px 24px;
+            line-height: 0;
+            font-size: 1.5rem;
+            font-weight: 900;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #ffd600;
+            margin-top: 8px;
+            background: black;
+            transition: color 0.1s, border-color 0.1s;
+        }
+
+        #full-library-mix-button:active, #full-library-mix-button:focus {
+            border: 2px solid #bfa600;
+            color: #bfa600;
+        }
 
         select {
             border-radius: 8px;
@@ -360,11 +429,86 @@
             z-index: 1000;
             background-color: aquamarine;
         }
+        .hurricane-message {
+            text-align: center;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
+        body.playback-mode #generate-mix-button {
+            display: none !important;
+        }
+
+        body.playback-mode #three-hour-mix-button {
+            display: none !important;
+        }
+
+        body.playback-mode #full-library-mix-button {
+            display: none !important;
+        }
+
+        /* Strobing effect for play button (border and text only) */
+        #play-button.strobe {
+            animation: strobe-flash 0.1s alternate 6, strobe-phase 1.2s 0.6s 6 alternate;
+        }
+        @keyframes strobe-flash {
+            from { color: dodgerblue; border-color: dodgerblue; }
+            to { color: #e0f7ff; border-color: #e0f7ff; }
+        }
+        @keyframes strobe-phase {
+            0% { color: #e0f7ff; border-color: #e0f7ff; }
+            50% { color: dodgerblue; border-color: dodgerblue; }
+            100% { color: #e0f7ff; border-color: #e0f7ff; }
+        }
+
+        #play-button.alien-glow {
+            animation: neon-pulse 1.2s cubic-bezier(0.4,0,0.2,1) 1, neon-fade 1.2s cubic-bezier(0.4,0,0.2,1) 1.2s 1 forwards;
+            box-shadow: 0 0 16px 2px #1ecbff, 0 0 32px 4px #1ecbff33;
+        }
+        @keyframes neon-pulse {
+            0% {
+                color: #1ecbff;
+                border-color: #1ecbff;
+                box-shadow: 0 0 16px 2px #1ecbff, 0 0 32px 4px #1ecbff33;
+            }
+            50% {
+                color: #e0f7ff;
+                border-color: #e0f7ff;
+                box-shadow: 0 0 32px 8px #e0f7ff, 0 0 64px 16px #e0f7ff33;
+            }
+            100% {
+                color: #1ecbff;
+                border-color: #1ecbff;
+                box-shadow: 0 0 16px 2px #1ecbff, 0 0 32px 4px #1ecbff33;
+            }
+        }
+        @keyframes neon-fade {
+            from {
+                color: #1ecbff;
+                border-color: #1ecbff;
+                box-shadow: 0 0 16px 2px #1ecbff, 0 0 32px 4px #1ecbff33;
+            }
+            to {
+                color: dodgerblue;
+                border-color: dodgerblue;
+                box-shadow: none;
+            }
+        }
 
     </style>
 </head>
 <body>
+<script>
+  if (window.location.search.includes('tracks=')) {
+    document.addEventListener('DOMContentLoaded', function() {
+      var btn1 = document.getElementById('generate-mix-button');
+      if (btn1) btn1.remove();
+      var btn2 = document.getElementById('full-library-mix-button');
+      if (btn2) btn2.remove();
+    });
+  }
+</script>
 <div id="hurricane-container">
     <div class="hurricane-message">You are in playback mode. Inputs are disabled until the program is complete </div>
 </div>
@@ -416,6 +560,8 @@
         </div>
         <button id="play-button">▶️ PLAY</button>
         <button id="share-button">COPY URL</button>
+        <button id="generate-mix-button">ONE HOUR MIX</button>
+        <button id="full-library-mix-button">100% MIX</button>
         <div id="now-playing">
             <h3 class="white header-spacing">Now playing:</h3>
             <div id="first-song-label" class="white"></div>

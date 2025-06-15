@@ -16,4 +16,7 @@ export const getShareURL = () => {
     return newURL.href;
 }
 
-document.getElementById('share-button').addEventListener('click', getShareURL)
+const shareBtn = document.getElementById('share-button');
+if (shareBtn) {
+  shareBtn.addEventListener('click', getShareURL);
+}

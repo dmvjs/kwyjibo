@@ -9,14 +9,15 @@ import { setKey } from "./dom.js";
 export const tempos = [...new Set(songdata.map((s) => s.bpm))].sort(
   (a, b) => a - b,
 );
-const seed = parseInt(String(Math.floor(quantumRandom() * tempos.length)), 10);
 const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
 const bpmFromUrl = params.bpm || null;
 const allUrl = params.lock || null;
 export let activeTempo =
-  bpmFromUrl ?? config.initialTempo ?? tempos._shuffle()[seed];
+  bpmFromUrl ??
+  config.initialTempo ??
+  tempos[Math.floor(quantumRandom() * tempos.length)];
 
 export const onTempoChange = (e) => {
   // if the user hasnt clicked play for the first time yet,load the new tempo of songs into the UI and set active tempo
