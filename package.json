@@ -19,6 +19,7 @@
     "vite": "^4.5.2"
   },
   "dependencies": {
+    "@tensorflow/tfjs": "^4.11.0",
     "prettier": "^3.0.3"
   },
   "jest": {

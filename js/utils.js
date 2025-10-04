@@ -18,7 +18,7 @@ export const parseTracks = (tracksFromURL) => {
     }
   } catch (e) {
     if (!Array.isArray(tracks)) {
-      // a string like this will also work: 1,2-3,4-5,6 and will evaluate to [[1,2],[3,4],[5,6]]
+      // a string like this will also work: 1,2,3,4,5,6-7,8,9,10,11,12 and will evaluate to [[1,2,3,4,5,6],[7,8,9,10,11,12]]
       tracks = tracksFromURL
         .split("-")
         .filter(Boolean)

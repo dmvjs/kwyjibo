@@ -32,10 +32,22 @@ export const setKey = (e) => {
 
 export const deck1Select = document.getElementById("deck-1");
 export const deck2Select = document.getElementById("deck-2");
+export const deck3Select = document.getElementById("deck-3");
+export const deck4Select = document.getElementById("deck-4");
+export const deck5Select = document.getElementById("deck-5");
+export const deck6Select = document.getElementById("deck-6");
 export const firstSongLabel = document.getElementById("first-song-label");
 export const secondSongLabel = document.getElementById("second-song-label");
 export const thirdSongLabel = document.getElementById("third-song-label");
 export const fourthSongLabel = document.getElementById("fourth-song-label");
+export const fifthSongLabel = document.getElementById("fifth-song-label");
+export const sixthSongLabel = document.getElementById("sixth-song-label");
+export const seventhSongLabel = document.getElementById("seventh-song-label");
+export const eighthSongLabel = document.getElementById("eighth-song-label");
+export const ninthSongLabel = document.getElementById("ninth-song-label");
+export const tenthSongLabel = document.getElementById("tenth-song-label");
+export const eleventhSongLabel = document.getElementById("eleventh-song-label");
+export const twelfthSongLabel = document.getElementById("twelfth-song-label");
 
 export const initializeKeyListeners = () => {
   const key1 = document.getElementById("key-1");

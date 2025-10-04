@@ -18,15 +18,12 @@
             line-height: 1.375;
             letter-spacing: -1px;
             font-size: 18px;
-            background: black;
+            background: #000;
             height: 100%;
             margin: 0;
             padding: 0;
-            background: url("bg-2048.jpg");
-            background-color: #090911;
-            background-repeat: no-repeat;
-            background-size: cover;
-
+            position: relative;
+            overflow-x: hidden;
         }
         @media only screen and (max-width: 320px) {
             body {
@@ -360,6 +357,30 @@
             background-color: aquamarine;
         }
 
+        #quantum-display {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            background: #000;
+            image-rendering: crisp-edges;
+            image-rendering: pixelated;
+            pointer-events: none;
+        }
+        
+        #title-container {
+            position: relative;
+            z-index: 10;
+            padding-top: 20px;
+        }
+        
+        button, select, input, label {
+            position: relative;
+            z-index: 10;
+        }
+
 
     </style>
 </head>
@@ -367,6 +388,7 @@
 <div id="hurricane-container">
     <div class="hurricane-message">You are in playback mode. Inputs are disabled until the program is complete </div>
 </div>
+    <canvas id="quantum-display"></canvas>
     <div id="title-container">
         <div id="tempo-radio">
             <input type="radio" id="tempo-1" name="tempo" value="0">
@@ -413,17 +435,37 @@
             <div>
                 <select id="deck-2" name="deck-2"></select>
             </div>
+            <div>
+                <select id="deck-3" name="deck-3"></select>
+            </div>
+            <div>
+                <select id="deck-4" name="deck-4"></select>
+            </div>
+            <div>
+                <select id="deck-5" name="deck-5"></select>
+            </div>
+            <div>
+                <select id="deck-6" name="deck-6"></select>
+            </div>
             <h3 class="white header-spacing">Yo DJ 👆 <span id="counter-holder"></span></h3>
         </div>
         <div id="now-playing">
             <h3 class="white header-spacing">Now playing:</h3>
             <div id="first-song-label" class="white"></div>
             <div id="second-song-label" class="white"></div>
+            <div id="third-song-label" class="white"></div>
+            <div id="fourth-song-label" class="white"></div>
+            <div id="fifth-song-label" class="white"></div>
+            <div id="sixth-song-label" class="white"></div>
         </div>
         <div id="on-deck">
             <h3 class="white header-spacing">Next up:</h3>
-            <div id="third-song-label" class="white"></div>
-            <div id="fourth-song-label" class="white"></div>
+            <div id="seventh-song-label" class="white"></div>
+            <div id="eighth-song-label" class="white"></div>
+            <div id="ninth-song-label" class="white"></div>
+            <div id="tenth-song-label" class="white"></div>
+            <div id="eleventh-song-label" class="white"></div>
+            <div id="twelfth-song-label" class="white"></div>
         </div>
         <div><img id="ck-logo" src="CK.png" alt="CK" width="300px" height="300px"></div>
         <div class="white">Powered by Kwyjibo v3.0.∞.<span id="song-counter">322</span></div>

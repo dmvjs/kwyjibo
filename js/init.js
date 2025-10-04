@@ -4,6 +4,10 @@ import { setActiveTempo, tempos } from "./tempo.js";
 import {
   deck1Select,
   deck2Select,
+  deck3Select,
+  deck4Select,
+  deck5Select,
+  deck6Select,
   initializeKeyListeners,
   initializeTempo,
   showElement,
@@ -42,7 +46,7 @@ if (tracksFromURL && parseTracks(tracksFromURL).length > trackIndex) {
     }
   } catch (e) {
     if (!Array.isArray(tracks)) {
-      // a string like this will also work: 1,2-3,4-5,6 and will evaluate to [[1,2],[3,4],[5,6]]
+      // a string like this will also work: 1,2,3,4,5,6-7,8,9,10,11,12 and will evaluate to [[1,2,3,4,5,6],[7,8,9,10,11,12]]
       tracks = tracksFromURL
         .split("-")
         .filter(Boolean)
@@ -55,17 +59,40 @@ if (tracksFromURL && parseTracks(tracksFromURL).length > trackIndex) {
     }
   }
   showElement(document.getElementById("hurricane-container"));
-  const firstSong = getSongById(tracks[tracksFromURLIndex][0]);
-  const secondSong = getSongById(tracks[tracksFromURLIndex][1]);
+  const song1 = getSongById(tracks[tracksFromURLIndex][0]);
+  const song2 = getSongById(tracks[tracksFromURLIndex][1]);
+  const song3 = getSongById(tracks[tracksFromURLIndex][2]);
+  const song4 = getSongById(tracks[tracksFromURLIndex][3]);
+  const song5 = getSongById(tracks[tracksFromURLIndex][4]);
+  const song6 = getSongById(tracks[tracksFromURLIndex][5]);
+  
+  // Prefetch all 6 tracks
   fetch(file(tracks[tracksFromURLIndex][0], trackIndex % magicNumber === 0));
   fetch(file(tracks[tracksFromURLIndex][1], trackIndex % magicNumber === 0));
-  deck1Select.value = firstSong.id;
-  deck2Select.value = secondSong.id;
+  fetch(file(tracks[tracksFromURLIndex][2], trackIndex % magicNumber === 0));
+  fetch(file(tracks[tracksFromURLIndex][3], trackIndex % magicNumber === 0));
+  fetch(file(tracks[tracksFromURLIndex][4], trackIndex % magicNumber === 0));
+  fetch(file(tracks[tracksFromURLIndex][5], trackIndex % magicNumber === 0));
+  
+  // Set deck values
+  deck1Select.value = song1.id;
+  deck2Select.value = song2.id;
+  deck3Select.value = song3.id;
+  deck4Select.value = song4.id;
+  deck5Select.value = song5.id;
+  deck6Select.value = song6.id;
+  
+  // Disable all decks during URL playback
   deck1Select.disabled = true;
   deck2Select.disabled = true;
-  setActiveKey(firstSong.key);
-  setInitialKey(firstSong.key);
-  setActiveTempo(firstSong.bpm);
+  deck3Select.disabled = true;
+  deck4Select.disabled = true;
+  deck5Select.disabled = true;
+  deck6Select.disabled = true;
+  
+  setActiveKey(song1.key);
+  setInitialKey(song1.key);
+  setActiveTempo(song1.bpm);
 }
 
 /**

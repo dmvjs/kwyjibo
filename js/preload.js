@@ -19,12 +19,18 @@ import { activeKey, getNextKey, initialKey } from "./key.js";
 import {
   deck1Select,
   deck2Select,
+  deck3Select,
+  deck4Select,
+  deck5Select,
+  deck6Select,
   firstSongLabel,
-  fourthSongLabel,
-  hideElement,
   secondSongLabel,
-  showElement,
   thirdSongLabel,
+  fourthSongLabel,
+  fifthSongLabel,
+  sixthSongLabel,
+  hideElement,
+  showElement,
 } from "./dom.js";
 import { file, hasError } from "./utils.js";
 import {
@@ -33,6 +39,7 @@ import {
   tracksFromURLIndex,
   setTracksFromUrlIndex,
 } from "./init.js";
+// Using simple Web Audio API like the original two-song system
 
 let bufferLoader;
 let isFirst = true;
@@ -57,7 +64,7 @@ export const init = () => {
       }
     } catch (e) {
       if (!Array.isArray(tracks)) {
-        // a string like this will also work: 1,2-3,4-5,6 and will evaluate to [[1,2],[3,4],[5,6]]
+        // a string like this will also work: 1,2,3,4,5,6-7,8,9,10,11,12 and will evaluate to [[1,2,3,4,5,6],[7,8,9,10,11,12]]
         tracks = tracksFromURL
           .split("-")
           .filter(Boolean)
@@ -70,8 +77,12 @@ export const init = () => {
       }
     }
     if (!tracks?.[tracksFromURLIndex]?.[0]) {
-      console.error("track URL load error");
-      return;
+      // Loop back to the beginning when we run out of tracks
+      setTracksFromUrlIndex(0);
+      if (!tracks?.[0]?.[0]) {
+        console.error("track URL load error");
+        return;
+      }
     }
     hideElement(document.getElementById("up-next"));
     hideElement(document.getElementById("on-deck"));
@@ -79,7 +90,11 @@ export const init = () => {
 
     Promise.all([
       fetch(file(tracks[tracksFromURLIndex][0], trackIndex % magicNumber === 0)),
-      fetch(file(tracks[tracksFromURLIndex][1], trackIndex % magicNumber === 0))
+      fetch(file(tracks[tracksFromURLIndex][1], trackIndex % magicNumber === 0)),
+      fetch(file(tracks[tracksFromURLIndex][2], trackIndex % magicNumber === 0)),
+      fetch(file(tracks[tracksFromURLIndex][3], trackIndex % magicNumber === 0)),
+      fetch(file(tracks[tracksFromURLIndex][4], trackIndex % magicNumber === 0)),
+      fetch(file(tracks[tracksFromURLIndex][5], trackIndex % magicNumber === 0))
     ])
       .then(() => {
         bufferLoader = new BufferLoader(
@@ -87,12 +102,20 @@ export const init = () => {
           getTracks(
             tracks[tracksFromURLIndex][0],
             tracks[tracksFromURLIndex][1],
+            tracks[tracksFromURLIndex][2],
+            tracks[tracksFromURLIndex][3],
+            tracks[tracksFromURLIndex][4],
+            tracks[tracksFromURLIndex][5],
             true,
           ),
           finishedLoading,
         );
-        removeSongFromListById(tracks[tracksFromURLIndex][0].id);
-        removeSongFromListById(tracks[tracksFromURLIndex][1].id);
+        removeSongFromListById(tracks[tracksFromURLIndex][0]);
+        removeSongFromListById(tracks[tracksFromURLIndex][1]);
+        removeSongFromListById(tracks[tracksFromURLIndex][2]);
+        removeSongFromListById(tracks[tracksFromURLIndex][3]);
+        removeSongFromListById(tracks[tracksFromURLIndex][4]);
+        removeSongFromListById(tracks[tracksFromURLIndex][5]);
         setTracksFromUrlIndex(tracksFromURLIndex + 1);
         bufferLoader.load();
       })
@@ -105,6 +128,10 @@ export const init = () => {
     hideElement(document.getElementById("hurricane-container"));
     deck1Select.disabled = false;
     deck2Select.disabled = false;
+    deck3Select.disabled = false;
+    deck4Select.disabled = false;
+    deck5Select.disabled = false;
+    deck6Select.disabled = false;
     const element = document.getElementById("counter-holder");
     const numberOfSeconds = 31;
     element.innerText = `${numberOfSeconds - 1}`;
@@ -122,8 +149,7 @@ export const init = () => {
       }
     }, 1000);
     element.style.display = "inline-block";
-    firstSongLabel.innerText = thirdSongLabel.innerText;
-    secondSongLabel.innerText = fourthSongLabel.innerText;
+    // Note: Labels are already updated by updateUI, no need to copy here
     hideElement(document.getElementById("on-deck"));
     setTimeout(() => {
       loadTracks(true);
@@ -136,15 +162,31 @@ export const init = () => {
 
 const loadTracks = (isFromCountdown = false, isStartingCountdown = false) => {
   const ids = getSelectedSongIds();
-  if (ids && typeof ids[0]?.id === "number" && typeof ids[1]?.id === "number") {
+  // Check if we have at least some valid song IDs
+  const hasValidIds = ids && ids.filter(id => id && typeof id.id === "number").length >= 6;
+  
+  if (hasValidIds) {
     Promise.all([
       fetch(file(ids[0].id, trackIndex % magicNumber === 0)),
-      fetch(file(ids[1].id, trackIndex % magicNumber === 0))
+      fetch(file(ids[1].id, trackIndex % magicNumber === 0)),
+      fetch(file(ids[2].id, trackIndex % magicNumber === 0)),
+      fetch(file(ids[3].id, trackIndex % magicNumber === 0)),
+      fetch(file(ids[4].id, trackIndex % magicNumber === 0)),
+      fetch(file(ids[5].id, trackIndex % magicNumber === 0))
     ])
       .then(() => {
         bufferLoader = new BufferLoader(
           getContext(),
-          getTracks(ids[0].id, ids[1].id, undefined, isFromCountdown),
+          getTracks(
+            ids[0].id, 
+            ids[1].id, 
+            ids[2].id,
+            ids[3].id,
+            ids[4].id,
+            ids[5].id,
+            undefined, 
+            isFromCountdown
+          ),
           finishedLoading,
         );
         bufferLoader.load();
@@ -157,8 +199,12 @@ const loadTracks = (isFromCountdown = false, isStartingCountdown = false) => {
         undefined,
         undefined,
         undefined,
-        isFromCountdown,
-        isStartingCountdown,
+        undefined,
+        undefined,
+        undefined,
+            true, // skipSamples - completely removed
+            isFromCountdown,
+            isStartingCountdown,
       ),
       finishedLoading,
     );
@@ -169,51 +215,9 @@ function getAndStartBuffer(bufferListItem, time, addListener, buffers) {
   let timestamp;
   let source = getBuffer();
   source.buffer = bufferListItem;
-  
-  // Create gain nodes for volume control
-  const gainNode = getContext().createGain();
-  
-  // Create audio processing chain
-  const compressor = getContext().createDynamicsCompressor();
-  compressor.threshold.value = -24;
-  compressor.knee.value = 30;
-  compressor.ratio.value = 12;
-  compressor.attack.value = 0.003;
-  compressor.release.value = 0.25;
-  
-  // Create stereo enhancement
-  const stereoEnhancer = getContext().createStereoPanner();
-  stereoEnhancer.pan.value = 0; // Center position
-  
-  // Create EQ for sparkle
-  const eq = getContext().createBiquadFilter();
-  eq.type = 'highshelf';
-  eq.frequency.value = 3000; // 3kHz shelf
-  eq.gain.value = 3; // Subtle boost
-  
-  // Connect main processing chain
-  source.connect(gainNode);
-  gainNode.connect(compressor);
-  compressor.connect(eq);
-  eq.connect(stereoEnhancer);
-  stereoEnhancer.connect(getContext().destination);
-  
-  // Set initial volume
-  gainNode.gain.setValueAtTime(1, time);
-  
-  // If this is a transition, fade out the previous track
-  if (addListener) {
-    const fadeDuration = (60 / activeTempo) * 4;
-    const fadeStartTime = time + bufferListItem.duration - fadeDuration;
-    
-    // Fade out main track
-    gainNode.gain.setValueAtTime(1, fadeStartTime);
-    gainNode.gain.linearRampToValueAtTime(0, time + bufferListItem.duration);
-  }
-  
+  source.connect(getContext().destination);
   source.start(time);
   source.stop(time + bufferListItem.duration);
-  
   if (addListener) {
     source.addEventListener("ended", (event) => {
       (buffers || []).forEach((buffer) => {
@@ -230,25 +234,44 @@ function getAndStartBuffer(bufferListItem, time, addListener, buffers) {
 }
 
 function finishedLoading(bufferList, tempo) {
+  // Start all six main tracks simultaneously (like the original two-song system)
   getAndStartBuffer(bufferList[0], bufferPadding, true, [
     bufferList[0],
     bufferList[1],
     bufferList[2],
     bufferList[3],
+    bufferList[4],
+    bufferList[5],
   ]);
+  
+  // Start tracks 1-5 simultaneously
   if (bufferList[1]) {
     getAndStartBuffer(bufferList[1], bufferPadding);
   }
+  if (bufferList[2]) {
+    getAndStartBuffer(bufferList[2], bufferPadding);
+  }
+  if (bufferList[3]) {
+    getAndStartBuffer(bufferList[3], bufferPadding);
+  }
+  if (bufferList[4]) {
+    getAndStartBuffer(bufferList[4], bufferPadding);
+  }
+  if (bufferList[5]) {
+    getAndStartBuffer(bufferList[5], bufferPadding);
+  }
+  
+  // Handle DJ samples during magic time (like the original)
   if (!usingTracksFromURL && !isFirst) {
-    if (bufferList[2]) {
+    if (bufferList[6]) {
       // delay the start until halfway through the bar
       getAndStartBuffer(
-        bufferList[2],
+        bufferList[6],
         bufferPadding + ((60 / activeTempo) * 16) / 2,
       );
     }
-    if (bufferList[3]) {
-      getAndStartBuffer(bufferList[3], bufferPadding);
+    if (bufferList[7]) {
+      getAndStartBuffer(bufferList[7], bufferPadding);
     }
   }
 

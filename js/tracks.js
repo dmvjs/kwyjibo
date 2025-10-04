@@ -9,12 +9,24 @@ import { addTracks } from "./share.js";
 import {
   deck1Select,
   deck2Select,
+  deck3Select,
+  deck4Select,
+  deck5Select,
+  deck6Select,
   firstSongLabel,
-  fourthSongLabel,
-  hideElement,
   secondSongLabel,
-  showElement,
   thirdSongLabel,
+  fourthSongLabel,
+  fifthSongLabel,
+  sixthSongLabel,
+  seventhSongLabel,
+  eighthSongLabel,
+  ninthSongLabel,
+  tenthSongLabel,
+  eleventhSongLabel,
+  twelfthSongLabel,
+  hideElement,
+  showElement,
   updateActiveKey,
 } from "./dom.js";
 import { getSong, getSongs } from "./getSongs.js";
@@ -27,56 +39,71 @@ export const magicNumber = 5;
 export let trackIndex = 0;
 export let isMagicTime = trackIndex % magicNumber === 0;
 
-export let fsID;
-export let ssID;
+export let songIDs = [];
 
 export const updateUI = (
   key,
-  firstSongId,
-  secondSongId,
+  songIds, // Now an array of 6 song IDs
   trackIndex,
   isFromCountdown = false,
 ) => {
-  fsID = firstSongId;
-  ssID = secondSongId;
+  songIDs = songIds;
   return () => {
     document.body.className = `color-${key}`;
     window.playedSongs = window.playedSongs || [];
-    window.playedSongs.push([firstSongId, secondSongId]);
-    const firstSongUI = songdata.filter(
-      (item) =>
-        item.id === window.playedSongs[trackIndex < 0 ? 0 : trackIndex][0],
-    )[0];
-    const secondSongUI = songdata.filter(
-      (item) =>
-        item.id === window.playedSongs[trackIndex < 0 ? 0 : trackIndex][1],
-    )[0];
-    const thirdSongUI = songdata.filter(
-      (item) =>
-        item.id ===
-        window.playedSongs[trackIndex - 1 < 0 ? 0 : trackIndex - 1][0],
-    )[0];
-    const fourthSongUI = songdata.filter(
-      (item) =>
-        item.id ===
-        window.playedSongs[trackIndex - 1 < 0 ? 0 : trackIndex - 1][1],
-    )[0];
-    firstSongLabel.innerText = `${thirdSongUI.artist || ""} - ${
-      thirdSongUI.title || ""
-    }`;
-    secondSongLabel.innerText = `${fourthSongUI?.artist || ""} - ${
-      fourthSongUI?.title || ""
-    }`;
-    thirdSongLabel.innerText = `${firstSongUI?.artist || ""} - ${
-      firstSongUI.title || ""
-    }`;
-    fourthSongLabel.innerText = `${secondSongUI?.artist || ""} - ${
-      secondSongUI?.title || ""
-    }`;
-    firstSongLabel.className = `text-color-${thirdSongUI?.key}`;
-    secondSongLabel.className = `text-color-${fourthSongUI?.key}`;
-    thirdSongLabel.className = `text-color-${firstSongUI.key}`;
-    fourthSongLabel.className = `text-color-${secondSongUI?.key}`;
+    window.playedSongs.push(songIds); // Store all 6 song IDs
+    
+    const currentIndex = trackIndex < 0 ? 0 : trackIndex;
+    const previousIndex = trackIndex - 1 < 0 ? 0 : trackIndex - 1;
+    
+    // Get current 6 songs (for "on deck" display)
+    const currentSongs = window.playedSongs[currentIndex];
+    const song1UI = songdata.find(item => item.id === currentSongs[0]);
+    const song2UI = songdata.find(item => item.id === currentSongs[1]);
+    const song3UI = songdata.find(item => item.id === currentSongs[2]);
+    const song4UI = songdata.find(item => item.id === currentSongs[3]);
+    const song5UI = songdata.find(item => item.id === currentSongs[4]);
+    const song6UI = songdata.find(item => item.id === currentSongs[5]);
+    
+    // Get previous 6 songs (for "now playing" display)
+    const previousSongs = window.playedSongs[previousIndex];
+    const song7UI = songdata.find(item => item.id === previousSongs[0]);
+    const song8UI = songdata.find(item => item.id === previousSongs[1]);
+    const song9UI = songdata.find(item => item.id === previousSongs[2]);
+    const song10UI = songdata.find(item => item.id === previousSongs[3]);
+    const song11UI = songdata.find(item => item.id === previousSongs[4]);
+    const song12UI = songdata.find(item => item.id === previousSongs[5]);
+    
+    // Update "Now Playing" (previous 6)
+    firstSongLabel.innerText = `${song7UI?.artist || ""} - ${song7UI?.title || ""}`;
+    secondSongLabel.innerText = `${song8UI?.artist || ""} - ${song8UI?.title || ""}`;
+    thirdSongLabel.innerText = `${song9UI?.artist || ""} - ${song9UI?.title || ""}`;
+    fourthSongLabel.innerText = `${song10UI?.artist || ""} - ${song10UI?.title || ""}`;
+    fifthSongLabel.innerText = `${song11UI?.artist || ""} - ${song11UI?.title || ""}`;
+    sixthSongLabel.innerText = `${song12UI?.artist || ""} - ${song12UI?.title || ""}`;
+    
+    // Update "On Deck" (current 6)
+    seventhSongLabel.innerText = `${song1UI?.artist || ""} - ${song1UI?.title || ""}`;
+    eighthSongLabel.innerText = `${song2UI?.artist || ""} - ${song2UI?.title || ""}`;
+    ninthSongLabel.innerText = `${song3UI?.artist || ""} - ${song3UI?.title || ""}`;
+    tenthSongLabel.innerText = `${song4UI?.artist || ""} - ${song4UI?.title || ""}`;
+    eleventhSongLabel.innerText = `${song5UI?.artist || ""} - ${song5UI?.title || ""}`;
+    twelfthSongLabel.innerText = `${song6UI?.artist || ""} - ${song6UI?.title || ""}`;
+    
+    // Update label colors
+    firstSongLabel.className = `text-color-${song7UI?.key || 1}`;
+    secondSongLabel.className = `text-color-${song8UI?.key || 1}`;
+    thirdSongLabel.className = `text-color-${song9UI?.key || 1}`;
+    fourthSongLabel.className = `text-color-${song10UI?.key || 1}`;
+    fifthSongLabel.className = `text-color-${song11UI?.key || 1}`;
+    sixthSongLabel.className = `text-color-${song12UI?.key || 1}`;
+    seventhSongLabel.className = `text-color-${song1UI?.key || 1}`;
+    eighthSongLabel.className = `text-color-${song2UI?.key || 1}`;
+    ninthSongLabel.className = `text-color-${song3UI?.key || 1}`;
+    tenthSongLabel.className = `text-color-${song4UI?.key || 1}`;
+    eleventhSongLabel.className = `text-color-${song5UI?.key || 1}`;
+    twelfthSongLabel.className = `text-color-${song6UI?.key || 1}`;
+    
     loadSongsIntoSelect();
     document.getElementById("play-button").className = `button-color-${key}`;
     document.getElementById("contact-button").className = `button-color-${key}`;
@@ -93,35 +120,64 @@ export const updateUI = (
 
 export const getSelectedSongIds = () => {
   const songs = getSongs();
-  const firstSong =
+  const song1 =
     deck1Select.value === "-1"
       ? null
       : songs.thisTempoSongs.find((s) => {
           return s.id === parseInt(deck1Select.value, 10);
         });
-  const secondSong =
+  const song2 =
     deck2Select.value === "-1"
       ? null
       : songs.thisTempoSongs.find((s) => {
           return s.id === parseInt(deck2Select.value, 10);
         });
-  return [firstSong, secondSong];
+  const song3 =
+    deck3Select.value === "-1"
+      ? null
+      : songs.thisTempoSongs.find((s) => {
+          return s.id === parseInt(deck3Select.value, 10);
+        });
+  const song4 =
+    deck4Select.value === "-1"
+      ? null
+      : songs.thisTempoSongs.find((s) => {
+          return s.id === parseInt(deck4Select.value, 10);
+        });
+  const song5 =
+    deck5Select.value === "-1"
+      ? null
+      : songs.thisTempoSongs.find((s) => {
+          return s.id === parseInt(deck5Select.value, 10);
+        });
+  const song6 =
+    deck6Select.value === "-1"
+      ? null
+      : songs.thisTempoSongs.find((s) => {
+          return s.id === parseInt(deck6Select.value, 10);
+        });
+  return [song1, song2, song3, song4, song5, song6];
 };
 export const loadSongsIntoSelect = () => {
   const songs = getSongs();
+  
+  // Clear all deck selectors
   deck1Select.length = 0;
   deck2Select.length = 0;
-  const optionDefault1 = document.createElement("option");
-  optionDefault1.value = "-1";
-  optionDefault1.innerText = `Pick next deck 1 song ${activeTempo}bpm`;
-  deck1Select.appendChild(optionDefault1);
-  deck1Select.value = "-1";
-
-  const optionDefault2 = document.createElement("option");
-  optionDefault2.value = "-1";
-  optionDefault2.innerText = `Pick next deck 2 song ${activeTempo}bpm`;
-  deck2Select.appendChild(optionDefault2);
-  deck2Select.value = "-1";
+  deck3Select.length = 0;
+  deck4Select.length = 0;
+  deck5Select.length = 0;
+  deck6Select.length = 0;
+  
+  // Add default options to each deck
+  const decks = [deck1Select, deck2Select, deck3Select, deck4Select, deck5Select, deck6Select];
+  decks.forEach((deck, index) => {
+    const optionDefault = document.createElement("option");
+    optionDefault.value = "-1";
+    optionDefault.innerText = `Pick next deck ${index + 1} song ${activeTempo}bpm`;
+    deck.appendChild(optionDefault);
+    deck.value = "-1";
+  });
 
   let playedSongs = [];
   if (window.playedSongs?.length) {
@@ -132,16 +188,55 @@ export const loadSongsIntoSelect = () => {
     );
   }
 
-  const firstID = [...new Set(songs.thisKeySongs)]
+  // Select 6 different songs with varied artists
+  // Start with key-matching songs, but be flexible
+  let availableSongs = songs.thisKeySongs
     .filter((song) => !playedSongs.includes(song.id))
     .filter(Boolean)
-    ._shuffle()[0];
-  const secondID = [...new Set(songs.thisKeySongs)]
-    .filter((song) => !playedSongs.includes(song.id))
-    .filter(Boolean)
-    .filter((x) => x.artist !== firstID.artist)
-    ._shuffle()[0];
+    ._shuffle();
+  
+  // If we don't have enough songs in the key, add all tempo songs
+  if (availableSongs.length < 6) {
+    const additionalSongs = songs.thisTempoSongs
+      .filter((song) => !playedSongs.includes(song.id))
+      .filter(song => !availableSongs.find(s => s.id === song.id))
+      .filter(Boolean)
+      ._shuffle();
+    availableSongs = [...availableSongs, ...additionalSongs];
+  }
+  
+  // If STILL not enough, ignore the played songs filter
+  if (availableSongs.length < 6) {
+    const moreSongs = songs.thisTempoSongs
+      .filter(song => !availableSongs.find(s => s.id === song.id))
+      .filter(Boolean)
+      ._shuffle();
+    availableSongs = [...availableSongs, ...moreSongs];
+  }
+  
+  const selectedSongs = [];
+  const usedArtists = new Set();
+  
+  // First pass: select songs with unique artists
+  for (const song of availableSongs) {
+    if (selectedSongs.length >= 6) break;
+    if (!usedArtists.has(song.artist)) {
+      selectedSongs.push(song);
+      usedArtists.add(song.artist);
+    }
+  }
+  
+  // Second pass: add any remaining songs even if artist repeats
+  if (selectedSongs.length < 6) {
+    for (const song of availableSongs) {
+      if (selectedSongs.length >= 6) break;
+      if (!selectedSongs.find(s => s.id === song.id)) {
+        selectedSongs.push(song);
+      }
+    }
+  }
 
+  // Populate all deck selectors with all available songs
   [
     ...new Set(
       songs.thisTempoSongs
@@ -151,21 +246,28 @@ export const loadSongsIntoSelect = () => {
         .sort(keySort),
     ),
   ].map((item) => {
-    const option1 = document.createElement("option");
-    option1.value = `${item.id}`;
-    option1.innerText = `${item.artist} - ${item.title} [${item.key}]`;
-    const option2 = document.createElement("option");
-    option2.value = `${item.id}`;
-    option2.innerText = `${item.artist} - ${item.title} [${item.key}]`;
-    deck1Select.appendChild(option1);
-    deck2Select.appendChild(option2);
+    decks.forEach(deck => {
+      const option = document.createElement("option");
+      option.value = `${item.id}`;
+      option.innerText = `${item.artist} - ${item.title} [${item.key}]`;
+      deck.appendChild(option);
+    });
   });
-  deck1Select.value = firstID.id;
-  deck2Select.value = secondID.id;
+  
+  // Set default selections
+  selectedSongs.forEach((song, index) => {
+    if (song && decks[index]) {
+      decks[index].value = song.id;
+    }
+  });
 };
 export const getTracks = (
   track1,
   track2,
+  track3,
+  track4,
+  track5,
+  track6,
   skipSamples = false,
   isFromCountdown = false,
 ) => {
@@ -174,61 +276,101 @@ export const getTracks = (
   if (isMagicTime) {
     // console.log('station identification…')
   }
-  const firstSongFromURL = track1 && getSongById(track1);
-  const secondSongFromURL = track2 ? getSongById(track2) : null;
-  const firstSong =
-    firstSongFromURL || trackIndex % magicNumber === 1 ? null : getSong();
-  const firstSongId =
-    trackIndex % magicNumber === 1
-      ? holder[trackIndex - 1][0]
-      : firstSongFromURL?.id || firstSong.id;
-  const secondSongId =
-    trackIndex % magicNumber === 1
-      ? holder[trackIndex - 1][1]
-      : isUsingTracksFromURL
-      ? track2
-        ? secondSongFromURL?.id
-        : null
-      : getSong(firstSong.key, firstSong.artist).id;
+  
+  // Get songs from URL or generate new ones
+  const songsFromURL = [
+    track1 && getSongById(track1),
+    track2 && getSongById(track2),
+    track3 && getSongById(track3),
+    track4 && getSongById(track4),
+    track5 && getSongById(track5),
+    track6 && getSongById(track6),
+  ];
+  
+  let songIds = [];
+  
+  if (trackIndex % magicNumber === 1) {
+    // Reuse songs from previous holder
+    songIds = holder[trackIndex - 1];
+  } else if (isUsingTracksFromURL) {
+    // Use songs from URL
+    songIds = songsFromURL.map(song => song?.id).filter(Boolean);
+  } else {
+    // Generate 6 new songs with unique artists
+    const { thisKeySongs, thisTempoSongs } = getSongs();
+    
+    // Try to get songs from the matching key first
+    let availableSongs = [...thisKeySongs]._shuffle();
+    
+    // If we don't have enough in the key, add all tempo songs
+    if (availableSongs.length < 6) {
+      const additionalSongs = thisTempoSongs
+        .filter(song => !availableSongs.find(s => s.id === song.id))
+        ._shuffle();
+      availableSongs = [...availableSongs, ...additionalSongs];
+    }
+    
+    const selectedSongs = [];
+    const usedArtists = new Set();
+    
+    // First pass: select songs with unique artists
+    for (const song of availableSongs) {
+      if (selectedSongs.length >= 6) break;
+      if (!usedArtists.has(song.artist)) {
+        selectedSongs.push(song);
+        usedArtists.add(song.artist);
+      }
+    }
+    
+    // Second pass: add any remaining songs even if artist repeats
+    if (selectedSongs.length < 6) {
+      for (const song of availableSongs) {
+        if (selectedSongs.length >= 6) break;
+        if (!selectedSongs.find(s => s.id === song.id)) {
+          selectedSongs.push(song);
+        }
+      }
+    }
+    
+    songIds = selectedSongs.map(song => song.id);
+  }
+  
   if (!isMagicTime) {
     // console.log('followed by…')
   }
-  const firstTrack = file(firstSongId, isMagicTime);
-  let secondTrack;
-  if (secondSongId) {
-    secondTrack = file(secondSongId, isMagicTime);
+  
+  // Create file paths for all tracks
+  const returnArray = songIds.map(id => file(id, isMagicTime));
+  console.log(`🎵 getTracks: returning ${returnArray.length} tracks`);
+  
+  // Add DJ samples during magic time (like the original two-song system)
+  let sampleTrack1, sampleTrack2;
+  if (!skipSamples && isMagicTime) {
+    sampleTrack1 = `../music/${samples[Math.floor(quantumRandom() * samples.length)]}${filetype}`;
+    sampleTrack2 = justStarTrekIntro[0];
+    returnArray.push(sampleTrack1);
+    returnArray.push(sampleTrack2);
   }
-  addTracks([firstSongId, secondSongId]);
-  let thirdTrack;
-  let fourthTrack;
-  if (!skipSamples) {
-    thirdTrack = isMagicTime
-      ? `../music/${
-          samples[Math.floor(quantumRandom() * samples.length)]
-        }${filetype}`
-      : null;
-    fourthTrack = isMagicTime ? justStarTrekIntro[0] : null;
-  }
-  const returnArray = [firstTrack];
-  if (secondTrack) {
-    returnArray.push(secondTrack);
-  }
-  if (!skipSamples && thirdTrack) {
-    returnArray.push(thirdTrack);
-    returnArray.push(fourthTrack);
-  }
+  
+  addTracks(songIds);
+  
   requestAnimationFrame(
-    updateUI(activeKey, firstSongId, secondSongId, trackIndex, isFromCountdown),
+    updateUI(activeKey, songIds, trackIndex, isFromCountdown),
   );
+  
   if (isMagicTime) {
-    holder[trackIndex] = [firstSongId, secondSongId];
+    holder[trackIndex] = songIds;
   } else {
-    updateTempoUI(firstSongId.bpm);
+    const firstSong = getSongById(songIds[0]);
+    if (firstSong) {
+      updateTempoUI(firstSong.bpm);
+    }
     updateActiveKey();
   }
+  
   trackIndex += 1;
   return {
-    bpm: firstSongFromURL?.bpm || activeTempo,
+    bpm: songsFromURL[0]?.bpm || activeTempo,
     list: returnArray,
   };
 };
