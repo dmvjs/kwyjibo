@@ -428,9 +428,13 @@ export class QuantumBeatEngine {
 
         // Section scheduled
 
-        // Schedule with production level
-        const productionGain = baseGain * productionDecision.level;
-        this.scheduleMusicalPattern(now, pattern, beatDuration, productionGain);
+      // Apply transformation parameters
+      const transformationParams = quantumState.getTransformationParams();
+      const transformationIntensity = quantumState.getTransformationIntensity();
+      
+      // Schedule with production level and transformation
+      const productionGain = baseGain * productionDecision.level;
+      this.scheduleMusicalPattern(now, pattern, beatDuration, productionGain, transformationParams, transformationIntensity);
       }
 
       // Advance the global quantum state
@@ -622,7 +626,7 @@ export class QuantumBeatEngine {
     return Math.max(0, Math.min(1, prob));
   }
 
-  scheduleMusicalPattern(startTime, pattern, beatDuration, baseGain) {
+  scheduleMusicalPattern(startTime, pattern, beatDuration, baseGain, transformationParams = null, transformationIntensity = 0) {
     // Get spectral guidance (avoid masking)
     const spectralGuidance = quantumState.getSpectralGuidance(this.trackIndex);
     const adjustedBaseGain = Math.max(0.02, baseGain * (1 + spectralGuidance.adjustment));
@@ -657,7 +661,24 @@ export class QuantumBeatEngine {
           const beatTime = barTime + (b * beatDuration) + microTiming;
 
           if (beat.play) {
-            const velocity = Math.max(0.02, adjustedBaseGain * beat.velocity);
+            let velocity = Math.max(0.02, adjustedBaseGain * beat.velocity);
+            
+            // Apply transformation effects
+            if (transformationParams && transformationIntensity > 0) {
+              // Harmonic shift affects velocity
+              velocity *= (1 + transformationParams.harmonicShift * transformationIntensity * 0.1);
+              
+              // Rhythmic complexity affects timing
+              const complexityOffset = transformationParams.rhythmicComplexity * transformationIntensity * 0.01;
+              const transformedBeatTime = beatTime + complexityOffset;
+              
+              // Timbral evolution affects gain curve
+              const timbralEffect = 1 + (transformationParams.timbralEvolution * transformationIntensity * 0.05);
+              velocity *= timbralEffect;
+              
+              // Dynamic range compression/expansion
+              velocity = Math.pow(velocity, transformationParams.dynamicRange);
+            }
 
             // Update quantum display - ion is active
             updateIonState(this.trackIndex, true, velocity, beat.effect !== null);
@@ -669,8 +690,9 @@ export class QuantumBeatEngine {
 
             // Smooth envelope (no clicks) using exponential ramps
             const currentGain = Math.max(0.02, this.gainNode.gain.value);
+            const finalBeatTime = transformationParams ? transformedBeatTime : beatTime;
 
-            this.gainNode.gain.cancelAndHoldAtTime(beatTime);
+            this.gainNode.gain.cancelAndHoldAtTime(finalBeatTime);
             this.gainNode.gain.setValueAtTime(currentGain, beatTime);
 
             // Attack

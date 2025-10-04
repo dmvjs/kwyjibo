@@ -36,7 +36,19 @@ class QuantumMusicalState {
       racePositions: [0, 1, 2, 3, 4, 5], // Current race positions
       lapStartBeat: 0, // Beat when current lap started
       raceIntensity: 0.5, // How intense the race is (0-1)
-      momentum: [0, 0, 0, 0, 0, 0] // Each track's momentum
+      momentum: [0, 0, 0, 0, 0, 0], // Each track's momentum
+      
+      // TRANSFORMATION SYSTEM - Gradual changes over 4 q6s cycles
+      transformationPhase: 0, // 0-3 (which q6s cycle we're in)
+      transformationIntensity: 0, // 0-1, how much transformation is active
+      transformationParams: {
+        harmonicShift: 0, // Gradual harmonic movement
+        rhythmicComplexity: 0, // Increasing rhythmic density
+        timbralEvolution: 0, // Timbral changes over time
+        spatialMovement: 0, // Stereo field movement
+        frequencyModulation: 0, // Subtle frequency shifts
+        dynamicRange: 1.0 // Dynamic range compression/expansion
+      }
     };
     
     this.regenerateSeeds();
@@ -359,6 +371,11 @@ class QuantumMusicalState {
     // HORSE RACE: Check if we need to advance to next lap (every 16 beats = 4 bars)
     this.updateRaceState();
     
+    // Update transformation system every 16 bars (4 q6s cycles)
+    if (this.barCount % 16 === 0) {
+      this.updateTransformationSystem();
+    }
+    
     // Regenerate quantum state every 16 bars
     if (this.barCount % 16 === 0) {
       this.regenerateSeeds();
@@ -392,8 +409,7 @@ class QuantumMusicalState {
     // Update race intensity (gets more intense as race progresses)
     this.raceState.raceIntensity = Math.min(1.0, 0.3 + (this.raceState.currentLap / this.raceState.totalLaps) * 0.7);
     
-    console.log(`🏁 RACE LAP ${this.raceState.currentLap + 1}/4: New leader is Track ${this.raceState.currentLeader}`);
-    console.log(`🏁 Race positions: [${this.raceState.racePositions.join(', ')}]`);
+    // Race logging removed for cleaner console output
   }
   
   determineNewLeader() {
@@ -507,7 +523,7 @@ class QuantumMusicalState {
       if (track4Index !== -1 && track5Index !== -1) {
         // Swap positions
         [positions[track4Index], positions[track5Index]] = [positions[track5Index], positions[track4Index]];
-        console.log(`🔄 Tracks 5 & 6 trading positions every 8 bars (bar ${currentBar})`);
+        // Trading positions logging removed for cleaner console output
       }
     }
     
@@ -698,6 +714,44 @@ class QuantumMusicalState {
     console.log(`  ✨ EMERGENT KEY: ${emergentKey}`);
     
     return emergentKey;
+  }
+  
+  updateTransformationSystem() {
+    // Advance transformation phase (0-3 cycles)
+    this.raceState.transformationPhase = (this.raceState.transformationPhase + 1) % 4;
+    
+    // Calculate transformation intensity based on phase
+    const phase = this.raceState.transformationPhase;
+    this.raceState.transformationIntensity = phase / 3; // 0, 0.33, 0.66, 1.0
+    
+    // Update transformation parameters with gradual changes
+    const params = this.raceState.transformationParams;
+    
+    // Harmonic shift - subtle key changes over time
+    params.harmonicShift = Math.sin(phase * Math.PI / 2) * 0.3;
+    
+    // Rhythmic complexity - increasing density
+    params.rhythmicComplexity = phase * 0.25;
+    
+    // Timbral evolution - subtle filter changes
+    params.timbralEvolution = Math.sin(phase * Math.PI / 3) * 0.4;
+    
+    // Spatial movement - stereo field changes
+    params.spatialMovement = Math.cos(phase * Math.PI / 4) * 0.5;
+    
+    // Frequency modulation - subtle pitch variations
+    params.frequencyModulation = phase * 0.15;
+    
+    // Dynamic range - compression/expansion
+    params.dynamicRange = 0.8 + (phase * 0.2);
+  }
+  
+  getTransformationParams() {
+    return this.raceState.transformationParams;
+  }
+  
+  getTransformationIntensity() {
+    return this.raceState.transformationIntensity;
   }
 }
 

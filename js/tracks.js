@@ -74,35 +74,35 @@ export const updateUI = (
     const song11UI = songdata.find(item => item.id === previousSongs[4]);
     const song12UI = songdata.find(item => item.id === previousSongs[5]);
 
-    // Update "Now Playing" (previous 6)
-    firstSongLabel.innerText = `${song7UI?.artist || ""} - ${song7UI?.title || ""}`;
-    secondSongLabel.innerText = `${song8UI?.artist || ""} - ${song8UI?.title || ""}`;
-    thirdSongLabel.innerText = `${song9UI?.artist || ""} - ${song9UI?.title || ""}`;
-    fourthSongLabel.innerText = `${song10UI?.artist || ""} - ${song10UI?.title || ""}`;
-    fifthSongLabel.innerText = `${song11UI?.artist || ""} - ${song11UI?.title || ""}`;
-    sixthSongLabel.innerText = `${song12UI?.artist || ""} - ${song12UI?.title || ""}`;
+    // Update "Now Playing" (current 6)
+    firstSongLabel.innerText = `${song1UI?.artist || ""} - ${song1UI?.title || ""}`;
+    secondSongLabel.innerText = `${song2UI?.artist || ""} - ${song2UI?.title || ""}`;
+    thirdSongLabel.innerText = `${song3UI?.artist || ""} - ${song3UI?.title || ""}`;
+    fourthSongLabel.innerText = `${song4UI?.artist || ""} - ${song4UI?.title || ""}`;
+    fifthSongLabel.innerText = `${song5UI?.artist || ""} - ${song5UI?.title || ""}`;
+    sixthSongLabel.innerText = `${song6UI?.artist || ""} - ${song6UI?.title || ""}`;
 
-    // Update "On Deck" (current 6)
-    seventhSongLabel.innerText = `${song1UI?.artist || ""} - ${song1UI?.title || ""}`;
-    eighthSongLabel.innerText = `${song2UI?.artist || ""} - ${song2UI?.title || ""}`;
-    ninthSongLabel.innerText = `${song3UI?.artist || ""} - ${song3UI?.title || ""}`;
-    tenthSongLabel.innerText = `${song4UI?.artist || ""} - ${song4UI?.title || ""}`;
-    eleventhSongLabel.innerText = `${song5UI?.artist || ""} - ${song5UI?.title || ""}`;
-    twelfthSongLabel.innerText = `${song6UI?.artist || ""} - ${song6UI?.title || ""}`;
+    // Update "On Deck" (previous 6)
+    seventhSongLabel.innerText = `${song7UI?.artist || ""} - ${song7UI?.title || ""}`;
+    eighthSongLabel.innerText = `${song8UI?.artist || ""} - ${song8UI?.title || ""}`;
+    ninthSongLabel.innerText = `${song9UI?.artist || ""} - ${song9UI?.title || ""}`;
+    tenthSongLabel.innerText = `${song10UI?.artist || ""} - ${song10UI?.title || ""}`;
+    eleventhSongLabel.innerText = `${song11UI?.artist || ""} - ${song11UI?.title || ""}`;
+    twelfthSongLabel.innerText = `${song12UI?.artist || ""} - ${song12UI?.title || ""}`;
 
     // Update label colors
-    firstSongLabel.className = `text-color-${song7UI?.key || 1}`;
-    secondSongLabel.className = `text-color-${song8UI?.key || 1}`;
-    thirdSongLabel.className = `text-color-${song9UI?.key || 1}`;
-    fourthSongLabel.className = `text-color-${song10UI?.key || 1}`;
-    fifthSongLabel.className = `text-color-${song11UI?.key || 1}`;
-    sixthSongLabel.className = `text-color-${song12UI?.key || 1}`;
-    seventhSongLabel.className = `text-color-${song1UI?.key || 1}`;
-    eighthSongLabel.className = `text-color-${song2UI?.key || 1}`;
-    ninthSongLabel.className = `text-color-${song3UI?.key || 1}`;
-    tenthSongLabel.className = `text-color-${song4UI?.key || 1}`;
-    eleventhSongLabel.className = `text-color-${song5UI?.key || 1}`;
-    twelfthSongLabel.className = `text-color-${song6UI?.key || 1}`;
+    firstSongLabel.className = `text-color-${song1UI?.key || 1}`;
+    secondSongLabel.className = `text-color-${song2UI?.key || 1}`;
+    thirdSongLabel.className = `text-color-${song3UI?.key || 1}`;
+    fourthSongLabel.className = `text-color-${song4UI?.key || 1}`;
+    fifthSongLabel.className = `text-color-${song5UI?.key || 1}`;
+    sixthSongLabel.className = `text-color-${song6UI?.key || 1}`;
+    seventhSongLabel.className = `text-color-${song7UI?.key || 1}`;
+    eighthSongLabel.className = `text-color-${song8UI?.key || 1}`;
+    ninthSongLabel.className = `text-color-${song9UI?.key || 1}`;
+    tenthSongLabel.className = `text-color-${song10UI?.key || 1}`;
+    eleventhSongLabel.className = `text-color-${song11UI?.key || 1}`;
+    twelfthSongLabel.className = `text-color-${song12UI?.key || 1}`;
 
     loadSongsIntoSelect();
     document.getElementById("play-button").className = `button-color-${key}`;

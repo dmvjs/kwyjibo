@@ -167,6 +167,12 @@ const loadTracks = (isFromCountdown = false, isStartingCountdown = false) => {
   // Check if we have at least some valid song IDs
   const hasValidIds = ids && ids.filter(id => id && typeof id.id === "number").length >= 6;
 
+  // Show loading indicator
+  const loadingElement = document.getElementById('loading-indicator');
+  if (loadingElement) {
+    loadingElement.style.display = 'block';
+  }
+
   if (hasValidIds) {
     Promise.all([
       fetch(file(ids[0].id, trackIndex % magicNumber === 0)),
@@ -381,6 +387,13 @@ function finishedLoading(bufferList, tempo) {
   // QUANTUM GENERATIVE BEAT ENGINE
   // Fractures 6 songs into stems and sequences them into ONE evolving beat
 
+  // Hide loading indicator
+  const loadingElement = document.getElementById('loading-indicator');
+  if (loadingElement) {
+    loadingElement.style.display = 'none';
+  }
+
+  // Use bufferPadding for proper timing alignment
   // Track 1: Kick
   getAndStartBuffer(bufferList[0], bufferPadding, true, bufferList.slice(0, 6), null, true, 0);
 
