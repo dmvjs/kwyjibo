@@ -46,7 +46,7 @@ if (tracksFromURL && parseTracks(tracksFromURL).length > trackIndex) {
     }
   } catch (e) {
     if (!Array.isArray(tracks)) {
-      // a string like this will also work: 1,2,3,4,5,6-7,8,9,10,11,12 and will evaluate to [[1,2,3,4,5,6],[7,8,9,10,11,12]]
+      // a string like this will also work: 1,2-3,4-5,6 and will evaluate to [[1,2],[3,4],[5,6]]
       tracks = tracksFromURL
         .split("-")
         .filter(Boolean)
@@ -65,7 +65,7 @@ if (tracksFromURL && parseTracks(tracksFromURL).length > trackIndex) {
   const song4 = getSongById(tracks[tracksFromURLIndex][3]);
   const song5 = getSongById(tracks[tracksFromURLIndex][4]);
   const song6 = getSongById(tracks[tracksFromURLIndex][5]);
-  
+
   // Prefetch all 6 tracks
   fetch(file(tracks[tracksFromURLIndex][0], trackIndex % magicNumber === 0));
   fetch(file(tracks[tracksFromURLIndex][1], trackIndex % magicNumber === 0));
@@ -73,7 +73,7 @@ if (tracksFromURL && parseTracks(tracksFromURL).length > trackIndex) {
   fetch(file(tracks[tracksFromURLIndex][3], trackIndex % magicNumber === 0));
   fetch(file(tracks[tracksFromURLIndex][4], trackIndex % magicNumber === 0));
   fetch(file(tracks[tracksFromURLIndex][5], trackIndex % magicNumber === 0));
-  
+
   // Set deck values
   deck1Select.value = song1.id;
   deck2Select.value = song2.id;
@@ -81,7 +81,7 @@ if (tracksFromURL && parseTracks(tracksFromURL).length > trackIndex) {
   deck4Select.value = song4.id;
   deck5Select.value = song5.id;
   deck6Select.value = song6.id;
-  
+
   // Disable all decks during URL playback
   deck1Select.disabled = true;
   deck2Select.disabled = true;
@@ -89,7 +89,7 @@ if (tracksFromURL && parseTracks(tracksFromURL).length > trackIndex) {
   deck4Select.disabled = true;
   deck5Select.disabled = true;
   deck6Select.disabled = true;
-  
+
   setActiveKey(song1.key);
   setInitialKey(song1.key);
   setActiveTempo(song1.bpm);

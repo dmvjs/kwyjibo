@@ -1,6 +1,6 @@
 import { activeKey, keySort } from "./key.js";
 import { filetype } from "./filetype.js";
-import { justStarTrekIntro, samples } from "./samples.js";
+import { justStarTrekIntro, samples, sampleVolumes } from "./samples.js";
 import { getSongById } from "./song.js";
 import { activeTempo, updateTempoUI } from "./tempo.js";
 import { quantumRandom } from "./cryptoRandom.js";
@@ -52,10 +52,10 @@ export const updateUI = (
     document.body.className = `color-${key}`;
     window.playedSongs = window.playedSongs || [];
     window.playedSongs.push(songIds); // Store all 6 song IDs
-    
+
     const currentIndex = trackIndex < 0 ? 0 : trackIndex;
     const previousIndex = trackIndex - 1 < 0 ? 0 : trackIndex - 1;
-    
+
     // Get current 6 songs (for "on deck" display)
     const currentSongs = window.playedSongs[currentIndex];
     const song1UI = songdata.find(item => item.id === currentSongs[0]);
@@ -64,7 +64,7 @@ export const updateUI = (
     const song4UI = songdata.find(item => item.id === currentSongs[3]);
     const song5UI = songdata.find(item => item.id === currentSongs[4]);
     const song6UI = songdata.find(item => item.id === currentSongs[5]);
-    
+
     // Get previous 6 songs (for "now playing" display)
     const previousSongs = window.playedSongs[previousIndex];
     const song7UI = songdata.find(item => item.id === previousSongs[0]);
@@ -73,7 +73,7 @@ export const updateUI = (
     const song10UI = songdata.find(item => item.id === previousSongs[3]);
     const song11UI = songdata.find(item => item.id === previousSongs[4]);
     const song12UI = songdata.find(item => item.id === previousSongs[5]);
-    
+
     // Update "Now Playing" (previous 6)
     firstSongLabel.innerText = `${song7UI?.artist || ""} - ${song7UI?.title || ""}`;
     secondSongLabel.innerText = `${song8UI?.artist || ""} - ${song8UI?.title || ""}`;
@@ -81,7 +81,7 @@ export const updateUI = (
     fourthSongLabel.innerText = `${song10UI?.artist || ""} - ${song10UI?.title || ""}`;
     fifthSongLabel.innerText = `${song11UI?.artist || ""} - ${song11UI?.title || ""}`;
     sixthSongLabel.innerText = `${song12UI?.artist || ""} - ${song12UI?.title || ""}`;
-    
+
     // Update "On Deck" (current 6)
     seventhSongLabel.innerText = `${song1UI?.artist || ""} - ${song1UI?.title || ""}`;
     eighthSongLabel.innerText = `${song2UI?.artist || ""} - ${song2UI?.title || ""}`;
@@ -89,7 +89,7 @@ export const updateUI = (
     tenthSongLabel.innerText = `${song4UI?.artist || ""} - ${song4UI?.title || ""}`;
     eleventhSongLabel.innerText = `${song5UI?.artist || ""} - ${song5UI?.title || ""}`;
     twelfthSongLabel.innerText = `${song6UI?.artist || ""} - ${song6UI?.title || ""}`;
-    
+
     // Update label colors
     firstSongLabel.className = `text-color-${song7UI?.key || 1}`;
     secondSongLabel.className = `text-color-${song8UI?.key || 1}`;
@@ -103,7 +103,7 @@ export const updateUI = (
     tenthSongLabel.className = `text-color-${song4UI?.key || 1}`;
     eleventhSongLabel.className = `text-color-${song5UI?.key || 1}`;
     twelfthSongLabel.className = `text-color-${song6UI?.key || 1}`;
-    
+
     loadSongsIntoSelect();
     document.getElementById("play-button").className = `button-color-${key}`;
     document.getElementById("contact-button").className = `button-color-${key}`;
@@ -160,7 +160,7 @@ export const getSelectedSongIds = () => {
 };
 export const loadSongsIntoSelect = () => {
   const songs = getSongs();
-  
+
   // Clear all deck selectors
   deck1Select.length = 0;
   deck2Select.length = 0;
@@ -168,7 +168,7 @@ export const loadSongsIntoSelect = () => {
   deck4Select.length = 0;
   deck5Select.length = 0;
   deck6Select.length = 0;
-  
+
   // Add default options to each deck
   const decks = [deck1Select, deck2Select, deck3Select, deck4Select, deck5Select, deck6Select];
   decks.forEach((deck, index) => {
@@ -194,7 +194,7 @@ export const loadSongsIntoSelect = () => {
     .filter((song) => !playedSongs.includes(song.id))
     .filter(Boolean)
     ._shuffle();
-  
+
   // If we don't have enough songs in the key, add all tempo songs
   if (availableSongs.length < 6) {
     const additionalSongs = songs.thisTempoSongs
@@ -204,7 +204,7 @@ export const loadSongsIntoSelect = () => {
       ._shuffle();
     availableSongs = [...availableSongs, ...additionalSongs];
   }
-  
+
   // If STILL not enough, ignore the played songs filter
   if (availableSongs.length < 6) {
     const moreSongs = songs.thisTempoSongs
@@ -213,10 +213,10 @@ export const loadSongsIntoSelect = () => {
       ._shuffle();
     availableSongs = [...availableSongs, ...moreSongs];
   }
-  
+
   const selectedSongs = [];
   const usedArtists = new Set();
-  
+
   // First pass: select songs with unique artists
   for (const song of availableSongs) {
     if (selectedSongs.length >= 6) break;
@@ -225,7 +225,7 @@ export const loadSongsIntoSelect = () => {
       usedArtists.add(song.artist);
     }
   }
-  
+
   // Second pass: add any remaining songs even if artist repeats
   if (selectedSongs.length < 6) {
     for (const song of availableSongs) {
@@ -253,7 +253,7 @@ export const loadSongsIntoSelect = () => {
       deck.appendChild(option);
     });
   });
-  
+
   // Set default selections
   selectedSongs.forEach((song, index) => {
     if (song && decks[index]) {
@@ -276,7 +276,7 @@ export const getTracks = (
   if (isMagicTime) {
     // console.log('station identification…')
   }
-  
+
   // Get songs from URL or generate new ones
   const songsFromURL = [
     track1 && getSongById(track1),
@@ -286,9 +286,9 @@ export const getTracks = (
     track5 && getSongById(track5),
     track6 && getSongById(track6),
   ];
-  
+
   let songIds = [];
-  
+
   if (trackIndex % magicNumber === 1) {
     // Reuse songs from previous holder
     songIds = holder[trackIndex - 1];
@@ -298,10 +298,10 @@ export const getTracks = (
   } else {
     // Generate 6 new songs with unique artists
     const { thisKeySongs, thisTempoSongs } = getSongs();
-    
+
     // Try to get songs from the matching key first
     let availableSongs = [...thisKeySongs]._shuffle();
-    
+
     // If we don't have enough in the key, add all tempo songs
     if (availableSongs.length < 6) {
       const additionalSongs = thisTempoSongs
@@ -309,10 +309,10 @@ export const getTracks = (
         ._shuffle();
       availableSongs = [...availableSongs, ...additionalSongs];
     }
-    
+
     const selectedSongs = [];
     const usedArtists = new Set();
-    
+
     // First pass: select songs with unique artists
     for (const song of availableSongs) {
       if (selectedSongs.length >= 6) break;
@@ -321,7 +321,7 @@ export const getTracks = (
         usedArtists.add(song.artist);
       }
     }
-    
+
     // Second pass: add any remaining songs even if artist repeats
     if (selectedSongs.length < 6) {
       for (const song of availableSongs) {
@@ -331,33 +331,26 @@ export const getTracks = (
         }
       }
     }
-    
+
     songIds = selectedSongs.map(song => song.id);
   }
-  
+
   if (!isMagicTime) {
     // console.log('followed by…')
   }
-  
+
   // Create file paths for all tracks
   const returnArray = songIds.map(id => file(id, isMagicTime));
-  console.log(`🎵 getTracks: returning ${returnArray.length} tracks`);
-  
-  // Add DJ samples during magic time (like the original two-song system)
-  let sampleTrack1, sampleTrack2;
-  if (!skipSamples && isMagicTime) {
-    sampleTrack1 = `../music/${samples[Math.floor(quantumRandom() * samples.length)]}${filetype}`;
-    sampleTrack2 = justStarTrekIntro[0];
-    returnArray.push(sampleTrack1);
-    returnArray.push(sampleTrack2);
-  }
-  
+
+  // DJ samples completely removed - no sample loading at all
+  // This prevents crashes during song transitions
+
   addTracks(songIds);
-  
+
   requestAnimationFrame(
     updateUI(activeKey, songIds, trackIndex, isFromCountdown),
   );
-  
+
   if (isMagicTime) {
     holder[trackIndex] = songIds;
   } else {
@@ -367,7 +360,7 @@ export const getTracks = (
     }
     updateActiveKey();
   }
-  
+
   trackIndex += 1;
   return {
     bpm: songsFromURL[0]?.bpm || activeTempo,

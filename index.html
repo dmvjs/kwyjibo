@@ -176,25 +176,29 @@
 
         #now-playing, #on-deck {
             display: none;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             text-shadow: 1px 1px 1px rgba(0,0,0,1);
             background: rgba(0,0,0,0.85);
-            padding: 16px 24px;
+            padding: 12px 20px;
             border-radius: 8px;
-            max-width: 250px;
+            max-width: 300px;
             margin-left: auto;
             margin-right: auto;
-            margin-bottom: 16px;
-            margin-top: 16px;
+            margin-bottom: 12px;
+            margin-top: 12px;
         }
         #now-playing h3, #on-deck h3 {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            font-size: 1rem;
         }
-        #first-song-label, #second-song-label{
-            margin-bottom: 8px;
+        /* Style ALL song labels consistently */
+        #first-song-label, #second-song-label, #third-song-label, #fourth-song-label, #fifth-song-label, #sixth-song-label,
+        #seventh-song-label, #eighth-song-label, #ninth-song-label, #tenth-song-label, #eleventh-song-label, #twelfth-song-label {
+            margin-bottom: 3px;
             line-height: 1.1;
-            font-size: 1.125rem;
+            font-size: 0.75rem;
             font-style: normal;
+            padding: 1px 0;
         }
 
         #play-button {
@@ -381,6 +385,22 @@
             z-index: 10;
         }
 
+        /* Hide DJ elements and input selectors while keeping them functional */
+        #up-next {
+            display: none !important;
+        }
+        
+        #tempo-radio {
+            display: none !important;
+        }
+        
+        #key-radio {
+            display: none !important;
+        }
+        
+        #share-button {
+            display: none !important;
+        }
 
     </style>
 </head>

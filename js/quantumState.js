@@ -26,6 +26,19 @@ class QuantumMusicalState {
     this.swingAmount = 0;
     this.microTiming = [];
     
+    // HORSE RACE SYSTEM - 4 states over 64 beats, switching every 16 beats
+    this.raceState = {
+      currentLap: 0, // 0-3 (4 laps of 16 beats each)
+      totalLaps: 4,
+      lapDuration: 16, // beats per lap
+      currentLeader: 0, // Which track is leading this lap
+      lapLeaders: [], // Track who won each lap
+      racePositions: [0, 1, 2, 3, 4, 5], // Current race positions
+      lapStartBeat: 0, // Beat when current lap started
+      raceIntensity: 0.5, // How intense the race is (0-1)
+      momentum: [0, 0, 0, 0, 0, 0] // Each track's momentum
+    };
+    
     this.regenerateSeeds();
   }
   
@@ -119,6 +132,45 @@ class QuantumMusicalState {
     return this.restPatterns[trackIndex][phraseNumber % 4] || false;
   }
   
+  shouldCutEntireSection(trackIndex, sectionNumber) {
+    // RICK RUBIN CHOPS - Cut entire 16-bar sections (or more)
+    // Since 64 beats = 4 x 16-bar sections, we can cut 1-4 entire sections
+    const quantum = quantumRandom();
+    
+    // Different tracks have different cutting probabilities - MORE AGGRESSIVE
+    const cutProbabilities = {
+      0: 0.6,  // Kick - often cut entire sections
+      1: 0.7,  // Snare - very likely to be cut
+      2: 0.8,  // Bass - almost always cut
+      3: 0.85, // Lead - almost always cut
+      4: 0.9,  // Pad - almost always cut
+      5: 0.95  // Perc - almost always cut
+    };
+    
+    const shouldCut = quantum < cutProbabilities[trackIndex] || false;
+    
+    if (shouldCut) {
+      // Determine how many 16-bar sections to cut (1-4) - MORE DRAMATIC
+      const sectionsToCut = 1 + Math.floor(quantumRandom() * 4);
+      const startSection = Math.floor(quantumRandom() * (4 - sectionsToCut + 1));
+      
+      const chopTypes = ['BRUTAL CHOP', 'DRAMATIC EDIT', 'RUTHLESS CUT', 'COMPLETE DESTRUCTION'];
+      const chopType = chopTypes[Math.floor(quantumRandom() * chopTypes.length)];
+      
+      console.log(`🎵 Rick Rubin ${chopType} Track ${trackIndex} sections ${startSection}-${startSection + sectionsToCut - 1} (${sectionsToCut} x 16-bar sections)`);
+      
+      return {
+        cut: true,
+        startSection,
+        sectionsToCut,
+        totalSections: 4,
+        chopType: chopType
+      };
+    }
+    
+    return { cut: false };
+  }
+  
   selectHarmonicSet() {
     // Use quantum seed to pick 3-4 tracks that should play together
     const numTracks = 3 + Math.floor(this.quantumSeeds.composition * 2); // 3 or 4 tracks
@@ -148,6 +200,11 @@ class QuantumMusicalState {
   }
   
   shouldPlayBeat(trackIndex, beatNumber, beatInBar, barNumber) {
+    // Debug: Log all calls to shouldPlayBeat
+    if (trackIndex === 4 || trackIndex === 5) {
+      console.log(`🔊 shouldPlayBeat called: track=${trackIndex}, beat=${beatNumber}, beatInBar=${beatInBar}, bar=${barNumber}`);
+    }
+    
     // QUANTUM INTERFERENCE - tracks interfere constructively or destructively
     
     // Get deterministic quantum values for this moment
@@ -181,8 +238,71 @@ class QuantumMusicalState {
     const isRhythmicPair = this.rhythmicPair.includes(trackIndex);
     const isLeader = trackIndex === this.leader;
     
+    // HORSE RACE DYNAMICS - Race position affects play probability
+    const raceState = this.getRaceState();
+    const isRaceLeader = trackIndex === raceState.currentLeader;
+    const racePosition = raceState.racePositions.indexOf(trackIndex);
+    const trackMomentum = raceState.momentum[trackIndex];
+    
+    // SPECIAL TRADING RULE: Tracks 5 and 6 (4,5 indexed) alternate every 8 bars
+    const isTradingTrack = (trackIndex === 4 || trackIndex === 5);
+    const tradingPhase = Math.floor(barNumber / 8) % 2; // 0 or 1
+    const isTrack5Turn = (trackIndex === 4 && tradingPhase === 0) || (trackIndex === 5 && tradingPhase === 1);
+    const isTrack6Turn = (trackIndex === 5 && tradingPhase === 0) || (trackIndex === 4 && tradingPhase === 1);
+    
+    // Debug: Show which track should be dominant
+    if (isTradingTrack && beatInBar === 0) {
+      const dominantTrack = tradingPhase === 0 ? 4 : 5;
+      console.log(`🔄 Bar ${barNumber}: Phase ${tradingPhase}, Track ${dominantTrack + 1} should be dominant`);
+    }
+    
+    // Debug logging for alternating pattern
+    if (isTradingTrack && beatInBar === 0) {
+      console.log(`🔄 Track ${trackIndex} alternating check: bar=${barNumber}, phase=${tradingPhase}, track5Turn=${isTrack5Turn}, track6Turn=${isTrack6Turn}`);
+      console.log(`🔄 Track ${trackIndex}: isTrack5Turn=${isTrack5Turn}, isTrack6Turn=${isTrack6Turn}`);
+    }
+    
     // Constructive interference bonus
     let adjustment = 0;
+    
+    // TRADING CONTROL: Tracks 5 & 6 alternate every 8 bars - one plays normally, other has reduced volume
+    // This takes precedence over race position for these tracks
+    if (isTradingTrack) {
+      if (isTrack5Turn) {
+        // Track 5's turn - it plays normally, track 6 has reduced volume
+        if (trackIndex === 4) {
+          adjustment = 1.0; // Track 5 plays normally
+          console.log(`🔄 Track 5 DOMINANT (bars ${Math.floor(barNumber/8)*8}-${Math.floor(barNumber/8)*8+7})`);
+        } else {
+          adjustment = -0.8; // Track 6 has reduced volume
+        }
+      } else if (isTrack6Turn) {
+        // Track 6's turn - it plays normally, track 5 has reduced volume
+        if (trackIndex === 5) {
+          adjustment = 1.0; // Track 6 plays normally
+          console.log(`🔄 Track 6 DOMINANT (bars ${Math.floor(barNumber/8)*8}-${Math.floor(barNumber/8)*8+7})`);
+        } else {
+          adjustment = -0.8; // Track 5 has reduced volume
+        }
+      }
+    } else {
+      // Normal race position logic for non-trading tracks
+      // RACE LEADER gets massive priority boost
+      if (isRaceLeader) {
+        adjustment += 0.6; // Race leader dominates
+      }
+      
+      // Race position affects probability (leaders play more, followers less)
+      const positionBonus = (6 - racePosition) * 0.1; // 0.1 to 0.6 bonus
+      adjustment += positionBonus;
+      
+      // Momentum affects play probability
+      adjustment += trackMomentum * 0.3;
+    }
+    
+    // Race intensity affects overall density
+    const raceIntensityMultiplier = 0.5 + (raceState.raceIntensity * 0.5); // 0.5 to 1.0
+    adjustment *= raceIntensityMultiplier;
     
     // Leader always gets priority (constructive interference)
     if (isLeader && beatInBar === 0) {
@@ -219,17 +339,203 @@ class QuantumMusicalState {
       interference: interference, // Raw interference value
       inHarmonicSet: inHarmonicSet,
       isRhythmicPair: isRhythmicPair,
-      isLeader: isLeader
+      isLeader: isLeader,
+      // Race information
+      isRaceLeader: isRaceLeader,
+      racePosition: racePosition,
+      trackMomentum: trackMomentum,
+      raceIntensity: raceState.raceIntensity,
+      // Trading information
+      isTradingTrack: isTradingTrack,
+      isTrack5Turn: isTrack5Turn,
+      isTrack6Turn: isTrack6Turn,
+      tradingPhase: tradingPhase
     };
   }
   
   advanceBar() {
     this.barCount++;
     
+    // HORSE RACE: Check if we need to advance to next lap (every 16 beats = 4 bars)
+    this.updateRaceState();
+    
     // Regenerate quantum state every 16 bars
     if (this.barCount % 16 === 0) {
       this.regenerateSeeds();
     }
+  }
+  
+  updateRaceState() {
+    const currentBeat = this.barCount * 4; // Convert bars to beats
+    const beatsInCurrentLap = currentBeat - this.raceState.lapStartBeat;
+    
+    // Check if we've completed a lap (16 beats)
+    if (beatsInCurrentLap >= this.raceState.lapDuration) {
+      this.advanceRaceLap();
+    }
+  }
+  
+  advanceRaceLap() {
+    // Record the winner of the current lap
+    this.raceState.lapLeaders.push(this.raceState.currentLeader);
+    
+    // Advance to next lap
+    this.raceState.currentLap++;
+    this.raceState.lapStartBeat = this.barCount * 4;
+    
+    // Determine new leader for this lap based on race dynamics
+    this.raceState.currentLeader = this.determineNewLeader();
+    
+    // Update race positions based on momentum and quantum factors
+    this.updateRacePositions();
+    
+    // Update race intensity (gets more intense as race progresses)
+    this.raceState.raceIntensity = Math.min(1.0, 0.3 + (this.raceState.currentLap / this.raceState.totalLaps) * 0.7);
+    
+    console.log(`🏁 RACE LAP ${this.raceState.currentLap + 1}/4: New leader is Track ${this.raceState.currentLeader}`);
+    console.log(`🏁 Race positions: [${this.raceState.racePositions.join(', ')}]`);
+  }
+  
+  determineNewLeader() {
+    // Race dynamics: early leaders can lose position, new leaders emerge
+    const quantum = quantumRandom();
+    
+    // Different strategies for different laps
+    switch (this.raceState.currentLap) {
+      case 0: // First lap - anyone can lead
+        return Math.floor(quantum * 6);
+        
+      case 1: // Second lap - momentum matters
+        return this.selectLeaderByMomentum();
+        
+      case 2: // Third lap - dramatic changes possible
+        return this.selectLeaderByDrama();
+        
+      case 3: // Final lap - previous winners have advantage but can still lose
+        return this.selectLeaderByHistory();
+        
+      default:
+        return Math.floor(quantum * 6);
+    }
+  }
+  
+  selectLeaderByMomentum() {
+    // Leader is determined by momentum built up so far
+    const maxMomentum = Math.max(...this.raceState.momentum);
+    const leaders = this.raceState.momentum.map((m, i) => ({ track: i, momentum: m }))
+      .filter(l => l.momentum === maxMomentum);
+    
+    if (leaders.length === 1) {
+      return leaders[0].track;
+    }
+    
+    // Tie-breaker with quantum randomness
+    return leaders[Math.floor(quantumRandom() * leaders.length)].track;
+  }
+  
+  selectLeaderByDrama() {
+    // Dramatic lap - anything can happen!
+    const quantum = quantumRandom();
+    
+    if (quantum < 0.3) {
+      // 30% chance: previous leader keeps position
+      return this.raceState.currentLeader;
+    } else if (quantum < 0.6) {
+      // 30% chance: underdog comes from behind
+      return this.selectUnderdog();
+    } else {
+      // 40% chance: completely new leader
+      return Math.floor(quantumRandom() * 6);
+    }
+  }
+  
+  selectLeaderByHistory() {
+    // Final lap - previous winners have advantage but can still lose
+    const quantum = quantumRandom();
+    
+    if (quantum < 0.4) {
+      // 40% chance: previous leader maintains
+      return this.raceState.currentLeader;
+    } else if (quantum < 0.7) {
+      // 30% chance: previous lap winner
+      if (this.raceState.lapLeaders.length > 0) {
+        return this.raceState.lapLeaders[this.raceState.lapLeaders.length - 1];
+      }
+    }
+    
+    // 30% chance: surprise winner
+    return Math.floor(quantumRandom() * 6);
+  }
+  
+  selectUnderdog() {
+    // Find tracks that haven't led yet
+    const allTracks = [0, 1, 2, 3, 4, 5];
+    const underdogs = allTracks.filter(track => 
+      !this.raceState.lapLeaders.includes(track) && track !== this.raceState.currentLeader
+    );
+    
+    if (underdogs.length > 0) {
+      return underdogs[Math.floor(quantumRandom() * underdogs.length)];
+    }
+    
+    // Fallback to any track
+    return Math.floor(quantumRandom() * 6);
+  }
+  
+  updateRacePositions() {
+    // Shuffle positions based on current leader and momentum
+    const positions = [0, 1, 2, 3, 4, 5];
+    
+    // Current leader gets position 0
+    const leader = this.raceState.currentLeader;
+    const leaderIndex = positions.indexOf(leader);
+    if (leaderIndex > 0) {
+      // Move leader to front
+      positions.splice(leaderIndex, 1);
+      positions.unshift(leader);
+    }
+    
+    // SPECIAL RULE: Tracks 5 and 6 trade every 8 bars
+    const currentBar = this.barCount;
+    const shouldTrade = (Math.floor(currentBar / 8) % 2) === 1;
+    
+    if (shouldTrade) {
+      // Find tracks 4 and 5 (0-indexed) and swap them
+      const track4Index = positions.indexOf(4);
+      const track5Index = positions.indexOf(5);
+      
+      if (track4Index !== -1 && track5Index !== -1) {
+        // Swap positions
+        [positions[track4Index], positions[track5Index]] = [positions[track5Index], positions[track4Index]];
+        console.log(`🔄 Tracks 5 & 6 trading positions every 8 bars (bar ${currentBar})`);
+      }
+    }
+    
+    // Shuffle remaining positions based on momentum
+    const remaining = positions.slice(1);
+    remaining.sort((a, b) => this.raceState.momentum[b] - this.raceState.momentum[a]);
+    
+    this.raceState.racePositions = [leader, ...remaining];
+  }
+  
+  updateTrackMomentum(trackIndex, energy) {
+    // Update momentum based on track's energy contribution
+    const momentumChange = energy * 0.1;
+    this.raceState.momentum[trackIndex] = Math.max(0, 
+      Math.min(1.0, this.raceState.momentum[trackIndex] + momentumChange)
+    );
+  }
+  
+  getRaceState() {
+    return {
+      currentLap: this.raceState.currentLap,
+      totalLaps: this.raceState.totalLaps,
+      currentLeader: this.raceState.currentLeader,
+      lapLeaders: [...this.raceState.lapLeaders],
+      racePositions: [...this.raceState.racePositions],
+      raceIntensity: this.raceState.raceIntensity,
+      momentum: [...this.raceState.momentum]
+    };
   }
   
   getMicroTiming(beatInBar) {
@@ -303,7 +609,7 @@ class QuantumMusicalState {
     };
   }
   
-  recordCollectiveEnergy(energy) {
+  recordCollectiveEnergy(energy, trackIndex = null) {
     this.energyHistory.push(energy);
     if (this.energyHistory.length > 100) {
       this.energyHistory.shift();
@@ -312,6 +618,11 @@ class QuantumMusicalState {
     // Update global intensity
     const avgEnergy = this.energyHistory.reduce((a, b) => a + b, 0) / this.energyHistory.length;
     this.globalIntensity = avgEnergy;
+    
+    // HORSE RACE: Update track momentum if track index provided
+    if (trackIndex !== null) {
+      this.updateTrackMomentum(trackIndex, energy);
+    }
   }
   
   setPhrase(phrase) {
@@ -392,4 +703,5 @@ class QuantumMusicalState {
 
 // Singleton - all tracks share the same quantum state
 export const quantumState = new QuantumMusicalState();
+
 

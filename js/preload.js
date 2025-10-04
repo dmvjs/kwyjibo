@@ -39,7 +39,9 @@ import {
   tracksFromURLIndex,
   setTracksFromUrlIndex,
 } from "./init.js";
-// Using simple Web Audio API like the original two-song system
+import { QuantumBeatEngine } from "./quantumBeatEngine.js";
+import { masterBus } from "./masterBus.js";
+import { sampleVolumes } from "./samples.js";
 
 let bufferLoader;
 let isFirst = true;
@@ -164,7 +166,7 @@ const loadTracks = (isFromCountdown = false, isStartingCountdown = false) => {
   const ids = getSelectedSongIds();
   // Check if we have at least some valid song IDs
   const hasValidIds = ids && ids.filter(id => id && typeof id.id === "number").length >= 6;
-  
+
   if (hasValidIds) {
     Promise.all([
       fetch(file(ids[0].id, trackIndex % magicNumber === 0)),
@@ -178,13 +180,13 @@ const loadTracks = (isFromCountdown = false, isStartingCountdown = false) => {
         bufferLoader = new BufferLoader(
           getContext(),
           getTracks(
-            ids[0].id, 
-            ids[1].id, 
+            ids[0].id,
+            ids[1].id,
             ids[2].id,
             ids[3].id,
             ids[4].id,
             ids[5].id,
-            undefined, 
+            undefined,
             isFromCountdown
           ),
           finishedLoading,
@@ -202,22 +204,164 @@ const loadTracks = (isFromCountdown = false, isStartingCountdown = false) => {
         undefined,
         undefined,
         undefined,
-            true, // skipSamples - completely removed
-            isFromCountdown,
-            isStartingCountdown,
+        undefined,
+        isFromCountdown,
+        isStartingCountdown,
       ),
       finishedLoading,
     );
   }
 };
 
-function getAndStartBuffer(bufferListItem, time, addListener, buffers) {
+function getAndStartBuffer(bufferListItem, time, addListener, buffers, entanglementPattern = null, useAnalyzer = false, trackIndex = 0, sampleVolume = null) {
   let timestamp;
   let source = getBuffer();
   source.buffer = bufferListItem;
-  source.connect(getContext().destination);
+  let gainNode;
+
+  // Handle DJ samples (trackIndex = -1)
+  if (trackIndex === -1) {
+    // DJ sample - COMPLETELY MUTED
+    gainNode = getContext().createGain();
+    gainNode.gain.value = 0; // COMPLETELY SILENT
+
+    // Set source volume to 0 as well
+    if (source.gain) {
+      source.gain.value = 0;
+    }
+
+    // Connect but with zero volume
+    source.connect(gainNode);
+    gainNode.connect(getContext().destination); // Direct to output with zero volume
+
+  } else if (useAnalyzer) {
+    // Quantum beat engine for main tracks
+    try {
+      const engine = new QuantumBeatEngine(trackIndex);
+      const analyzerGain = engine.createAnalyzerChain(source);
+
+      // If entanglement is needed, add a separate gain node for it
+      if (entanglementPattern) {
+        // Disconnect analyzer from master bus and add entanglement gain
+        analyzerGain.disconnect();
+
+        const entanglementGain = getContext().createGain();
+        analyzerGain.connect(entanglementGain);
+        entanglementGain.connect(masterBus.getInput()); // Route to master bus
+
+        gainNode = entanglementGain;
+
+        const beatDuration = 60 / activeTempo;
+        const cycleDuration = beatDuration * 8;
+        const numCycles = Math.ceil(bufferListItem.duration / cycleDuration);
+
+        // console.log(`🔗 Entangled track ${entanglementPattern}`); // Removed spam
+
+        for (let i = 0; i < numCycles; i++) {
+          const cycleStart = time + (i * cycleDuration);
+
+          if (entanglementPattern === 'A') {
+            if (i % 2 === 0) {
+              entanglementGain.gain.setValueAtTime(1, cycleStart);
+            } else {
+              entanglementGain.gain.setValueAtTime(0, cycleStart);
+            }
+          } else if (entanglementPattern === 'B') {
+            if (i % 2 === 0) {
+              entanglementGain.gain.setValueAtTime(0, cycleStart);
+            } else {
+              entanglementGain.gain.setValueAtTime(1, cycleStart);
+            }
+          }
+        }
+      } else {
+        gainNode = analyzerGain;
+      }
+      // Engine created
+    } catch (error) {
+      console.error(`Engine error track ${trackIndex}:`, error);
+      // Fallback to standard processing
+      useAnalyzer = false;
+    }
+  }
+
+  if (!useAnalyzer) {
+    // Standard processing chain
+    // Create gain nodes for volume control
+    gainNode = getContext().createGain();
+
+    // Create audio processing chain
+    const compressor = getContext().createDynamicsCompressor();
+    compressor.threshold.value = -24;
+    compressor.knee.value = 30;
+    compressor.ratio.value = 12;
+    compressor.attack.value = 0.003;
+    compressor.release.value = 0.25;
+
+    // Create stereo enhancement
+    const stereoEnhancer = getContext().createStereoPanner();
+    stereoEnhancer.pan.value = 0; // Center position
+
+    // Create EQ for sparkle
+    const eq = getContext().createBiquadFilter();
+    eq.type = 'highshelf';
+    eq.frequency.value = 3000; // 3kHz shelf
+    eq.gain.value = 3; // Subtle boost
+
+    // Connect main processing chain
+    source.connect(gainNode);
+    gainNode.connect(compressor);
+    compressor.connect(eq);
+    eq.connect(stereoEnhancer);
+    stereoEnhancer.connect(masterBus.getInput()); // Route to master bus
+
+    // Set initial volume
+    gainNode.gain.setValueAtTime(1, time);
+
+    // Apply entanglement pattern if specified (for alternating songs)
+    if (entanglementPattern) {
+      const beatDuration = 60 / activeTempo; // Duration of one beat in seconds
+      const cycleDuration = beatDuration * 8; // 8 beats
+      const numCycles = Math.ceil(bufferListItem.duration / cycleDuration);
+
+      // Schedule gain changes for each 8-beat cycle
+      for (let i = 0; i < numCycles; i++) {
+        const cycleStart = time + (i * cycleDuration);
+
+        if (entanglementPattern === 'A') {
+          // Pattern A: ON for first 8 beats, OFF for next 8 beats
+          if (i % 2 === 0) {
+            gainNode.gain.setValueAtTime(1, cycleStart);
+          } else {
+            gainNode.gain.setValueAtTime(0, cycleStart);
+          }
+        } else if (entanglementPattern === 'B') {
+          // Pattern B: OFF for first 8 beats, ON for next 8 beats
+          if (i % 2 === 0) {
+            gainNode.gain.setValueAtTime(0, cycleStart);
+          } else {
+            gainNode.gain.setValueAtTime(1, cycleStart);
+          }
+        }
+      }
+    }
+
+    // If this is a transition, fade out the previous track
+    if (addListener) {
+      const fadeDuration = (60 / activeTempo) * 4;
+      const fadeStartTime = time + bufferListItem.duration - fadeDuration;
+
+      // Fade out main track (only if not using entanglement)
+      if (!entanglementPattern) {
+        gainNode.gain.setValueAtTime(1, fadeStartTime);
+        gainNode.gain.linearRampToValueAtTime(0, time + bufferListItem.duration);
+      }
+    }
+  }
+
   source.start(time);
   source.stop(time + bufferListItem.duration);
+
   if (addListener) {
     source.addEventListener("ended", (event) => {
       (buffers || []).forEach((buffer) => {
@@ -234,46 +378,39 @@ function getAndStartBuffer(bufferListItem, time, addListener, buffers) {
 }
 
 function finishedLoading(bufferList, tempo) {
-  // Start all six main tracks simultaneously (like the original two-song system)
-  getAndStartBuffer(bufferList[0], bufferPadding, true, [
-    bufferList[0],
-    bufferList[1],
-    bufferList[2],
-    bufferList[3],
-    bufferList[4],
-    bufferList[5],
-  ]);
-  
-  // Start tracks 1-5 simultaneously
+  // QUANTUM GENERATIVE BEAT ENGINE
+  // Fractures 6 songs into stems and sequences them into ONE evolving beat
+
+  // Track 1: Kick
+  getAndStartBuffer(bufferList[0], bufferPadding, true, bufferList.slice(0, 6), null, true, 0);
+
+  // Track 2: Snare
   if (bufferList[1]) {
-    getAndStartBuffer(bufferList[1], bufferPadding);
+    getAndStartBuffer(bufferList[1], bufferPadding, false, null, null, true, 1);
   }
+
+  // Track 3: Bass
   if (bufferList[2]) {
-    getAndStartBuffer(bufferList[2], bufferPadding);
+    getAndStartBuffer(bufferList[2], bufferPadding, false, null, null, true, 2);
   }
+
+  // Track 4: Percussion
   if (bufferList[3]) {
-    getAndStartBuffer(bufferList[3], bufferPadding);
+    getAndStartBuffer(bufferList[3], bufferPadding, false, null, null, true, 3);
   }
+
+  // Track 5: Melody (entangled)
   if (bufferList[4]) {
-    getAndStartBuffer(bufferList[4], bufferPadding);
+    getAndStartBuffer(bufferList[4], bufferPadding, false, null, 'A', true, 4);
   }
+
+  // Track 6: Texture (entangled)
   if (bufferList[5]) {
-    getAndStartBuffer(bufferList[5], bufferPadding);
+    getAndStartBuffer(bufferList[5], bufferPadding, false, null, 'B', true, 5);
   }
-  
-  // Handle DJ samples during magic time (like the original)
-  if (!usingTracksFromURL && !isFirst) {
-    if (bufferList[6]) {
-      // delay the start until halfway through the bar
-      getAndStartBuffer(
-        bufferList[6],
-        bufferPadding + ((60 / activeTempo) * 16) / 2,
-      );
-    }
-    if (bufferList[7]) {
-      getAndStartBuffer(bufferList[7], bufferPadding);
-    }
-  }
+
+  // DJ samples completely removed - no sample loading at all
+  // This prevents crashes during song transitions
 
   const barDuration = 60 / tempo;
   const min =
@@ -304,7 +441,7 @@ function finishedLoading(bufferList, tempo) {
       console.log("tempo change", activeTempo);
     }
   }
-  replenishBuffers(bufferList.length);
+  replenishBuffers(6); // Only 6 main tracks, no samples
   if (isFirst) {
     isFirst = false;
     init();

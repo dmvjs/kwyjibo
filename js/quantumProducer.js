@@ -13,33 +13,33 @@ class QuantumProducer {
     this.focusElement = null; // What's the star of this section?
     this.supportingCast = []; // What supports the star?
     this.currentVibe = 'space'; // space, tension, release, impact
-    
+
     // Producer initialized
   }
-  
+
   makeProductionDecisions(songKeys, phrase, barNumber) {
     // Rick Rubin question: "What's this section about?"
     this.analyzeSectionPurpose(phrase, barNumber);
-    
+
     // Decide which ONE element is the star
     this.focusElement = this.selectFocusElement(songKeys);
-    
+
     // Pick 0-2 supporting elements (usually 0-1)
     this.supportingCast = this.selectSupportingElements(this.focusElement);
-    
+
     // Production decisions made
-    
+
     return {
       focus: this.focusElement,
       support: this.supportingCast,
       vibe: this.currentVibe
     };
   }
-  
+
   analyzeSectionPurpose(phrase, barNumber) {
     // What should this section feel like?
     const quantum = quantumRandom();
-    
+
     switch (phrase) {
       case 'intro':
         this.currentVibe = 'space'; // Lots of emptiness
@@ -58,11 +58,11 @@ class QuantumProducer {
         break;
     }
   }
-  
+
   selectFocusElement(songKeys) {
     // Quantum decision: Which element is the STAR of this section?
     const elements = ['kick', 'snare', 'bass', 'perc', 'melody', 'texture'];
-    
+
     // Weight by vibe
     let weights;
     switch (this.currentVibe) {
@@ -85,39 +85,39 @@ class QuantumProducer {
       default:
         weights = [0.2, 0.2, 0.2, 0.15, 0.15, 0.1];
     }
-    
+
     // Quantum weighted selection
     const rand = quantumRandom();
     let cumulative = 0;
-    
+
     for (let i = 0; i < elements.length; i++) {
       cumulative += weights[i];
       if (rand <= cumulative) {
         return elements[i];
       }
     }
-    
+
     return elements[0];
   }
-  
+
   selectSupportingElements(focus) {
     // Rick Rubin: "Does it NEED support, or is it better alone?"
     const needsSupport = quantumRandom() > this.minimalismLevel; // High minimalism = less support
-    
+
     if (!needsSupport) {
       return []; // Solo element - maximum impact (most common!)
     }
-    
+
     // Only pick 1 supporting element (never 2)
     const allElements = ['kick', 'snare', 'bass', 'perc', 'melody', 'texture'];
     const available = allElements.filter(e => e !== focus);
-    
+
     // Pick ONE complementary element
     const complement = this.getComplement(focus, available);
-    
+
     return [complement];
   }
-  
+
   getComplement(focus, available) {
     // What complements the focus element?
     const complements = {
@@ -128,27 +128,30 @@ class QuantumProducer {
       'melody': ['bass', 'texture'],
       'texture': ['melody', 'perc']
     };
-    
+
     const preferred = complements[focus] || [];
     const options = available.filter(e => preferred.includes(e));
-    
+
     if (options.length > 0) {
       return options[Math.floor(quantumRandom() * options.length)];
     }
-    
+
     return available[Math.floor(quantumRandom() * available.length)];
   }
-  
+
   shouldTrackPlay(trackRole) {
     // Rick Rubin's ultimate question: "Does this serve the song?"
-    
-    // For now, allow all tracks to play with full level
-    // This ensures all 6 tracks get quantum treatment
-    return { 
-      play: true, 
-      level: 1.0, 
-      role: 'focus' // All tracks are focus elements for now
-    };
+
+    if (trackRole === this.focusElement) {
+      return { play: true, level: 1.0, role: 'focus' };
+    }
+
+    if (this.supportingCast.includes(trackRole)) {
+      return { play: true, level: 0.6, role: 'support' };
+    }
+
+    // Everything else: CUT
+    return { play: false, level: 0, role: 'cut' };
   }
 }
 
