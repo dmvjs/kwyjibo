@@ -1,8 +1,8 @@
-import { activeKey, keySort } from "./key.js";
+import { activeKey, keySort, setActiveKey } from "./key.js";
 import { filetype } from "./filetype.js";
 import { justStarTrekIntro, samples } from "./samples.js";
 import { getSongById } from "./song.js";
-import { activeTempo, updateTempoUI } from "./tempo.js";
+import { activeTempo } from "./tempo.js";
 import { quantumRandom } from "./cryptoRandom.js";
 import { songdata } from "./songdata.js";
 import { addTracks } from "./share.js";
@@ -29,6 +29,16 @@ export let isMagicTime = trackIndex % magicNumber === 0;
 
 export let fsID;
 export let ssID;
+export let nowPlayingIndex = 0;
+
+// At the top of the file, ensure this is set (add if not present)
+if (typeof window.firstMainPair === "undefined") {
+  window.firstMainPair = null;
+}
+
+if (typeof window.firstPlayedPair === "undefined") {
+  window.firstPlayedPair = null;
+}
 
 export const updateUI = (
   key,
@@ -39,55 +49,123 @@ export const updateUI = (
 ) => {
   fsID = firstSongId;
   ssID = secondSongId;
+  // Set the active key to the key of the first song in the now playing pair
+  const firstSong = songdata.find((item) => item.id === firstSongId);
+  if (firstSong) setActiveKey(firstSong.key);
   return () => {
-    document.body.className = `color-${key}`;
+    const params = new URLSearchParams(window.location.search);
+    const urlTracks = params.get("tracks");
     window.playedSongs = window.playedSongs || [];
     window.playedSongs.push([firstSongId, secondSongId]);
-    const firstSongUI = songdata.filter(
-      (item) =>
-        item.id === window.playedSongs[trackIndex < 0 ? 0 : trackIndex][0],
-    )[0];
-    const secondSongUI = songdata.filter(
-      (item) =>
-        item.id === window.playedSongs[trackIndex < 0 ? 0 : trackIndex][1],
-    )[0];
-    const thirdSongUI = songdata.filter(
-      (item) =>
-        item.id ===
-        window.playedSongs[trackIndex - 1 < 0 ? 0 : trackIndex - 1][0],
-    )[0];
-    const fourthSongUI = songdata.filter(
-      (item) =>
-        item.id ===
-        window.playedSongs[trackIndex - 1 < 0 ? 0 : trackIndex - 1][1],
-    )[0];
-    firstSongLabel.innerText = `${thirdSongUI.artist || ""} - ${
-      thirdSongUI.title || ""
-    }`;
-    secondSongLabel.innerText = `${fourthSongUI?.artist || ""} - ${
-      fourthSongUI?.title || ""
-    }`;
-    thirdSongLabel.innerText = `${firstSongUI?.artist || ""} - ${
-      firstSongUI.title || ""
-    }`;
-    fourthSongLabel.innerText = `${secondSongUI?.artist || ""} - ${
-      secondSongUI?.title || ""
-    }`;
-    firstSongLabel.className = `text-color-${thirdSongUI?.key}`;
-    secondSongLabel.className = `text-color-${fourthSongUI?.key}`;
-    thirdSongLabel.className = `text-color-${firstSongUI.key}`;
-    fourthSongLabel.className = `text-color-${secondSongUI?.key}`;
-    loadSongsIntoSelect();
-    document.getElementById("play-button").className = `button-color-${key}`;
-    document.getElementById("contact-button").className = `button-color-${key}`;
-    document.getElementById("youtube-button").className = `button-color-${key}`;
-    document.getElementById("github-button").className = `button-color-${key}`;
-    if (isFromCountdown) {
-      showElement(document.getElementById("on-deck"));
+
+    if (urlTracks && window.playedSongs && window.playedSongs.length > 0) {
+      // --- Playback mode logic (new) ---
+      if (!document.body.classList.contains("playback-mode")) {
+        document.body.classList.add("playback-mode");
+        const upNext = document.getElementById("up-next");
+        if (upNext) upNext.style.display = "none";
+      }
+      document.body.className = `playback-mode color-${key}`;
+      // Fix off-by-one: show the second-to-last entry as the current pair
+      const idx = Math.max(0, window.playedSongs.length - 2);
+      const currentPair = window.playedSongs[idx];
+      const firstSongUI = songdata.find((item) => item.id === currentPair?.[0]);
+      const secondSongUI = songdata.find(
+        (item) => item.id === currentPair?.[1],
+      );
+      if (firstSongUI && secondSongUI) {
+        firstSongLabel.innerText = `${firstSongUI.artist} - ${firstSongUI.title}`;
+        secondSongLabel.innerText = `${secondSongUI.artist} - ${secondSongUI.title}`;
+        firstSongLabel.className = `text-color-${firstSongUI.key}`;
+        secondSongLabel.className = `text-color-${secondSongUI.key}`;
+      }
+      // For next songs, use the next index in playedSongs
+      const nextIndex = window.playedSongs.length;
+      const thirdSongUI = songdata.find(
+        (item) => item.id === window.playedSongs?.[nextIndex]?.[0],
+      );
+      const fourthSongUI = songdata.find(
+        (item) => item.id === window.playedSongs?.[nextIndex]?.[1],
+      );
+      thirdSongLabel.innerText = `${thirdSongUI?.artist || ""} - ${
+        thirdSongUI?.title || ""
+      }`;
+      fourthSongLabel.innerText = `${fourthSongUI?.artist || ""} - ${
+        fourthSongUI?.title || ""
+      }`;
+      thirdSongLabel.className = `text-color-${thirdSongUI?.key}`;
+      fourthSongLabel.className = `text-color-${fourthSongUI?.key}`;
+      document.body.className = `playback-mode color-${key}`;
+      document.getElementById("play-button").className = `button-color-${key}`;
+      document.getElementById(
+        "contact-button",
+      ).className = `button-color-${key}`;
+      document.getElementById(
+        "youtube-button",
+      ).className = `button-color-${key}`;
+      document.getElementById(
+        "github-button",
+      ).className = `button-color-${key}`;
+      if (isFromCountdown) {
+        showElement(document.getElementById("on-deck"));
+      } else {
+        hideElement(document.getElementById("on-deck"));
+      }
+      showElement(document.getElementById("now-playing"));
+      const totalPairs = window.playlist ? window.playlist.length : 0;
+      const remainingPairs = totalPairs - window.playedSongs.length;
+      const upNext = document.getElementById("up-next");
+      if (urlTracks && remainingPairs <= 1) {
+        if (upNext) upNext.style.display = "block";
+      }
     } else {
-      hideElement(document.getElementById("on-deck"));
+      // --- Normal mode logic (original, always update) ---
+      document.body.className = `color-${key}`;
+      const played = window.playedSongs;
+      const idx = played.length - 1;
+      const prevIdx = Math.max(0, idx - 1);
+      const firstSongUI = songdata.find((item) => item.id === played[idx][0]);
+      const secondSongUI = songdata.find((item) => item.id === played[idx][1]);
+      const thirdSongUI = songdata.find(
+        (item) => item.id === played[prevIdx][0],
+      );
+      const fourthSongUI = songdata.find(
+        (item) => item.id === played[prevIdx][1],
+      );
+      firstSongLabel.innerText = `${thirdSongUI?.artist || ""} - ${
+        thirdSongUI?.title || ""
+      }`;
+      secondSongLabel.innerText = `${fourthSongUI?.artist || ""} - ${
+        fourthSongUI?.title || ""
+      }`;
+      thirdSongLabel.innerText = `${firstSongUI?.artist || ""} - ${
+        firstSongUI?.title || ""
+      }`;
+      fourthSongLabel.innerText = `${secondSongUI?.artist || ""} - ${
+        secondSongUI?.title || ""
+      }`;
+      firstSongLabel.className = `text-color-${thirdSongUI?.key}`;
+      secondSongLabel.className = `text-color-${fourthSongUI?.key}`;
+      thirdSongLabel.className = `text-color-${firstSongUI?.key}`;
+      fourthSongLabel.className = `text-color-${secondSongUI?.key}`;
+      loadSongsIntoSelect();
+      document.getElementById("play-button").className = `button-color-${key}`;
+      document.getElementById(
+        "contact-button",
+      ).className = `button-color-${key}`;
+      document.getElementById(
+        "youtube-button",
+      ).className = `button-color-${key}`;
+      document.getElementById(
+        "github-button",
+      ).className = `button-color-${key}`;
+      if (isFromCountdown) {
+        showElement(document.getElementById("on-deck"));
+      } else {
+        hideElement(document.getElementById("on-deck"));
+      }
+      showElement(document.getElementById("now-playing"));
     }
-    showElement(document.getElementById("now-playing"));
   };
 };
 
@@ -223,7 +301,6 @@ export const getTracks = (
   if (isMagicTime) {
     holder[trackIndex] = [firstSongId, secondSongId];
   } else {
-    updateTempoUI(firstSongId.bpm);
     updateActiveKey();
   }
   trackIndex += 1;

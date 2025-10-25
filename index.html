@@ -177,6 +177,11 @@
             margin: 2px;
         }
 
+        body.playback-mode #deck-1, body.playback-mode #deck-2, body.playback-mode #yo-dj {
+            display: none;
+        }
+
+
         #now-playing, #on-deck {
             display: none;
             letter-spacing: 1px;
@@ -265,52 +270,6 @@
         #generate-mix-button:active, #generate-mix-button:focus {
             border: 2px solid #158a15;
             color: #158a15;
-        }
-
-        #three-hour-mix-button {
-            height: 60px;
-            display: block !important;
-            border: 2px solid #ffd600;
-            border-radius: 8px;
-            padding: 16px 24px;
-            line-height: 0;
-            font-size: 1.5rem;
-            font-weight: 900;
-            width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-            color: #ffd600;
-            margin-top: 8px;
-            background: black;
-            transition: color 0.1s, border-color 0.1s;
-        }
-
-        #three-hour-mix-button:active, #three-hour-mix-button:focus {
-            border: 2px solid #bfa600;
-            color: #bfa600;
-        }
-
-        #full-library-mix-button {
-            height: 60px;
-            display: block !important;
-            border: 2px solid #ffd600;
-            border-radius: 8px;
-            padding: 16px 24px;
-            line-height: 0;
-            font-size: 1.5rem;
-            font-weight: 900;
-            width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-            color: #ffd600;
-            margin-top: 8px;
-            background: black;
-            transition: color 0.1s, border-color 0.1s;
-        }
-
-        #full-library-mix-button:active, #full-library-mix-button:focus {
-            border: 2px solid #bfa600;
-            color: #bfa600;
         }
 
         select {
@@ -549,6 +508,8 @@
             <input type="radio" id="key-12" name="key" value="12">
             <label for="key-12" class="radio">12</label>
         </div>
+        <button id="generate-mix-button">QUICK MIX</button>
+
         <div id="up-next">
             <div>
                 <select id="deck-1" name="deck-1"></select>
@@ -556,12 +517,9 @@
             <div>
                 <select id="deck-2" name="deck-2"></select>
             </div>
-            <h3 class="white header-spacing">Yo DJ 👆 <span id="counter-holder"></span></h3>
         </div>
         <button id="play-button">▶️ PLAY</button>
         <button id="share-button">COPY URL</button>
-        <button id="generate-mix-button">ONE HOUR MIX</button>
-        <button id="full-library-mix-button">100% MIX</button>
         <div id="now-playing">
             <h3 class="white header-spacing">Now playing:</h3>
             <div id="first-song-label" class="white"></div>

@@ -5,6 +5,7 @@ export const songdata = [
     title: "I Yi Yi",
     key: 2,
     bpm: 94,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ export const songdata = [
     title: "How Do U Want It",
     key: 2,
     bpm: 94,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ export const songdata = [
     title: "Couldn't Be a Better Player",
     key: 2,
     bpm: 94,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
   {
     id: 4,
@@ -26,6 +29,7 @@ export const songdata = [
     title: "What's My Name",
     key: 10,
     bpm: 94,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
   {
     id: 5,
@@ -33,6 +37,7 @@ export const songdata = [
     title: "Hypnotize",
     key: 9,
     bpm: 94,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
   {
     id: 6,
@@ -40,6 +45,7 @@ export const songdata = [
     title: "If I Ruled the World",
     key: 2,
     bpm: 94,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
   {
     id: 7,
@@ -47,6 +53,7 @@ export const songdata = [
     title: "Shook Ones Part 2",
     key: 3,
     bpm: 94,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
   {
     id: 8,
@@ -54,6 +61,7 @@ export const songdata = [
     title: "Southern Hospitality",
     key: 10,
     bpm: 94,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
   {
     id: 9,
@@ -61,6 +69,7 @@ export const songdata = [
     title: "Shine",
     key: 6,
     bpm: 94,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
   {
     id: 10,
@@ -68,6 +77,7 @@ export const songdata = [
     title: "Show Dat Work",
     key: 8,
     bpm: 94,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
   {
     id: 11,
@@ -75,6 +85,7 @@ export const songdata = [
     title: "Back Dat Ass Up",
     key: 7,
     bpm: 94,
+    compatibleKeys: [11, 3, 8, 12, 4, 9, 1, 6],
   },
   {
     id: 12,
@@ -82,6 +93,7 @@ export const songdata = [
     title: "Tipsy",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
   {
     id: 13,
@@ -89,6 +101,7 @@ export const songdata = [
     title: "The Next Episode",
     key: 2,
     bpm: 94,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
   {
     id: 14,
@@ -96,6 +109,7 @@ export const songdata = [
     title: "Play",
     key: 5,
     bpm: 94,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
   {
     id: 15,
@@ -103,6 +117,7 @@ export const songdata = [
     title: "Grindin'",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
   {
     id: 16,
@@ -110,6 +125,7 @@ export const songdata = [
     title: "Breathe In, Breathe Out",
     key: 8,
     bpm: 94,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
   {
     id: 17,
@@ -117,6 +133,7 @@ export const songdata = [
     title: "Down for my Ns",
     key: 1,
     bpm: 94,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
   {
     id: 18,
@@ -124,6 +141,7 @@ export const songdata = [
     title: "Ain't It Man",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
   {
     id: 19,
@@ -131,6 +149,7 @@ export const songdata = [
     title: "Why U Wanna",
     key: 8,
     bpm: 94,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
   {
     id: 20,
@@ -138,6 +157,7 @@ export const songdata = [
     title: "In Da Club",
     key: 6,
     bpm: 94,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
   {
     id: 21,
@@ -145,6 +165,7 @@ export const songdata = [
     title: "Single Ladies",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
   {
     id: 22,
@@ -152,615 +173,703 @@ export const songdata = [
     title: "I Get It In",
     key: 12,
     bpm: 94,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 24,
     artist: "Lil Mo",
     title: "Superwoman Remix",
     key: 12,
     bpm: 94,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 25,
     artist: "Fabolous",
     title: "Can't Deny It",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 26,
     artist: "Masta Ace",
     title: "Born to Roll",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 29,
     artist: "Ludacris",
     title: "Ho",
     key: 8,
     bpm: 94,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 30,
     artist: "Snoop Dogg",
     title: "Deep Cover",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 31,
     artist: "Snoop Dogg",
     title: "Drop It Like Its Hot",
     key: 9,
     bpm: 94,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 32,
     artist: "Dr Dre",
     title: "Dre Day",
     key: 1,
     bpm: 94,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 34,
     artist: "Juvenile",
     title: "Ha",
     key: 5,
     bpm: 94,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 35,
     artist: "Silk the Shocker",
     title: "Aint My Fault Part 2",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 36,
     artist: "Nas",
     title: "Street Dreams",
     key: 6,
     bpm: 94,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 37,
     artist: "Lil Wayne",
     title: "I Need a Hot Girl",
     key: 6,
     bpm: 94,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 38,
     artist: "Paul Cameron",
     title: "Brown Beat",
     key: 8,
     bpm: 94,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 40,
     artist: "Sean Paul",
     title: "Baby Boy",
     key: 12,
     bpm: 94,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 41,
     artist: "Pastor Troy",
     title: "Are We Cuttin",
     key: 8,
     bpm: 94,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 42,
     artist: "MOP",
     title: "Ante Up",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 43,
     artist: "Total",
     title: "What About Us Remix",
     key: 3,
     bpm: 94,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 44,
     artist: "Nelly",
     title: "Shake Ya Tailfeather",
     key: 11,
     bpm: 94,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 46,
     artist: "Ludacris",
     title: "Move B*tch",
     key: 11,
     bpm: 94,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 47,
     artist: "Mystikal",
     title: "Been So Long",
     key: 11,
     bpm: 94,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 48,
     artist: "Cheeky Blakk",
     title: "B*tch Get Off Me",
     key: 1,
     bpm: 94,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 49,
     artist: "Chingy",
     title: "Right Thurr",
     key: 2,
     bpm: 94,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 50,
     artist: "Chris Brown",
     title: "Wall 2 Wall",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 51,
     artist: "Young Buck",
     title: "Shorty Wanna Ride",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 52,
     artist: "Juvenile",
     title: "In My Life",
     key: 9,
     bpm: 94,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 54,
     artist: "Juvenile",
     title: "From Her Mama",
     key: 6,
     bpm: 94,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 55,
     artist: "Big Tymers",
     title: "Number One Stunna",
     key: 1,
     bpm: 94,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 56,
     artist: "Big Tymers",
     title: "Get Your Roll On",
     key: 1,
     bpm: 94,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 57,
     artist: "LL Cool J",
     title: "Doin It",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 58,
     artist: "Jim Jones",
     title: "We Fly High",
     key: 1,
     bpm: 94,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 59,
     artist: "Kia Shine",
     title: "Krispy",
     key: 8,
     bpm: 94,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 60,
     artist: "Vockah Redu",
     title: "Roll Call",
     key: 10,
     bpm: 94,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
-  {
+    {
     id: 61,
     artist: "Quint Black",
     title: "Shake Dem Haters Off",
     key: 12,
     bpm: 94,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 62,
     artist: "Traxster",
     title: "Freak Hoes",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 63,
     artist: "Lil Wayne",
     title: "Bring it Back",
     key: 6,
     bpm: 84,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 64,
     artist: "Youngbloodz",
     title: "Presidential",
     key: 6,
     bpm: 84,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 65,
     artist: "Lil Wayne",
     title: "Go DJ",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 66,
     artist: "Total",
     title: "What About Us Remix",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 67,
     artist: "Master P",
     title: "I'm a Ho",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 68,
     artist: "Jay-Z",
     title: "Dirt Off Your Shoulder",
     key: 3,
     bpm: 84,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 69,
     artist: "Lil Boosie",
     title: "Wipe Me Down Remix",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 70,
     artist: "Snoop Dogg",
     title: "Woof",
     key: 11,
     bpm: 84,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 72,
     artist: "Kelis",
     title: "Bossy",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 73,
     artist: "Chris Brown",
     title: "Get Like Me",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 74,
     artist: "Ludacris",
     title: "Get Back",
     key: 3,
     bpm: 84,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 75,
     artist: "Lil Wayne",
     title: "Stuntin' Like My Daddy",
     key: 11,
     bpm: 84,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 76,
     artist: "Super Duck Breaks",
     title: "Beak This",
     key: 10,
     bpm: 84,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
-  {
+    {
     id: 77,
     artist: "Trillville",
     title: "Some Cut",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 78,
     artist: "Nelly",
     title: "E.I.",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 79,
     artist: "504 Boys",
     title: "Wobble Wobble",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 80,
     artist: "T.I.",
     title: "Big Things Poppin'",
     key: 5,
     bpm: 84,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 81,
     artist: "P$C",
     title: "I'm a King",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 82,
     artist: "Juvenile",
     title: "Set It Off",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 83,
     artist: "T.I.",
     title: "24's",
     key: 11,
     bpm: 84,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 84,
     artist: "54th Platoon",
     title: "Holdin' It Down",
     key: 12,
     bpm: 84,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 85,
     artist: "Lil Scrappy",
     title: "No Problem",
     key: 5,
     bpm: 84,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 86,
     artist: "Bubba Sparxxx",
     title: "Ugly",
     key: 11,
     bpm: 94,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 87,
     artist: "Nas",
     title: "Oochie Wally",
     key: 11,
     bpm: 94,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 88,
     artist: "Quint Black",
     title: "Shake Dem Haters Remix",
     key: 12,
     bpm: 94,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 89,
     artist: "Da Sha Ra",
     title: "Bootin' Up",
     key: 1,
     bpm: 94,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 90,
     artist: "Usher",
     title: "You Make Me Wanna Remix",
     key: 5,
     bpm: 84,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 91,
     artist: "Three 6 Mafia",
     title: "You Scared Part 2",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 92,
     artist: "Nelly",
     title: "Country Grammar",
     key: 6,
     bpm: 84,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 93,
     artist: "Webbie",
     title: "Bad B*tch",
     key: 8,
     bpm: 84,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 94,
     artist: "T.I.",
     title: "Top Back",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 95,
     artist: "David Banner",
     title: "Shawty Say",
     key: 6,
     bpm: 84,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 96,
     artist: "Lil Keke",
     title: "Southside",
     key: 12,
     bpm: 84,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 97,
     artist: "Kingpin Skinny Pimp",
     title: "TVs Remix",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 98,
     artist: "Three 6 Mafia",
     title: "Ask & Get It",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 99,
     artist: "Three 6 Mafia",
     title: "Who Run It",
     key: 6,
     bpm: 84,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 100,
     artist: "Jay-Z",
     title: "Hey Papi",
     key: 12,
     bpm: 84,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 101,
     artist: "Project Pat",
     title: "Ooh Nuttin",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 102,
     artist: "Lil Troy",
     title: "We Gon Lean",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 103,
     artist: "Youngbloodz",
     title: "Datz Me",
     key: 6,
     bpm: 84,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 104,
     artist: "Project Pat",
     title: "Dont Save Her",
     key: 3,
     bpm: 84,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 105,
     artist: "E-40",
     title: "Rep Yo City",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 106,
     artist: "Lil Jon",
     title: "I Dont Give a What",
     key: 8,
     bpm: 84,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 107,
     artist: "Rich Boy",
     title: "Throw Some Ds",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 108,
     artist: "Project Pat",
     title: "Gel and Weave",
     key: 5,
     bpm: 84,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 109,
     artist: "Wacko Skip & Juvenile",
     title: "Nolia Clap",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 110,
     artist: "Lil Wayne",
     title: "Fireman",
     key: 6,
     bpm: 84,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 111,
     artist: "Yung Joc",
     title: "It's Goin Down",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 112,
     artist: "Ludacris",
     title: "D@mn",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 113,
     artist: "Magic",
     title: "I Smoke I Drank Remix",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 114,
     artist: "DJ KaySlay",
     title: "Who Gives A ...",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 115,
     artist: "Nelly",
     title: "Air Force Ones",
     key: 10,
     bpm: 84,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
-  {
+    {
     id: 116,
     artist: "Lil Jon",
     title: "Snap Yo Fingers",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 117,
     artist: "Nelly",
     title: "Grillz",
     key: 11,
     bpm: 84,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
   {
     id: 118,
@@ -790,19 +899,21 @@ export const songdata = [
     bpm: 84,
     key: 8,
   },
-  {
+    {
     id: 122,
     artist: "Ludacris",
     title: "D@mn Remix",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 123,
     artist: "Too Short",
     title: "Shake That Monkey",
     key: 8,
     bpm: 102,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
   {
     id: 124,
@@ -825,12 +936,13 @@ export const songdata = [
     bpm: 102,
     key: 2,
   },
-  {
+    {
     id: 127,
     artist: "Choppa",
     title: "Choppa Style",
     key: 2,
     bpm: 102,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
   {
     id: 128,
@@ -853,47 +965,53 @@ export const songdata = [
     bpm: 102,
     key: 5,
   },
-  {
+    {
     id: 131,
     artist: "Lil Jon",
     title: "Get Low",
     key: 5,
     bpm: 102,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 132,
     artist: "Master P",
     title: "Them Jeans",
     key: 5,
     bpm: 102,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 133,
     artist: "Da Sha Ra",
     title: "Bootin' Up",
     key: 2,
     bpm: 102,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 134,
     artist: "Loon",
     title: "How U Want That",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 135,
     artist: "Khia",
     title: "My Neck, My Back",
     key: 8,
     bpm: 102,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 136,
     artist: "Ying Yang Twins",
     title: "Salt Shaker",
     key: 2,
     bpm: 102,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
   {
     id: 137,
@@ -916,12 +1034,13 @@ export const songdata = [
     bpm: 102,
     key: 12,
   },
-  {
+    {
     id: 140,
     artist: "Missy Elliott",
     title: "Work It",
     key: 5,
     bpm: 102,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
   {
     id: 141,
@@ -937,12 +1056,13 @@ export const songdata = [
     bpm: 94,
     key: 9,
   },
-  {
+    {
     id: 143,
     artist: "Young Gunz",
     title: "Can't Stop Won't Stop",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
   {
     id: 144,
@@ -987,12 +1107,13 @@ export const songdata = [
     bpm: 102,
     key: 8,
   },
-  {
+    {
     id: 150,
     artist: "Chris Brown",
     title: "Run It",
     key: 2,
     bpm: 102,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
   {
     id: 151,
@@ -1029,12 +1150,13 @@ export const songdata = [
     bpm: 102,
     key: 4,
   },
-  {
+    {
     id: 156,
     artist: "Ying Yang Twins",
     title: "Whisper",
     key: 3,
     bpm: 102,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
   {
     id: 157,
@@ -1078,12 +1200,13 @@ export const songdata = [
     bpm: 84,
     key: 1,
   },
-  {
+    {
     id: 163,
     artist: "DJ DMD",
     title: "25 Lighters",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
   {
     id: 164,
@@ -1113,12 +1236,13 @@ export const songdata = [
     bpm: 84,
     key: 4,
   },
-  {
+    {
     id: 168,
     artist: "G-Unit",
     title: "Wanna Get to Know You",
     key: 5,
     bpm: 84,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
   {
     id: 169,
@@ -1134,12 +1258,13 @@ export const songdata = [
     bpm: 84,
     key: 9,
   },
-  {
+    {
     id: 172,
     artist: "Webbie",
     title: "How U Ridin'",
     key: 6,
     bpm: 84,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
   {
     id: 173,
@@ -1148,54 +1273,61 @@ export const songdata = [
     bpm: 84,
     key: 3,
   },
-  {
+    {
     id: 174,
     artist: "Ludacris",
     title: "Act a Fool",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 175,
     artist: "Mobb Deep",
     title: "Get It Twisted",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 176,
     artist: "Saweetie",
     title: "My Type Remix",
     key: 6,
     bpm: 102,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 177,
     artist: "Ying Yang Twins",
     title: "Get It Girl",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 178,
     artist: "Big Freedia",
     title: "A$$ Everywhere",
     key: 4,
     bpm: 102,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 179,
     artist: "Drake",
     title: "Nice for What",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 180,
     artist: "Joe Budden",
     title: "Pump It Up",
     key: 3,
     bpm: 102,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
   {
     id: 181,
@@ -1211,26 +1343,29 @@ export const songdata = [
     bpm: 102,
     key: 9,
   },
-  {
+    {
     id: 183,
     artist: "Cassie",
     title: "Me & U",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 184,
     artist: "Freeway",
     title: "Flipside",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 185,
     artist: "Busta Rhymes",
     title: "Fire It Up",
     key: 8,
     bpm: 102,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
   {
     id: 186,
@@ -1253,40 +1388,45 @@ export const songdata = [
     bpm: 102,
     key: 2,
   },
-  {
+    {
     id: 189,
     artist: "Missy Elliott",
     title: "Ching a Ling",
     key: 4,
     bpm: 102,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 190,
     artist: "Kilo",
     title: "Who Dat Call tha Police",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 191,
     artist: "Kilo",
     title: "Get In Line",
     key: 3,
     bpm: 102,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 192,
     artist: "Mobb Deep",
     title: "Real Gangstaz",
     key: 9,
     bpm: 102,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 193,
     artist: "Doug E Fresh",
     title: "The Show",
     key: 4,
     bpm: 102,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
   {
     id: 194,
@@ -1316,12 +1456,13 @@ export const songdata = [
     bpm: 102,
     key: 12,
   },
-  {
+    {
     id: 198,
     artist: "Chris Brown",
     title: "Iffy",
     key: 5,
     bpm: 102,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
   {
     id: 200,
@@ -1330,19 +1471,21 @@ export const songdata = [
     bpm: 102,
     key: 2,
   },
-  {
+    {
     id: 207,
     artist: "Master P",
     title: "Ghetto D",
     key: 5,
     bpm: 102,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 208,
     artist: "Mystikal",
     title: "Shake Ya Ass",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
   {
     id: 209,
@@ -1358,12 +1501,13 @@ export const songdata = [
     bpm: 102,
     key: 3,
   },
-  {
+    {
     id: 211,
     artist: "Public Enemy",
     title: "Louder Than a Bomb JMJ Remix",
     key: 2,
     bpm: 102,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
   {
     id: 212,
@@ -1372,12 +1516,13 @@ export const songdata = [
     bpm: 102,
     key: 9,
   },
-  {
+    {
     id: 213,
     artist: "R Kelly",
     title: "Playas Only",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
   {
     id: 214,
@@ -1428,26 +1573,29 @@ export const songdata = [
     bpm: 102,
     key: 12,
   },
-  {
+    {
     id: 227,
     artist: "Ying Yang Twins",
     title: "Twurkulator Part 2",
     key: 7,
     bpm: 102,
+    compatibleKeys: [11, 3, 8, 12, 4, 9, 1, 6],
   },
-  {
+    {
     id: 230,
     artist: "Next",
     title: "Too Close",
     key: 11,
     bpm: 102,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 231,
     artist: "Kriss Kross",
     title: "Jump",
     key: 11,
     bpm: 102,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
   {
     id: 236,
@@ -1456,40 +1604,45 @@ export const songdata = [
     bpm: 102,
     key: 2,
   },
-  {
+    {
     id: 238,
     artist: "T-Pain",
     title: "One More Drink",
     key: 10,
     bpm: 102,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
-  {
+    {
     id: 239,
     artist: "Kid Cudi",
     title: "Poker Face",
     key: 10,
     bpm: 102,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
-  {
+    {
     id: 242,
     artist: "Beyonce",
     title: "Naughty Girl",
     key: 10,
     bpm: 102,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
-  {
+    {
     id: 243,
     artist: "Slim",
     title: "So Fly Remix",
     key: 7,
     bpm: 94,
+    compatibleKeys: [11, 3, 8, 12, 4, 9, 1, 6],
   },
-  {
+    {
     id: 260,
     artist: "Amerie",
     title: "1 Thing",
     key: 5,
     bpm: 102,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
   {
     id: 261,
@@ -1519,12 +1672,13 @@ export const songdata = [
     bpm: 94,
     key: 5,
   },
-  {
+    {
     id: 275,
     artist: "Eve",
     title: "Tamborine Remix",
     key: 5,
     bpm: 102,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
   {
     id: 276,
@@ -1533,33 +1687,37 @@ export const songdata = [
     bpm: 102,
     key: 11,
   },
-  {
+    {
     id: 278,
     artist: "Bhad Barbie",
     title: "Bestie",
     key: 4,
     bpm: 102,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 280,
     artist: "DMX",
     title: "Stop Bein Greedy",
     key: 5,
     bpm: 102,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 283,
     artist: "Baby",
     title: "Do That",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 284,
     artist: "Hot Boys",
     title: "I Got That Fire",
     key: 4,
     bpm: 102,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
   {
     id: 285,
@@ -1575,33 +1733,37 @@ export const songdata = [
     bpm: 84,
     key: 11,
   },
-  {
+    {
     id: 287,
     artist: "Eightball",
     title: "Lay It Down",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 289,
     artist: "Outkast",
     title: "So Fresh So Clean",
     key: 5,
     bpm: 84,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 290,
     artist: "MoneyBagg Yo",
     title: "Wockesha Remix",
     key: 8,
     bpm: 84,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 291,
     artist: "Master P",
     title: "Make Em Say Uhhh",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
   {
     id: 292,
@@ -1631,26 +1793,29 @@ export const songdata = [
     bpm: 84,
     key: 9,
   },
-  {
+    {
     id: 298,
     artist: "Audio Two",
     title: "Top Billin",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 299,
     artist: "50 Cent",
     title: "Get Up",
     key: 10,
     bpm: 94,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
-  {
+    {
     id: 301,
     artist: "City Girls",
     title: "P&ssy Talk",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
   {
     id: 303,
@@ -1659,1257 +1824,1436 @@ export const songdata = [
     bpm: 84,
     key: 1,
   },
-  {
+    {
     id: 304,
     artist: "T.I.",
     title: "Front Back",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 306,
     artist: "Lord Tariq & Peter Gunz",
     title: "Deva Vu Uptown Baby",
     key: 7,
     bpm: 102,
+    compatibleKeys: [11, 3, 8, 12, 4, 9, 1, 6],
   },
-  {
+    {
     id: 307,
     artist: "NORE",
     title: "Nothin",
     key: 8,
     bpm: 102,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 308,
     artist: "Paperboy",
     title: "Ditty",
     key: 7,
     bpm: 102,
+    compatibleKeys: [11, 3, 8, 12, 4, 9, 1, 6],
   },
-  {
+    {
     id: 309,
     artist: "The Game",
     title: "Game's Pain",
     key: 6,
     bpm: 102,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 310,
     artist: "DMX",
     title: "Up In Here",
     key: 2,
     bpm: 102,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 311,
     artist: "Outkast",
     title: "Rosa Parks",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 312,
     artist: "Baby D",
     title: "F That Side",
     key: 2,
     bpm: 102,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 313,
     artist: "Lil Goldie",
     title: "Act a Donkey",
     key: 12,
     bpm: 102,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 314,
     artist: "5th Ward Webbie",
     title: "Toot it Up Remix",
     key: 6,
     bpm: 102,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 315,
     artist: "Busta Rhymes",
     title: "Put Your Hands Where My Eyes Can See",
     key: 9,
     bpm: 102,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 316,
     artist: "Jay-Z",
     title: "Excuse Me Miss Remix",
     key: 4,
     bpm: 102,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 317,
     artist: "Tracey Lee",
     title: "The Theme",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 318,
     artist: "Pras",
     title: "Ghetto Superstar",
     key: 4,
     bpm: 102,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 319,
     artist: "Lauryn Hill",
     title: "That Thing",
     key: 2,
     bpm: 102,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 320,
     artist: "Notorious BIG",
     title: "Goin Back to Cali",
     key: 3,
     bpm: 102,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 321,
     artist: "DJ Khaled",
     title: "Holla At Me",
     key: 4,
     bpm: 102,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 322,
     artist: "Megan thee Stallion",
     title: "Hot Girl Summer",
     key: 3,
     bpm: 102,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 323,
     artist: "G-Unit",
     title: "Ryder Part 2",
     key: 4,
     bpm: 102,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 324,
     artist: "Murphy Lee",
     title: "What the Hook Gon Be",
     key: 4,
     bpm: 102,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 325,
     artist: "Puff Daddy",
     title: "Can't Hold Me Down",
     key: 4,
     bpm: 102,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 326,
     artist: "DJ Jazzy Jeff",
     title: "Brand New Funk",
     key: 4,
     bpm: 102,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 329,
     artist: "Fat Joe",
     title: "Lean Back Remix",
     key: 8,
     bpm: 102,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 330,
     artist: "Wyclef Jean",
     title: "We Trying to Stay Alive",
     key: 4,
     bpm: 102,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 331,
     artist: "G Dep",
     title: "Special Delivery",
     key: 2,
     bpm: 102,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 332,
     artist: "Offset & Metro Boomin",
     title: "Ric Flair Drip",
     key: 2,
     bpm: 102,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 333,
     artist: "Bubba Sparxx",
     title: "Ms New Booty",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 334,
     artist: "E-40",
     title: "White Girl",
     key: 2,
     bpm: 102,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 335,
     artist: "Notorious BIG",
     title: "Dead Wrong",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 336,
     artist: "DJ UNK",
     title: "Walk It Out",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 337,
     artist: "Lil Boosie",
     title: "Supafly",
     key: 11,
     bpm: 84,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 338,
     artist: "Jamie Foxx",
     title: "Blame It",
     key: 3,
     bpm: 84,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 339,
     artist: "Gucci Mane",
     title: "Go Head",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 340,
     artist: "Durrough",
     title: "Walk that Walk",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 343,
     artist: "Bun B",
     title: "That's Gangsta",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 344,
     artist: "Cookie Ekawaii",
     title: "If I Back It Up",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 346,
     artist: "Young Jeezy",
     title: "Get Some Money",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 347,
     artist: "Lil Boosie",
     title: "Zoom",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 348,
     artist: "MIMS",
     title: "This is Why I'm Hot",
     key: 12,
     bpm: 84,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 349,
     artist: "Nappy Roots",
     title: "Aww-Naww",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 350,
     artist: "Webbie",
     title: "Like That",
     key: 12,
     bpm: 84,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 351,
     artist: "Young Jeezy",
     title: "Black Tee",
     key: 6,
     bpm: 84,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 352,
     artist: "UGK",
     title: "Let Me See It",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 353,
     artist: "Young Boy Never Broke",
     title: "Make No Sense",
     key: 5,
     bpm: 84,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 354,
     artist: "Webbie",
     title: "Gimme That",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 355,
     artist: "Lil Boosie",
     title: "Adios",
     key: 11,
     bpm: 84,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 356,
     artist: "Gucci Mane",
     title: "Wasted",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 357,
     artist: "D4L",
     title: "Laffy Taffy",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 358,
     artist: "T.I.",
     title: "Rubber Band Man",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 359,
     artist: "Rocko",
     title: "Tomorrow",
     key: 6,
     bpm: 84,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 360,
     artist: "Concrete Boys",
     title: "Crank Dat Roadrunner",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 361,
     artist: "Project Pat",
     title: "Good Googly Moogly",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 362,
     artist: "T.I.",
     title: "Be Easy",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 363,
     artist: "DJ UNK",
     title: "2 Step",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 364,
     artist: "Petey Pablo",
     title: "Raise Up",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 365,
     artist: "Gz",
     title: "Do the Stanky Leg",
     key: 5,
     bpm: 84,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 367,
     artist: "Cali Swag District",
     title: "Teach Me How to Dougie",
     key: 10,
     bpm: 84,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
-  {
+    {
     id: 368,
     artist: "Trillville",
     title: "Neva Eva",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 370,
     artist: "Kilo",
     title: "Tick Tock Bass Remix",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 372,
     artist: "Eminem",
     title: "Stan",
     key: 6,
     bpm: 84,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 373,
     artist: "Billy Wes",
     title: "Shake That Jelly",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 374,
     artist: "Big Sean",
     title: "Dance",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 375,
     artist: "The Game",
     title: "Big Dreams",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 376,
     artist: "T.I.",
     title: "ASAP",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 377,
     artist: "TELA",
     title: "Got Pimpin",
     key: 10,
     bpm: 84,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
-  {
+    {
     id: 378,
     artist: "Shawty Lo",
     title: "Supplier",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 382,
     artist: "Juvenile",
     title: "Rodeo",
     key: 11,
     bpm: 84,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 383,
     artist: "JR Writer",
     title: "Grill Em",
     key: 11,
     bpm: 84,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 388,
     artist: "Yo Gotti",
     title: "King Sh*t",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 390,
     artist: "ASAP",
     title: "Rocky Cocky",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 391,
     artist: "Yung LA",
     title: "Ain't I",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 392,
     artist: "Youngbloodz",
     title: "85",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 396,
     artist: "The Game",
     title: "Put You In the Game",
     key: 6,
     bpm: 84,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 398,
     artist: "Pitbull",
     title: "Dem Miami Boys",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 400,
     artist: "Notorious BIG",
     title: "Big Poppa",
     key: 8,
     bpm: 84,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 401,
     artist: "Youngbloodz",
     title: "Presidential Remix",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 402,
     artist: "T.I.",
     title: "You Know What It Is",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 403,
     artist: "Kingpin Skinny Pimp",
     title: "TVs",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 404,
     artist: "Black Rob",
     title: "Whoa",
     key: 11,
     bpm: 84,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 406,
     artist: "Beastie Boys",
     title: "Posse In Effect",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 407,
     artist: "Three 6 Mafia",
     title: "Side 2 Side",
     key: 10,
     bpm: 84,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
-  {
+    {
     id: 408,
     artist: "Mystikal",
     title: "Here I Go",
     key: 3,
     bpm: 84,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 410,
     artist: "Luniz",
     title: "I Got 5 On It",
     key: 4,
     bpm: 84,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 411,
     artist: "Dogg Pound",
     title: "New York New York",
     key: 11,
     bpm: 84,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 412,
     artist: "Nappy Roots",
     title: "Po Folks Collipark Remix",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 414,
     artist: "Lil Wayne",
     title: "The Block is Hot",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 415,
     artist: "Rihanna",
     title: "Umbrella",
     key: 3,
     bpm: 84,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 416,
     artist: "Cassidy",
     title: "Drink & My 2 Step",
     key: 8,
     bpm: 84,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 417,
     artist: "Paul Wall",
     title: "Bizzy Body",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 418,
     artist: "Webbie",
     title: "Independent",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 419,
     artist: "Field Mob",
     title: "Sick of Being Lonely",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 420,
     artist: "Above the Law",
     title: "Black Superman",
     key: 8,
     bpm: 84,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 421,
     artist: "Ron Browz",
     title: "Jumpin Out the Window",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 422,
     artist: "DJ Khaled",
     title: "Out Here Grinding",
     key: 5,
     bpm: 84,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 423,
     artist: "Big Tymers",
     title: "Big Ballin",
     key: 12,
     bpm: 84,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 425,
     artist: "Birdman",
     title: "What Happened to That Boy",
     key: 10,
     bpm: 94,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
-  {
+    {
     id: 426,
     artist: "Snoop Dogg",
     title: "Drop It Like Its Hot Remix",
     key: 5,
     bpm: 94,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 427,
     artist: "Nelly",
     title: "E.I. Tipdrill Remix",
     key: 2,
     bpm: 94,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 428,
     artist: "Junior MAFIA",
     title: "Players Anthem Remix",
     key: 11,
     bpm: 94,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 429,
     artist: "DaBaby",
     title: "Baby Sitter",
     key: 7,
     bpm: 94,
+    compatibleKeys: [11, 3, 8, 12, 4, 9, 1, 6],
   },
-  {
+    {
     id: 430,
     artist: "Too Short",
     title: "I Ain't Trippin",
     key: 12,
     bpm: 94,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 431,
     artist: "T.I.",
     title: "Get Loose",
     key: 2,
     bpm: 94,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 432,
     artist: "Jermaine Dupri",
     title: "Welcome to Atlanta ATL Remix",
     key: 1,
     bpm: 94,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 433,
     artist: "Saweetie",
     title: "Best Friend",
     key: 1,
     bpm: 94,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 434,
     artist: "Nicki Minaj",
     title: "Your Love",
     key: 1,
     bpm: 94,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 435,
     artist: "Megan thee Stallion",
     title: "Girls In The Hood",
     key: 11,
     bpm: 94,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 436,
     artist: "Mike Jones",
     title: "Drop & Gimme 50",
     key: 9,
     bpm: 94,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 437,
     artist: "Durrough",
     title: "Ice Cream Paint Job",
     key: 12,
     bpm: 94,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 438,
     artist: "Rihanna",
     title: "Birthday Cake Remix",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 439,
     artist: "Future",
     title: "Stick Talk",
     key: 7,
     bpm: 84,
+    compatibleKeys: [11, 3, 8, 12, 4, 9, 1, 6],
   },
-  {
+    {
     id: 440,
     artist: "Drake",
     title: "First Person Shooter",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 441,
     artist: "Master P",
     title: "Weed & Money",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 442,
     artist: "Drake",
     title: "Rich Flex",
     key: 8,
     bpm: 84,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 443,
     artist: "Playboi Carti",
     title: "Milli Rock",
     key: 10,
     bpm: 84,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
-  {
+    {
     id: 444,
     artist: "Three 6 Mafia",
     title: "Hard Out Here",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 445,
     artist: "Gunna",
     title: "Pushin P",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 446,
     artist: "Travis Scott & Drake",
     title: "SICKO MODE",
     key: 3,
     bpm: 84,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 447,
     artist: "Whodini",
     title: "I'm a Ho",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 448,
     artist: "Drake",
     title: "Girls Want Girls",
     key: 5,
     bpm: 84,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 449,
     artist: "2 Chainz & Lil Wayne",
     title: "Big Diamonds",
     key: 3,
     bpm: 84,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 450,
     artist: "Three 6 Mafia",
     title: "Let's Run a Train",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 451,
     artist: "Drake",
     title: "No Friends in the Industry",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 452,
     artist: "Future",
     title: "I Serve the Base",
     key: 8,
     bpm: 84,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 453,
     artist: "Future",
     title: "Freak Hoe",
     key: 12,
     bpm: 84,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 454,
     artist: "Cardi B",
     title: "Up",
     key: 9,
     bpm: 84,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 455,
     artist: "Future",
     title: "For a Nut",
     key: 5,
     bpm: 84,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 456,
     artist: "Megan thee Stallion",
     title: "Captain Hook",
     key: 6,
     bpm: 84,
+    compatibleKeys: [10, 2, 7, 11, 3, 8, 12, 5],
   },
-  {
+    {
     id: 457,
     artist: "SR3MM",
     title: "T'd Up",
     key: 5,
     bpm: 84,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 458,
     artist: "Drake",
     title: "Nonstop",
     key: 11,
     bpm: 84,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 459,
     artist: "Future",
     title: "I'm on One",
     key: 2,
     bpm: 84,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 460,
     artist: "Drake",
     title: "Gods Plan",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 461,
     artist: "Li Uzu Vert",
     title: "XO TOUR LIFE",
     key: 1,
     bpm: 84,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 462,
     artist: "Mr Bigg",
     title: "Hos",
     key: 7,
     bpm: 84,
+    compatibleKeys: [11, 3, 8, 12, 4, 9, 1, 6],
   },
-  {
+    {
     id: 463,
     artist: "Dem Franchize Boys",
     title: "I Think They Like Me",
     key: 5,
     bpm: 84,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 464,
     artist: "Sexy Redd",
     title: "Pound Town",
     key: 1,
     bpm: 94,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 465,
     artist: "Ghostface600",
     title: "Pray to the East",
     key: 9,
     bpm: 94,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 468,
     artist: "Rick Ross & Meek Mill",
     title: "Lyrical Eazy",
     key: 5,
     bpm: 94,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 469,
     artist: "Gucci Mane",
     title: "There I Go",
     key: 12,
     bpm: 94,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 470,
     artist: "J.I.",
     title: "Murda",
     key: 5,
     bpm: 94,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 471,
     artist: "Snoop Dogg",
     title: "Freak It",
     key: 1,
     bpm: 94,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 472,
     artist: "Mount Rushmore",
     title: "Big Subwoofer",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 473,
     artist: "Offset feat Moneybagg Yo",
     title: "Yo Code",
     key: 5,
     bpm: 94,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 474,
     artist: "Too Short",
     title: "Young Thang",
     key: 4,
     bpm: 94,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 475,
     artist: "French Montana",
     title: "Trap House",
     key: 1,
     bpm: 94,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 476,
     artist: "2rare",
     title: "Lil Mama",
     key: 1,
     bpm: 94,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 478,
     artist: "The Game",
     title: "Violence",
     key: 8,
     bpm: 94,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 485,
     artist: "10 KANs",
     title: "D In Your Life",
     key: 9,
     bpm: 102,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 486,
     artist: "2Pac",
     title: "Still Ballin",
     key: 2,
     bpm: 102,
+    compatibleKeys: [8, 10, 6, 12, 1, 5, 9, 3],
   },
-  {
+    {
     id: 487,
     artist: "Das EFX",
     title: "They Want EFX",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 488,
     artist: "Kurupt",
     title: "We Can Freak It",
     key: 12,
     bpm: 102,
+    compatibleKeys: [4, 8, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 489,
     artist: "Wale",
     title: "Chillin",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 492,
     artist: "Derek B",
     title: "Good Groove",
     key: 5,
     bpm: 102,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 493,
     artist: "50 Cent",
     title: "Disco Inferno",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 496,
     artist: "LL Cool J",
     title: "Eat Em Up L Chill Remix",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 497,
     artist: "Fabolous",
     title: "Baby Don't Go",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 498,
     artist: "Diggy feat French Montana",
     title: "Ain't Bout to Do",
     key: 11,
     bpm: 102,
+    compatibleKeys: [3, 7, 9, 1, 5, 10, 2, 6],
   },
-  {
+    {
     id: 499,
     artist: "DJ Khaled Lil Baby & Future",
     title: "SUPPOSED TO BE LOVED",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 500,
     artist: "Pusha T",
     title: "Let the Smokers Shine the Coupes",
     key: 5,
     bpm: 102,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 502,
     artist: "Pap Chanel",
     title: "Apple Jacks",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 504,
     artist: "French Montana",
     title: "Good Summer",
     key: 5,
     bpm: 102,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 505,
     artist: "Kendra Jae & Saweetie",
     title: "See Saw",
     key: 5,
     bpm: 102,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 506,
     artist: "Rubi Rose",
     title: "Poke",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 507,
     artist: "Anna Mvze & Krystall Poppin",
     title: "Where The Bag At",
     key: 8,
     bpm: 102,
+    compatibleKeys: [1, 5, 10, 2, 6, 11, 3, 7],
   },
-  {
+    {
     id: 509,
     artist: "Beadz feat Erica Banks",
     title: "Twerk Girl",
     key: 3,
     bpm: 102,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 510,
     artist: "Armani White",
     title: "Billie Eilish",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 511,
     artist: "Blueface",
     title: "Thotiana",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 512,
     artist: "Black Sheep",
     title: "The Choice is Yours",
     key: 3,
     bpm: 102,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 513,
     artist: "Shakira",
     title: "Hips Don't Lie",
     key: 3,
     bpm: 102,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
-  {
+    {
     id: 514,
     artist: "Beastie Boys",
     title: "AWOL",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 515,
     artist: "Ray J",
     title: "Wait a Minute",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 516,
     artist: "Frankie Cutlass",
     title: "Puerto Rico",
     key: 10,
     bpm: 102,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
-  {
+    {
     id: 517,
     artist: "T.I.",
     title: "Bring Em Out",
     key: 9,
     bpm: 102,
+    compatibleKeys: [2, 6, 11, 3, 7, 12, 4, 8],
   },
-  {
+    {
     id: 518,
     artist: "PLO",
     title: "Get Me Lit",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 520,
     artist: "Notorious BIG",
     title: "Mo Money Mo Problems",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 521,
     artist: "Showbiz & AG",
     title: "Party Groove",
     key: 10,
     bpm: 102,
+    compatibleKeys: [2, 6, 8, 12, 4, 9, 1, 5],
   },
-  {
+    {
     id: 522,
     artist: "Mario",
     title: "Boom Remix",
     key: 1,
     bpm: 102,
+    compatibleKeys: [4, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 523,
     artist: "Positive K",
     title: "I Got a Man",
     key: 5,
     bpm: 102,
+    compatibleKeys: [9, 1, 6, 10, 2, 7, 11, 4],
   },
-  {
+    {
     id: 524,
     artist: "Busta Rhymes",
     title: "What It Is",
     key: 4,
     bpm: 102,
+    compatibleKeys: [1, 8, 5, 9, 2, 6, 10, 3],
   },
-  {
+    {
     id: 526,
     artist: "Kilo",
     title: "Get In Line 2",
     key: 3,
     bpm: 102,
+    compatibleKeys: [10, 12, 7, 1, 2, 6, 8, 4],
   },
 ];

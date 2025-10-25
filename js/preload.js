@@ -137,19 +137,79 @@ export const init = () => {
 const loadTracks = (isFromCountdown = false, isStartingCountdown = false) => {
   const ids = getSelectedSongIds();
   if (ids && typeof ids[0]?.id === "number" && typeof ids[1]?.id === "number") {
+    // Preload the first song to ensure it's fully loaded before playback
+    const firstSongUrl = file(ids[0].id, trackIndex % magicNumber === 0);
+    const secondSongUrl = file(ids[1].id, trackIndex % magicNumber === 0);
+    
+    // Show loading indicator for first song preload
+    if (isFirst) {
+      const playButton = document.getElementById("play-button");
+      if (playButton) {
+        playButton.innerText = "⏳ LOADING...";
+        playButton.disabled = true;
+      }
+    }
+    
     Promise.all([
-      fetch(file(ids[0].id, trackIndex % magicNumber === 0)),
-      fetch(file(ids[1].id, trackIndex % magicNumber === 0))
+      fetch(firstSongUrl),
+      fetch(secondSongUrl)
     ])
       .then(() => {
-        bufferLoader = new BufferLoader(
-          getContext(),
-          getTracks(ids[0].id, ids[1].id, undefined, isFromCountdown),
-          finishedLoading,
-        );
-        bufferLoader.load();
+        // Additional preload step: decode the first song's audio data
+        if (isFirst) {
+          const context = getContext();
+          const request = new XMLHttpRequest();
+          request.open("GET", firstSongUrl, true);
+          request.responseType = "arraybuffer";
+          
+          request.onload = function() {
+            context.decodeAudioData(
+              request.response,
+              function(buffer) {
+                if (!buffer) {
+                  console.error('Error preloading first song');
+                  startPlayback();
+                  return;
+                }
+                console.log('First song preloaded successfully');
+                startPlayback();
+              },
+              function(error) {
+                console.error('Preload decode error:', error);
+                startPlayback(); // Continue anyway
+              }
+            );
+          };
+          
+          request.onerror = function() {
+            console.error('Preload fetch error');
+            startPlayback(); // Continue anyway
+          };
+          
+          request.send();
+        } else {
+          startPlayback();
+        }
       })
       .catch(hasError);
+      
+    function startPlayback() {
+      // Restore play button
+      if (isFirst) {
+        const playButton = document.getElementById("play-button");
+        if (playButton) {
+          playButton.innerText = "⏸️ PAUSE";
+          playButton.disabled = false;
+        }
+      }
+      
+      bufferLoader = new BufferLoader(
+        getContext(),
+        getTracks(ids[0].id, ids[1].id, undefined, isFromCountdown),
+        finishedLoading,
+      );
+      bufferLoader.load();
+    }
   } else {
     bufferLoader = new BufferLoader(
       getContext(),

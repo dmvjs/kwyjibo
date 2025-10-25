@@ -3,7 +3,10 @@ import "./tapToPlay.js";
 import "./preload.js";
 import { activeKey } from "./key.js";
 import { activeTempo } from "./tempo.js";
-import { generateOneHourMix } from "./mixGenerator.js";
+import {
+  generateOneHourMix,
+  generateQuantumGeniusMix,
+} from "./mixGenerator.js";
 import { parseTracks } from "./utils.js";
 import { songdata } from "./songdata.js";
 import { getKeyName } from "./key.js";
@@ -78,6 +81,10 @@ window.addEventListener("DOMContentLoaded", () => {
     const threeHourBtn = document.getElementById("three-hour-mix-button");
     if (threeHourBtn) threeHourBtn.style.display = "none";
 
+    // Hide the Yo DJ section and select inputs in playback mode
+    const upNext = document.getElementById("up-next");
+    if (upNext) upNext.style.display = "none";
+
     // Animate the play button to pulse neon glow ONCE and gently fade out
     const playBtn = document.getElementById("play-button");
     if (playBtn) {
@@ -116,7 +123,11 @@ window.addEventListener("DOMContentLoaded", () => {
         lastTempo = song1.bpm;
       }
       // Omit duplicate if this pair is the same as the previous (i.e., main after intro)
-      if (i > 0 && parsed[i][0] === parsed[i-1][0] && parsed[i][1] === parsed[i-1][1]) {
+      if (
+        i > 0 &&
+        parsed[i][0] === parsed[i - 1][0] &&
+        parsed[i][1] === parsed[i - 1][1]
+      ) {
         continue; // skip duplicate (main)
       }
       if (song1 && song2) {
@@ -165,7 +176,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const { playlist } = generateOneHourMix({
         startKey: activeKey,
         startTempo: activeTempo,
-        durationSeconds: 3600,
+        durationSeconds: 1800,
         useAllSongs: true,
       });
       // If firstPair is available, replace the first entry
@@ -173,7 +184,9 @@ window.addEventListener("DOMContentLoaded", () => {
         playlist[0] = firstPair;
       }
       // Map playlist to integer IDs only for the URL
-      const intPlaylist = playlist.map(pair => pair.map(id => parseInt(id, 10)));
+      const intPlaylist = playlist.map((pair) =>
+        pair.map((id) => parseInt(id, 10)),
+      );
       // Build the share URL
       const url = new URL(getBaseUrl());
       url.searchParams.set("tracks", JSON.stringify(intPlaylist));
@@ -190,7 +203,9 @@ window.addEventListener("DOMContentLoaded", () => {
       // Generate the three hour mix (using a new function or duration override)
       const { playlist } = generateOneHourMix({ durationSeconds: 3 * 3600 });
       // Map playlist to integer IDs only for the URL
-      const intPlaylist = playlist.map(pair => pair.map(id => parseInt(id, 10)));
+      const intPlaylist = playlist.map((pair) =>
+        pair.map((id) => parseInt(id, 10)),
+      );
       // Build the share URL
       const url = new URL(getBaseUrl());
       url.searchParams.set("tracks", JSON.stringify(intPlaylist));
@@ -204,18 +219,47 @@ window.addEventListener("DOMContentLoaded", () => {
     fullLibraryBtn.addEventListener("click", async () => {
       fullLibraryBtn.disabled = true;
       fullLibraryBtn.innerText = "Generating...";
-      // Generate a mix that uses all songs in the library
-      const { playlist } = generateOneHourMix({
-        durationSeconds: Infinity, // No time limit
-        useAllSongs: true, // New flag to use all songs
-      });
+      // Generate a quantum genius mix
+      const { playlist, forcedPairs, leftovers } = generateQuantumGeniusMix();
+      if (
+        (forcedPairs && forcedPairs.length) ||
+        (leftovers && leftovers.length)
+      ) {
+        alert(
+          `Some forced or suboptimal pairs were needed. Forced pairs: ${forcedPairs.length}, Leftovers: ${leftovers.length}`,
+        );
+      }
       // Map playlist to integer IDs only for the URL
-      const intPlaylist = playlist.map(pair => pair.map(id => parseInt(id, 10)));
+      const intPlaylist = playlist.map((pair) =>
+        pair.map((id) => parseInt(id, 10)),
+      );
       // Build the share URL
       const url = new URL(getBaseUrl());
       url.searchParams.set("tracks", JSON.stringify(intPlaylist));
       // Redirect
       window.location.href = url.href;
     });
+  }
+
+  // Only add playback-mode class when there are tracks in URL
+  if (urlTracks) {
+    document.body.classList.add("playback-mode");
+    // Hide the One Hour Mix button
+    const btn = document.getElementById("generate-mix-button");
+    if (btn) btn.style.display = "none";
+    // Hide the Three Hour Mix button
+    const threeHourBtn = document.getElementById("three-hour-mix-button");
+    if (threeHourBtn) threeHourBtn.style.display = "none";
+
+    // Hide the Yo DJ section and select inputs in playback mode
+    const upNext = document.getElementById("up-next");
+    if (upNext) upNext.style.display = "none";
+
+    // Animate the play button to pulse neon glow ONCE and gently fade out
+    const playBtn = document.getElementById("play-button");
+    if (playBtn) {
+      playBtn.classList.add("alien-glow");
+      // No need to remove the class, as the animation ends with a gentle fade-out
+    }
   }
 });

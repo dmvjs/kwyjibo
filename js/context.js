@@ -1,14 +1,6 @@
-import {BufferLoader} from "./BufferLoader.js";
+const context = new AudioContext();
+context.suspend();
 
-let audioContext = null;
+const getContext = () => context;
 
-export const getContext = () => {
-  if (!audioContext) {
-    audioContext = new AudioContext();
-  }
-  return audioContext;
-}
-
-// Initialize with empty buffer to ensure context is created
-new BufferLoader(getContext(), [null], ()=>{});
-
+export { context, getContext };
