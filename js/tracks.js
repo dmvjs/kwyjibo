@@ -1,9 +1,6 @@
 import { activeKey, keySort } from "./key.js";
-import { filetype } from "./filetype.js";
-import { justStarTrekIntro, samples, sampleVolumes } from "./samples.js";
 import { getSongById } from "./song.js";
 import { activeTempo, updateTempoUI } from "./tempo.js";
-import { quantumRandom } from "./cryptoRandom.js";
 import { songdata } from "./songdata.js";
 import { addTracks } from "./share.js";
 import {
@@ -29,7 +26,7 @@ import {
   showElement,
   updateActiveKey,
 } from "./dom.js";
-import { getSong, getSongs } from "./getSongs.js";
+import { getSongs } from "./getSongs.js";
 import "./shuffle.js";
 import { file } from "./utils.js";
 
@@ -106,9 +103,6 @@ export const updateUI = (
 
     loadSongsIntoSelect();
     document.getElementById("play-button").className = `button-color-${key}`;
-    document.getElementById("contact-button").className = `button-color-${key}`;
-    document.getElementById("youtube-button").className = `button-color-${key}`;
-    document.getElementById("github-button").className = `button-color-${key}`;
     if (isFromCountdown) {
       showElement(document.getElementById("on-deck"));
     } else {
@@ -287,7 +281,7 @@ export const getTracks = (
     track6 && getSongById(track6),
   ];
 
-  let songIds = [];
+  let songIds;
 
   if (trackIndex % magicNumber === 1) {
     // Reuse songs from previous holder

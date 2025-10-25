@@ -76,17 +76,38 @@ class QuantumDisplay {
       ion.energy = energy;
       ion.laser = hasEffect;
 
-      // Laser intensity pulses when active
+      // ENHANCED Laser intensity pulses when active with frequency-based effects
       if (hasEffect) {
         ion.laserIntensity = 1.0;
+        
+        // Frequency-based excitation effects
+        if (energy > 0.5) {
+          // High energy - trigger multiple effects
+          ion.rippleAlpha = 0.8;
+          ion.rippleRadius = 0;
+          ion.rippleColor = this.getFrequencyExcitationColor(trackIndex, energy);
+        }
       }
 
       // Trigger ripple effect when ion state changes
       if (wasActive !== isPlaying) {
-        console.log(`🌊 Ion ${trackIndex} state changed: ${wasActive} → ${isPlaying}`);
         this.triggerIonRipple(trackIndex);
       }
     }
+  }
+  
+  getFrequencyExcitationColor(trackIndex, energy) {
+    // Color based on track type and energy level
+    const trackColors = {
+      0: `rgba(255, 107, 107, ${energy})`,      // Kick - Red
+      1: `rgba(78, 205, 196, ${energy})`,        // Snare - Teal  
+      2: `rgba(69, 183, 209, ${energy})`,        // Bass - Blue
+      3: `rgba(150, 206, 180, ${energy})`,       // Perc - Green
+      4: `rgba(255, 234, 167, ${energy})`,       // Melody - Yellow
+      5: `rgba(221, 160, 221, ${energy})`        // Texture - Purple
+    };
+    
+    return trackColors[trackIndex] || `rgba(255, 255, 255, ${energy})`;
   }
 
   /**
@@ -146,9 +167,31 @@ class QuantumDisplay {
     const w = this.width;
     const h = this.height;
 
-    // Pure black background (high contrast)
-    ctx.fillStyle = '#000';
+    // BERSERK BACKGROUND - Chaotic energy field
+    const chaosIntensity = Math.sin(time * 0.3) * 0.5 + 0.5;
+    const chaosHue = (time * 50) % 360;
+    
+    // Create gradient background with chaotic colors
+    const gradient = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, Math.max(w, h));
+    gradient.addColorStop(0, `hsla(${chaosHue}, 80%, 5%, 1)`);
+    gradient.addColorStop(0.5, `hsla(${(chaosHue + 120) % 360}, 60%, 2%, 1)`);
+    gradient.addColorStop(1, '#000');
+    
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, w, h);
+    
+    // Add chaotic energy particles
+    for (let i = 0; i < 20; i++) {
+      const particleX = (Math.sin(time * 0.1 + i) * 0.5 + 0.5) * w;
+      const particleY = (Math.cos(time * 0.15 + i * 0.7) * 0.5 + 0.5) * h;
+      const particleSize = Math.sin(time * 2 + i) * 2 + 3;
+      const particleAlpha = Math.sin(time * 3 + i) * 0.3 + 0.1;
+      
+      ctx.fillStyle = `hsla(${(chaosHue + i * 20) % 360}, 100%, 70%, ${particleAlpha})`;
+      ctx.beginPath();
+      ctx.arc(particleX, particleY, particleSize, 0, Math.PI * 2);
+      ctx.fill();
+    }
 
     // Subtle grid (just center lines)
     ctx.strokeStyle = '#0A0A0A';
@@ -171,58 +214,7 @@ class QuantumDisplay {
     const rhythmicPair = quantumState.rhythmicPair || [];
     const leader = quantumState.leader;
 
-    // Draw PROMINENT interference patterns when multiple ions active
-    const activeIons = this.ions.filter(i => i.active);
-
-    if (activeIons.length >= 2) {
-      // Draw interference fringes between active ions
-      for (let i = 0; i < activeIons.length; i++) {
-        for (let j = i + 1; j < activeIons.length; j++) {
-          const ion1 = activeIons[i];
-          const ion2 = activeIons[j];
-
-          // Calculate midpoint
-          const midX = (ion1.x + ion2.x) / 2;
-          const midY = (ion1.y + ion2.y) / 2;
-
-          // Draw BRIGHT interference pattern (constructive/destructive)
-          const wavePhase = this.frame * 0.15;
-
-          // Multiple interference rings
-          for (let r = 0; r < 6; r++) {
-            const radius = 8 + (wavePhase % 30) + (r * 10);
-            const alpha = 0.6 - (wavePhase % 30) / 30 - (r * 0.08);
-
-            if (alpha > 0) {
-              // Alternating bright/dim for interference fringes
-              const brightness = r % 2 === 0 ? 1.0 : 0.7;
-              ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * brightness})`;
-              ctx.lineWidth = 2;
-              ctx.shadowBlur = 25 * alpha;
-              ctx.shadowColor = '#FFF';
-
-              ctx.beginPath();
-              ctx.arc(midX, midY, radius, 0, Math.PI * 2);
-              ctx.stroke();
-            }
-          }
-          ctx.shadowBlur = 0;
-
-          // Draw connecting line showing wave interaction
-          ctx.strokeStyle = `rgba(255, 255, 255, 0.7)`;
-          ctx.lineWidth = 2;
-          ctx.setLineDash([2, 2]);
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = '#FFF';
-          ctx.beginPath();
-          ctx.moveTo(ion1.x, ion1.y);
-          ctx.lineTo(ion2.x, ion2.y);
-          ctx.stroke();
-          ctx.setLineDash([]);
-          ctx.shadowBlur = 0;
-        }
-      }
-    }
+    // Interference patterns disabled - no more ripples between ions
 
     // Draw rhythmic pair connections
     if (rhythmicPair.length === 2) {
@@ -251,12 +243,12 @@ class QuantumDisplay {
     // Draw each ion in its quantum trap
     // Position ions centered across the screen
     this.ions.forEach((ion, i) => {
-      // Position ions in two columns (3 left, 3 right) for cooler cooling connections
-      const columnWidth = w * 0.3; // Each column takes 30% of screen width
-      const leftColumnX = w * 0.2; // Left column at 20% from left edge
-      const rightColumnX = w * 0.8; // Right column at 80% from left edge
-      const verticalSpacing = h * 0.15; // Vertical spacing between ions
-      const startY = h * 0.25; // Start higher up
+      // Position ions to fill the space better - spread them out more
+      const columnWidth = w * 0.4; // Each column takes 40% of screen width
+      const leftColumnX = w * 0.15; // Left column at 15% from left edge
+      const rightColumnX = w * 0.85; // Right column at 85% from left edge
+      const verticalSpacing = h * 0.2; // More vertical spacing between ions
+      const startY = h * 0.15; // Start higher up to use more space
 
       // Determine position based on ion index (1-6 display, odds left, evens right)
       let baseX, baseY;
@@ -275,41 +267,63 @@ class QuantumDisplay {
         baseY = startY + (rightIndex * verticalSpacing);
       }
 
-      // Smooth quantum oscillation with continuous motion
+      // BERSERK QUANTUM OSCILLATION - Chaotic motion
       const tempo = activeTempo || 94; // Get current tempo
       const beatPhase = (time * 0.05) % (60 / tempo * 4); // Very smooth 4-beat cycle
       const isOnBeat = beatPhase < 0.2; // Longer, smoother beat detection
 
-      // Continuous oscillation patterns for smooth motion
-      const baseSpeed = ion.active ? 0.12 : 0.05; // Very smooth base speeds
-      const speedMultiplier = 1.0 + (isOnBeat ? 0.3 : 0.0); // Gentle speed variation
+      // CHAOTIC oscillation patterns for berserk motion
+      const chaosFactor = Math.sin(time * 0.7 + i * 0.5) * 0.3 + 0.7;
+      const baseSpeed = ion.active ? (0.12 * chaosFactor) : (0.05 * chaosFactor);
+      const speedMultiplier = 1.0 + (isOnBeat ? 0.8 : 0.0) + Math.sin(time * 2 + i) * 0.2;
       const oscillationSpeed = baseSpeed * speedMultiplier;
 
-      // Primary oscillation (tempo-synced)
-      const primaryAmp = ion.active ? Math.min(35, w * 0.03) : Math.min(15, w * 0.012);
+      // BERSERK PRIMARY OSCILLATION - Chaotic amplitude
+      const chaosAmp = Math.sin(time * 0.4 + i * 0.3) * 0.5 + 0.5;
+      const primaryAmp = ion.active ? 
+        Math.min(50, w * 0.05 * chaosAmp) : 
+        Math.min(25, w * 0.02 * chaosAmp);
       const primaryOsc = Math.sin(time * oscillationSpeed + ion.phaseShift) * primaryAmp;
 
-      // Secondary oscillation (counter-rhythm)
-      const secondaryAmp = ion.active ? Math.min(20, w * 0.018) : Math.min(8, w * 0.006);
-      const secondaryOsc = Math.cos(time * oscillationSpeed * 1.3 + ion.phaseShift + Math.PI/3) * secondaryAmp;
+      // BERSERK SECONDARY OSCILLATION - Multiple chaotic frequencies
+      const secondaryAmp = ion.active ? 
+        Math.min(30, w * 0.03 * chaosAmp) : 
+        Math.min(15, w * 0.015 * chaosAmp);
+      const secondaryOsc = Math.cos(time * oscillationSpeed * (1.3 + Math.sin(time * 0.2) * 0.3) + ion.phaseShift + Math.PI/3) * secondaryAmp;
 
-      // Smooth beat-synced pulse (dazzling effect)
-      const beatPulse = isOnBeat ? Math.sin(time * 0.2) * 8 : 0;
+      // BERSERK BEAT PULSE - Chaotic energy bursts
+      const beatPulse = isOnBeat ? 
+        Math.sin(time * 0.2) * 15 + Math.sin(time * 0.7) * 5 : 
+        Math.sin(time * 0.1 + i) * 3;
 
-      // Combine all oscillations for complex dance
-      ion.x = baseX + primaryOsc + secondaryOsc * 0.3 + beatPulse;
+      // BERSERK COMBINED OSCILLATION - Chaotic dance
+      const chaosX = Math.sin(time * 0.3 + i * 0.4) * 10;
+      const chaosY = Math.cos(time * 0.25 + i * 0.6) * 8;
+      
+      ion.x = baseX + primaryOsc + secondaryOsc * 0.3 + beatPulse + chaosX;
       ion.y = baseY + Math.cos(time * oscillationSpeed * 0.7 + ion.phaseShift) * (primaryAmp * 0.4) +
-              Math.sin(time * oscillationSpeed * 0.9 + ion.phaseShift) * (secondaryAmp * 0.2) + beatPulse * 0.5;
+              Math.sin(time * oscillationSpeed * 0.9 + ion.phaseShift) * (secondaryAmp * 0.2) + beatPulse * 0.5 + chaosY;
 
-      // Decay laser intensity
+      // ENHANCED LASER INTENSITY - More dramatic decay
       if (ion.laserIntensity > 0) {
-        ion.laserIntensity *= 0.92;
+        ion.laserIntensity *= 0.88; // Slower decay for more visible lasers
       }
 
-      // Update ripple effect
+      // ENHANCED RIPPLE EFFECT - Tempo-synced with natural easing
       if (ion.rippleAlpha > 0) {
-        ion.rippleRadius += 2; // Ripple grows outward
-        ion.rippleAlpha *= 0.95; // Fade out gradually
+        // Get current tempo from quantum state
+        const currentTempo = quantumState.tempo || 120;
+        const tempoMultiplier = currentTempo / 120; // Normalize to 120 BPM
+        
+        // Tempo-synced ripple growth with easing
+        const easeOut = 1 - Math.pow(1 - (ion.rippleRadius / 100), 3); // Cubic ease-out
+        const baseGrowth = 2 * tempoMultiplier; // Scale with tempo
+        ion.rippleRadius += baseGrowth * (1 - easeOut * 0.5); // Tempo-synced growth with easing
+        
+        // Tempo-synced fade with easing
+        const fadeEase = Math.pow(ion.rippleRadius / 100, 2); // Quadratic fade
+        const fadeRate = 0.95 * (1 / tempoMultiplier); // Slower fade for faster tempo
+        ion.rippleAlpha *= fadeRate * (1 - fadeEase * 0.3); // Tempo-synced fade with easing
 
         // Stop ripple when it fades completely
         if (ion.rippleAlpha < 0.01) {
@@ -318,51 +332,40 @@ class QuantumDisplay {
         }
       }
 
-      // Draw DRAMATIC BRIGHT laser when being transformed
+      // Draw ENHANCED DRAMATIC laser when being transformed
       if (ion.laser || ion.laserIntensity > 0.1) {
         const intensity = Math.max(ion.laserIntensity, ion.laser ? 1.0 : 0);
 
-        // Multiple laser beams for MAXIMUM intensity
-        for (let beam = 0; beam < 5; beam++) {
-          const offset = (beam - 2) * 2;
-          const alpha = intensity * (1 - beam * 0.15);
+        // White laser beams - thin and bright
+        for (let beam = 0; beam < 2; beam++) {
+          const offset = beam === 0 ? -1 : 1;
 
-          ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
-          ctx.lineWidth = 5 - beam;
-          ctx.shadowBlur = 40 * intensity;
-          ctx.shadowColor = '#FFF';
+          ctx.strokeStyle = '#FFFFFF'; // Pure white
+          ctx.lineWidth = 1; // Ultra-thin lasers
+          ctx.shadowBlur = 50; // Very bright white glow
+          ctx.shadowColor = '#FFFFFF';
+          ctx.globalAlpha = 1.0; // Full opacity for maximum brightness
 
-          // Laser from top with slight variation
+          // Single bright white laser from top
           ctx.beginPath();
           ctx.moveTo(ion.x + offset, 0);
           ctx.lineTo(ion.x + offset, ion.y);
           ctx.stroke();
         }
+        
+        ctx.globalAlpha = 1.0; // Reset alpha
 
-        // BRIGHT impact flash at ion
-        ctx.fillStyle = `rgba(255, 255, 255, ${intensity})`;
-        ctx.shadowBlur = 50 * intensity;
-        ctx.shadowColor = '#FFF';
-        ctx.beginPath();
-        ctx.arc(ion.x, ion.y, 6 + intensity * 10, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Additional glow layer
-        ctx.fillStyle = `rgba(255, 255, 255, ${intensity * 0.5})`;
-        ctx.shadowBlur = 70 * intensity;
-        ctx.beginPath();
-        ctx.arc(ion.x, ion.y, 10 + intensity * 15, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.shadowBlur = 0;
+        // No impact flash - just the outline
       }
 
       // Draw ion
       const isLeader = i === leader;
       const inHarmonic = harmonicSet.includes(i);
 
-      // Calculate size for both active and inactive ions
-      const size = Math.min(30, 10 + ion.energy * Math.min(40, w * 0.03));
+      // LARGER size calculation - ions are the star now
+      const chaosSize = Math.sin(time * 0.3 + i * 0.4) * 2 + 2;
+      const energyBoost = ion.active ? (ion.energy * 8) : 0;
+      const size = Math.min(20, 8 + energyBoost + chaosSize);
 
       // Calculate entanglement strength once for both active and inactive ions
       const entanglementStrength = this.calculateEntanglementStrength(i);
@@ -376,20 +379,46 @@ class QuantumDisplay {
       const baseShellSpeed = 0.8; // Much slower for smooth orbital motion
       const shellPhase = (time * baseShellSpeed) % 360; // Full 360 degree cycle
 
-      if (ion.active) {
+      // Tracks 5 and 6 show shells based on their actual audio volume, not quantum state
+      let shouldShowEffects = ion.active && ion.energy > 0.1;
+      
+      // For tracks 5 and 6, show shells even if quantum state says they're not active
+      // because they have entanglement patterns that control their actual audio
+      if (i === 4 || i === 5) {
+        // Check if this track should be playing based on the 8-beat alternating pattern
+        const currentBar = quantumState.barCount || 0;
+        const tradingPhase = Math.floor(currentBar / 8) % 2;
+        const isTrack5Turn = (i === 4 && tradingPhase === 0) || (i === 5 && tradingPhase === 1);
+        
+        if (isTrack5Turn) {
+          // This track should be playing - show effects
+          shouldShowEffects = true;
+        } else {
+          // This track should be silent - don't show effects
+          shouldShowEffects = false;
+        }
+        
+      }
+      
+      // Only show ion effects when there's actual energy/activity
+      if (shouldShowEffects) {
         // Active ion - TEMPO-SYNCED DAZZLING EFFECTS
 
-        // Beat-synced color changes for dazzling effect
+        // ENHANCED Beat-synced color changes for dazzling effect
         const isOnBeat = beatPhase < 0.1;
-        const colorIntensity = isOnBeat ? 1.0 : 0.8;
+        const colorIntensity = isOnBeat ? 1.2 : 0.9;
+        const chaosColor = Math.sin(time * 0.5 + i * 0.2) * 0.3 + 0.7;
 
-        // Use ion's key color with beat-synced intensity
+        // ENHANCED Use ion's key color with beat-synced intensity and chaos
         const baseColor = ionColor;
-        const color = isOnBeat ? baseColor : baseColor.replace('1)', '0.8)'); // Dimmer when not on beat
+        const enhancedColor = isOnBeat ? 
+          baseColor.replace('1)', `${colorIntensity})`) : 
+          baseColor.replace('1)', `${colorIntensity * chaosColor})`);
+        const color = enhancedColor;
 
         ctx.fillStyle = color;
         ctx.shadowColor = color;
-        ctx.shadowBlur = isLeader ? (isOnBeat ? 25 : 15) : (isOnBeat ? 20 : 10);
+        ctx.shadowBlur = isLeader ? (isOnBeat ? 40 : 25) : (isOnBeat ? 35 : 20);
 
         // Draw core with tempo-synced rotation
         ctx.save();
@@ -399,28 +428,77 @@ class QuantumDisplay {
         const rotationAngle = isOnBeat ? (time * 0.2) : (time * 0.05);
         ctx.rotate(rotationAngle);
 
-        // Draw rotating core
+        // Draw just a thin outline instead of filled circle
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1;
+        ctx.globalAlpha = 0.3; // Subtle outline
         ctx.beginPath();
         ctx.arc(0, 0, size, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.stroke();
 
-        // Add rotating inner glow
+        // Add tiny inner dot for beat
         if (isOnBeat) {
-          ctx.fillStyle = `rgba(255, 255, 255, 0.6)`;
+          ctx.fillStyle = color;
+          ctx.globalAlpha = 0.5;
           ctx.beginPath();
-          ctx.arc(0, 0, size * 0.6, 0, Math.PI * 2);
+          ctx.arc(0, 0, 1, 0, Math.PI * 2);
           ctx.fill();
+        }
+        
+        ctx.globalAlpha = 1.0; // Reset alpha
+
+        // Draw MAGICAL WIZARD LASER ripples in the translated coordinate system
+        if (ion.rippleAlpha > 0) {
+          const maxRippleRadius = size + 8 + (4 * 15); // Beyond outermost shell
+          const rippleProgress = ion.rippleRadius / maxRippleRadius;
+          const rippleOpacity = ion.rippleAlpha * (1 - rippleProgress) * 0.8; // More visible for magic effect
+
+          if (rippleOpacity > 0.01) {
+            // MAGICAL WIZARD LASER EFFECT - Multiple layers with different blend modes
+            
+            // Layer 1: Magical core with multiply blend
+            ctx.globalCompositeOperation = 'multiply';
+            ctx.globalAlpha = rippleOpacity * 0.6;
+            ctx.strokeStyle = ion.rippleColor;
+            ctx.lineWidth = 4; // Thicker for wizard effect
+            ctx.shadowBlur = 30; // Intense magical glow
+            ctx.shadowColor = ion.rippleColor;
+            ctx.beginPath();
+            ctx.arc(0, 0, ion.rippleRadius, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // Layer 2: Magical aura with screen blend
+            ctx.globalCompositeOperation = 'screen';
+            ctx.globalAlpha = rippleOpacity * 0.4;
+            ctx.strokeStyle = `hsl(${(time * 100) % 360}, 100%, 80%)`; // Color-shifting magic
+            ctx.lineWidth = 2;
+            ctx.shadowBlur = 50; // Massive magical aura
+            ctx.shadowColor = '#FFF';
+            ctx.beginPath();
+            ctx.arc(0, 0, ion.rippleRadius * 1.2, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // Layer 3: Wizard energy with overlay blend
+            ctx.globalCompositeOperation = 'overlay';
+            ctx.globalAlpha = rippleOpacity * 0.3;
+            ctx.strokeStyle = `rgba(255, 255, 255, 0.8)`;
+            ctx.lineWidth = 1;
+            ctx.shadowBlur = 25;
+            ctx.shadowColor = '#FFF';
+            ctx.beginPath();
+            ctx.arc(0, 0, ion.rippleRadius * 0.8, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // Reset all effects
+            ctx.globalAlpha = 1.0;
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.shadowBlur = 0;
+          }
         }
 
         ctx.restore();
 
-        // Outer glow layer - reduced to prevent flash
-        ctx.shadowBlur = isLeader ? 20 : 15;
-        ctx.globalAlpha = 0.4;
-        ctx.beginPath();
-        ctx.arc(ion.x, ion.y, size + 4, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = 1.0;
+        // No outer glow layer - just the outline
 
         ctx.shadowBlur = 0;
 
@@ -430,69 +508,37 @@ class QuantumDisplay {
         ctx.shadowBlur = 8;
         ctx.shadowColor = '#FFF';
 
-        // Draw active ion orbital shells with smoky, translucent effect
-        for (let r = 0; r < shellCount; r++) {
-          const shellDelay = r * 72; // 72 degrees apart for smooth orbital motion
-          const shellPhaseOffset = (shellPhase + shellDelay) % 360;
-          const shellRadius = size + 8 + (r * 15); // Smaller orbital radii
-          const shellAlpha = (entanglementStrength[r] || 0) * 0.15 * (isOnBeat ? 1.2 : 1.0); // Much dimmer
+        // Larger shell reflecting audio levels
+        const shellRadius = size + 15;
+        const audioLevel = Math.min(1, (ion.energy || 0) * 0.5);
+        const shellAlpha = 0.1 + (audioLevel * 0.4);
+        const glowIntensity = 15 + (audioLevel * 20);
 
-          if (shellAlpha > 0.005) {
-            // Get the color of the ion this shell represents (based on entanglement strength)
-            // Each shell represents connection to a specific other ion
-            const targetIonIndex = r; // Shell r represents connection to ion r
-            const targetIonKey = this.getIonKey(targetIonIndex);
-            const shellColor = this.getKeyColor(targetIonKey);
-
-            // Create smoky, translucent effect
-            ctx.globalAlpha = shellAlpha;
-            ctx.lineWidth = 1; // Thinner lines
-            ctx.strokeStyle = shellColor;
-            ctx.shadowBlur = 15; // More diffuse glow
-            ctx.shadowColor = shellColor;
-
-            // Draw multiple overlapping rings for smoky effect
-            for (let layer = 0; layer < 3; layer++) {
-              const layerAlpha = shellAlpha * (0.6 - layer * 0.2);
-              const layerRadius = shellRadius + (layer * 2);
-              ctx.globalAlpha = layerAlpha;
-              ctx.beginPath();
-              ctx.arc(ion.x, ion.y, layerRadius, 0, Math.PI * 2);
-              ctx.stroke();
-            }
-          }
+        if (shellAlpha > 0.01) {
+          ctx.globalAlpha = shellAlpha;
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = ionColor;
+          ctx.shadowBlur = glowIntensity;
+          ctx.shadowColor = ionColor;
+          ctx.beginPath();
+          ctx.arc(ion.x, ion.y, shellRadius, 0, Math.PI * 2);
+          ctx.stroke();
         }
         ctx.globalAlpha = 1.0;
         ctx.shadowBlur = 0;
 
-        // Draw state change ripple effect
-        if (ion.rippleAlpha > 0) {
-          const maxRippleRadius = size + 8 + (4 * 15); // Beyond outermost shell
-          const rippleProgress = ion.rippleRadius / maxRippleRadius;
-          const rippleOpacity = ion.rippleAlpha * (1 - rippleProgress);
+        // Ripple effect now drawn inside the translated coordinate system above
 
-          if (rippleOpacity > 0.01) {
-            console.log(`🌊 Drawing ripple for ion ${i}: radius=${ion.rippleRadius}, alpha=${rippleOpacity}, color=${ion.rippleColor}`);
-            ctx.globalAlpha = rippleOpacity;
-            ctx.strokeStyle = ion.rippleColor;
-            ctx.lineWidth = 4; // Thicker for visibility
-            ctx.shadowBlur = 20; // More glow
-            ctx.shadowColor = ion.rippleColor;
-            ctx.beginPath();
-            ctx.arc(ion.x, ion.y, ion.rippleRadius, 0, Math.PI * 2);
-            ctx.stroke();
-            ctx.globalAlpha = 1.0;
-            ctx.shadowBlur = 0;
-          }
-        }
-
-        // Draw ion number right next to active ion core (1-6)
+        // Draw ion number right next to active ion core (1-6) - larger font
         ctx.fillStyle = '#FFF';
-        ctx.font = '14px Arial';
+        ctx.font = '20px Arial';
         ctx.textAlign = 'center';
-        ctx.shadowBlur = 3;
+        ctx.shadowBlur = 5;
         ctx.shadowColor = '#000';
-        ctx.fillText((i + 1).toString(), ion.x + size + 15, ion.y);
+        ctx.fillText((i + 1).toString(), ion.x + size + 25, ion.y);
+        
+        // No special indicators for tracks 5 and 6 - just let their shells show their volume
+        
         ctx.shadowBlur = 0;
 
       } else {
@@ -510,70 +556,32 @@ class QuantumDisplay {
 
         ctx.beginPath();
         ctx.arc(ion.x, ion.y, 3, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.stroke();
 
-        // Draw inactive ion ripples (dimmer)
-        ctx.strokeStyle = '#FFF';
-        ctx.lineWidth = 1;
+        // Larger single ring for inactive ions
+        const shellRadius = size + 15;
+        const shellAlpha = 0.05;
+
+        ctx.globalAlpha = shellAlpha;
+        ctx.lineWidth = 0.5;
+        ctx.strokeStyle = ionColor;
         ctx.shadowBlur = 4;
-        ctx.shadowColor = '#FFF';
-
-        for (let r = 0; r < shellCount; r++) {
-          const shellDelay = r * 72; // 72 degrees apart for smooth orbital motion
-          const shellPhaseOffset = (shellPhase + shellDelay) % 360;
-          const shellRadius = size + 8 + (r * 15); // Smaller orbital radii
-          const shellAlpha = (entanglementStrength[r] || 0) * 0.08; // Much dimmer for inactive
-
-          if (shellAlpha > 0.002) {
-            // Get the color of the ion this shell represents (based on entanglement strength)
-            // Each shell represents connection to a specific other ion
-            const targetIonIndex = r; // Shell r represents connection to ion r
-            const targetIonKey = this.getIonKey(targetIonIndex);
-            const shellColor = this.getKeyColor(targetIonKey);
-
-            // Create very subtle smoky effect for inactive ions
-            ctx.globalAlpha = shellAlpha;
-            ctx.lineWidth = 0.5; // Very thin lines
-            ctx.strokeStyle = shellColor;
-            ctx.shadowBlur = 8; // Soft glow
-            ctx.shadowColor = shellColor;
-
-            // Draw single subtle ring
-            ctx.beginPath();
-            ctx.arc(ion.x, ion.y, shellRadius, 0, Math.PI * 2);
-            ctx.stroke();
-          }
-        }
+        ctx.shadowColor = ionColor;
+        ctx.beginPath();
+        ctx.arc(ion.x, ion.y, shellRadius, 0, Math.PI * 2);
+        ctx.stroke();
         ctx.globalAlpha = 1.0;
         ctx.shadowBlur = 0;
 
-        // Draw state change ripple effect for inactive ions too
-        if (ion.rippleAlpha > 0) {
-          const maxRippleRadius = size + 8 + (4 * 15); // Beyond outermost shell
-          const rippleProgress = ion.rippleRadius / maxRippleRadius;
-          const rippleOpacity = ion.rippleAlpha * (1 - rippleProgress) * 0.8; // Less dim for inactive
+        // Inactive ions don't have ripples - only active ions do
 
-          if (rippleOpacity > 0.01) {
-            ctx.globalAlpha = rippleOpacity;
-            ctx.strokeStyle = ion.rippleColor;
-            ctx.lineWidth = 3; // Thicker for visibility
-            ctx.shadowBlur = 15; // More glow
-            ctx.shadowColor = ion.rippleColor;
-            ctx.beginPath();
-            ctx.arc(ion.x, ion.y, ion.rippleRadius, 0, Math.PI * 2);
-            ctx.stroke();
-            ctx.globalAlpha = 1.0;
-            ctx.shadowBlur = 0;
-          }
-        }
-
-        // Draw ion number right next to inactive ion core (1-6)
+        // Draw ion number right next to inactive ion core (1-6) - larger font
         ctx.fillStyle = '#999';
-        ctx.font = '12px Arial';
+        ctx.font = '18px Arial';
         ctx.textAlign = 'center';
-        ctx.shadowBlur = 2;
+        ctx.shadowBlur = 3;
         ctx.shadowColor = '#000';
-        ctx.fillText((i + 1).toString(), ion.x + 8, ion.y);
+        ctx.fillText((i + 1).toString(), ion.x + size + 20, ion.y);
         ctx.shadowBlur = 0;
       }
 
@@ -610,16 +618,70 @@ class QuantumDisplay {
 
       // Old role labels removed - now using ion numbers next to cores
 
-      // Leader crown
-      if (isLeader && ion.active) {
-        ctx.fillStyle = '#FFF';
-        ctx.font = `${fontSize + 4}px monospace`;
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = '#FFF';
-        ctx.fillText('★', ion.x, ion.y - size - 15);
+      // ENHANCED Leader crown with multiple stars - only when active with energy
+      if (isLeader && ion.active && ion.energy > 0.1) {
+        const starCount = 3;
+        for (let star = 0; star < starCount; star++) {
+          const starOffset = (star - 1) * 8;
+          const starSize = star === 1 ? 1.2 : 0.8; // Center star is bigger
+          const starAlpha = star === 1 ? 1.0 : 0.7;
+          
+          ctx.fillStyle = `rgba(255, 255, 255, ${starAlpha})`;
+          const fontSize = Math.min(20, w * 0.02) * starSize;
+          ctx.font = `${fontSize}px monospace`;
+          ctx.shadowBlur = 25;
+          ctx.shadowColor = '#FFF';
+          ctx.fillText('★', ion.x + starOffset, ion.y - size - 20);
+        }
         ctx.shadowBlur = 0;
       }
     });
+
+    // ENHANCED DRAMATIC CONNECTION LINES between ions
+    ctx.strokeStyle = `rgba(255, 255, 255, 0.3)`;
+    ctx.lineWidth = 2;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = '#FFF';
+    
+    // Draw connections between all active ions
+    for (let i = 0; i < this.ions.length; i++) {
+      for (let j = i + 1; j < this.ions.length; j++) {
+        const ion1 = this.ions[i];
+        const ion2 = this.ions[j];
+        
+        if (ion1.active && ion2.active) {
+          // Calculate connection strength based on distance
+          const dx = ion2.x - ion1.x;
+          const dy = ion2.y - ion1.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const maxDistance = Math.max(w, h) * 0.6;
+          
+          if (distance < maxDistance) {
+            const connectionStrength = 1 - (distance / maxDistance);
+            const alpha = connectionStrength * 0.5;
+            const lineColor = `rgba(255, 255, 255, ${alpha})`;
+            
+            ctx.strokeStyle = lineColor;
+            ctx.beginPath();
+            ctx.moveTo(ion1.x, ion1.y);
+            ctx.lineTo(ion2.x, ion2.y);
+            ctx.stroke();
+            
+            // Add pulsing effect
+            if (Math.sin(time * 2 + i + j) > 0.5) {
+              ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.3})`;
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(ion1.x, ion1.y);
+              ctx.lineTo(ion2.x, ion2.y);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+    }
+    
+    ctx.shadowBlur = 0;
 
     // Status text (scaled)
     const statusFontSize = Math.max(10, Math.min(16, w / 60));
@@ -796,4 +858,12 @@ export function updateIonState(trackIndex, isPlaying, energy = 0, hasEffect = fa
     displayInstance.updateIonState(trackIndex, isPlaying, energy, hasEffect);
   }
 }
+
+// Make display functions globally available for frequency excitation
+window.updateIonState = updateIonState;
+window.triggerIonRipple = (trackIndex) => {
+  if (displayInstance) {
+    displayInstance.triggerIonRipple(trackIndex);
+  }
+};
 

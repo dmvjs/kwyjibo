@@ -156,12 +156,21 @@ export class QuantumBeatEngine {
   }
 
   createAnalyzerChain(source) {
-    // Create analyzer for learning
+    // Create analyzer for learning and frequency excitation
     this.analyser = this.context.createAnalyser();
     this.analyser.fftSize = 4096;
     this.bufferLength = this.analyser.frequencyBinCount;
     this.dataArray = new Uint8Array(this.bufferLength);
     this.timeDomainArray = new Uint8Array(this.bufferLength);
+    
+    // Frequency excitation system for UI
+    this.frequencyExcitation = {
+      enabled: true,
+      lastAnalysis: 0,
+      excitationThreshold: 0.3,
+      frequencyRanges: this.getTrackFrequencyRanges(),
+      currentExcitation: 0
+    };
 
     // Create stem filters
     this.createStemFilters();
@@ -205,6 +214,9 @@ export class QuantumBeatEngine {
 
     // Set up sidechain compression
     const sidechainOutput = sidechainCompressor.createSidechainFor(this.gainNode, this.trackIndex);
+
+    // Start frequency analysis for UI excitation
+    this.startFrequencyAnalysis();
 
     // Route to master bus (either directly or through sidechain)
     if (sidechainOutput === this.gainNode) {
@@ -690,7 +702,7 @@ export class QuantumBeatEngine {
 
             // Smooth envelope (no clicks) using exponential ramps
             const currentGain = Math.max(0.02, this.gainNode.gain.value);
-            const finalBeatTime = transformationParams ? transformedBeatTime : beatTime;
+            const finalBeatTime = transformationParams && transformedBeatTime ? transformedBeatTime : beatTime;
 
             this.gainNode.gain.cancelAndHoldAtTime(finalBeatTime);
             this.gainNode.gain.setValueAtTime(currentGain, beatTime);
@@ -817,6 +829,88 @@ export class QuantumBeatEngine {
     }
     this.dataArray = null;
     this.timeDomainArray = null;
+  }
+  
+  getTrackFrequencyRanges() {
+    // Define NARROW frequency ranges for more precise triggering
+    const ranges = {
+      0: { name: 'kick', low: 40, high: 120, color: '#FF6B6B' },      // Kick - narrow sub bass
+      1: { name: 'snare', low: 500, high: 1500, color: '#4ECDC4' },   // Snare - narrow mid range
+      2: { name: 'bass', low: 80, high: 300, color: '#45B7D1' },      // Bass - narrow low mid
+      3: { name: 'perc', low: 2000, high: 6000, color: '#96CEB4' },   // Percussion - narrow high mid
+      4: { name: 'melody', low: 400, high: 2000, color: '#FFEAA7' },  // Melody - narrow range
+      5: { name: 'texture', low: 300, high: 3000, color: '#DDA0DD' }  // Texture - narrow spectrum
+    };
+    
+    return ranges[this.trackIndex] || ranges[0];
+  }
+  
+  startFrequencyAnalysis() {
+    if (!this.frequencyExcitation.enabled) return;
+    
+    let lastAnalysisTime = 0;
+    const analysisInterval = 0.25; // Only analyze every quarter beat
+    
+    const analyze = () => {
+      if (!this.analyser) return;
+      
+      // Only analyze on beat intervals to reduce constant triggering
+      const currentTime = this.context.currentTime;
+      if (currentTime - lastAnalysisTime < analysisInterval) {
+        requestAnimationFrame(analyze);
+        return;
+      }
+      
+      // Get frequency data
+      this.analyser.getByteFrequencyData(this.dataArray);
+      
+      // Calculate frequency bin width
+      const sampleRate = this.context.sampleRate;
+      const binWidth = sampleRate / (2 * this.dataArray.length);
+      
+      // Analyze the track's specific frequency range
+      const range = this.frequencyExcitation.frequencyRanges;
+      const startBin = Math.floor(range.low / binWidth);
+      const endBin = Math.floor(range.high / binWidth);
+      
+      // Calculate PEAK energy instead of average for more dramatic triggering
+      let peakEnergy = 0;
+      
+      for (let i = startBin; i < endBin && i < this.dataArray.length; i++) {
+        peakEnergy = Math.max(peakEnergy, this.dataArray[i]);
+      }
+      
+      const normalizedEnergy = peakEnergy / 255;
+      
+      // Update excitation level
+      this.frequencyExcitation.currentExcitation = normalizedEnergy;
+      
+      // Much higher threshold - only trigger on very significant peaks
+      if (normalizedEnergy > 0.85) {
+        this.triggerIonExcitation(normalizedEnergy);
+        lastAnalysisTime = currentTime;
+      }
+      
+      // Continue analysis
+      requestAnimationFrame(analyze);
+    };
+    
+    analyze();
+  }
+  
+  triggerIonExcitation(energy) {
+    // Trigger laser effect and ripple
+    if (typeof updateIonState === 'function') {
+      updateIonState(this.trackIndex, true, energy * 2, true);
+    }
+    
+    if (typeof triggerIonRipple === 'function') {
+      triggerIonRipple(this.trackIndex);
+    }
+  }
+  
+  getExcitationLevel() {
+    return this.frequencyExcitation.currentExcitation;
   }
 }
 

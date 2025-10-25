@@ -256,47 +256,19 @@ class QuantumMusicalState {
     const racePosition = raceState.racePositions.indexOf(trackIndex);
     const trackMomentum = raceState.momentum[trackIndex];
     
-    // SPECIAL TRADING RULE: Tracks 5 and 6 (4,5 indexed) alternate every 8 bars
+    // SPECIAL TRADING RULE: Tracks 5 and 6 (4,5 indexed) are controlled by entanglement patterns
+    // These tracks use volume-based alternating, not quantum state control
     const isTradingTrack = (trackIndex === 4 || trackIndex === 5);
-    const tradingPhase = Math.floor(barNumber / 8) % 2; // 0 or 1
-    const isTrack5Turn = (trackIndex === 4 && tradingPhase === 0) || (trackIndex === 5 && tradingPhase === 1);
-    const isTrack6Turn = (trackIndex === 5 && tradingPhase === 0) || (trackIndex === 4 && tradingPhase === 1);
-    
-    // Debug: Show which track should be dominant
-    if (isTradingTrack && beatInBar === 0) {
-      const dominantTrack = tradingPhase === 0 ? 4 : 5;
-      console.log(`🔄 Bar ${barNumber}: Phase ${tradingPhase}, Track ${dominantTrack + 1} should be dominant`);
-    }
-    
-    // Debug logging for alternating pattern
-    if (isTradingTrack && beatInBar === 0) {
-      console.log(`🔄 Track ${trackIndex} alternating check: bar=${barNumber}, phase=${tradingPhase}, track5Turn=${isTrack5Turn}, track6Turn=${isTrack6Turn}`);
-      console.log(`🔄 Track ${trackIndex}: isTrack5Turn=${isTrack5Turn}, isTrack6Turn=${isTrack6Turn}`);
-    }
     
     // Constructive interference bonus
     let adjustment = 0;
     
-    // TRADING CONTROL: Tracks 5 & 6 alternate every 8 bars - one plays normally, other has reduced volume
-    // This takes precedence over race position for these tracks
+    // TRADING CONTROL: Tracks 5 & 6 are controlled by entanglement patterns in preload.js
+    // Skip quantum state control for these tracks - they use volume-based alternating
     if (isTradingTrack) {
-      if (isTrack5Turn) {
-        // Track 5's turn - it plays normally, track 6 has reduced volume
-        if (trackIndex === 4) {
-          adjustment = 1.0; // Track 5 plays normally
-          console.log(`🔄 Track 5 DOMINANT (bars ${Math.floor(barNumber/8)*8}-${Math.floor(barNumber/8)*8+7})`);
-        } else {
-          adjustment = -0.8; // Track 6 has reduced volume
-        }
-      } else if (isTrack6Turn) {
-        // Track 6's turn - it plays normally, track 5 has reduced volume
-        if (trackIndex === 5) {
-          adjustment = 1.0; // Track 6 plays normally
-          console.log(`🔄 Track 6 DOMINANT (bars ${Math.floor(barNumber/8)*8}-${Math.floor(barNumber/8)*8+7})`);
-        } else {
-          adjustment = -0.8; // Track 5 has reduced volume
-        }
-      }
+      // These tracks are controlled by entanglement patterns, not quantum state
+      // Return neutral adjustment to let entanglement patterns handle volume
+      adjustment = 0;
     } else {
       // Normal race position logic for non-trading tracks
       // RACE LEADER gets massive priority boost
